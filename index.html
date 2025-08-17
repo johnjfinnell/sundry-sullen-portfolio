@@ -1,257 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sundry Sullen Portfolio</title>
-<style>
-  /* Reset */
-  * {
-    box-sizing: border-box;
-  }
-  body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #fff;
-    color: #000;
-    display: flex;
-    min-height: 100vh;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sundry Sullen Portfolio</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #000000;
+      --highlight: #c00;
+    }
+    body.dark {
+      --bg: #121212;
+      --text: #f0f0f0;
+      --highlight: #ff4444;
+    }
 
-  /* Sidebar */
-  nav.sidebar {
-    width: 200px;
-    background: #fff;
-    display: flex;
-    flex-direction: column;
-    padding: 2rem 1.5rem;
-    position: sticky;
-    top: 0;
-    height: fit-content;
-    user-select: none;
-  }
-  nav.sidebar h1 {
-    margin: 0 0 2rem 0;
-    font-weight: 900;
-    font-size: 1.4rem;
-    letter-spacing: -0.02em;
-    white-space: nowrap; /* Prevent stacking */
-  }
-  nav.sidebar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  nav.sidebar ul li {
-    margin-bottom: 1rem;
-  }
-  nav.sidebar ul li button {
-    all: unset;
-    cursor: pointer;
-    color: #000;
-    font-weight: 400;
-    font-size: 1rem;
-    line-height: 1.3;
-    transition: color 0.3s ease;
-    display: block;
-    width: 100%;
-    text-align: left;
-  }
-  nav.sidebar ul li button.active,
-  nav.sidebar ul li button:hover,
-  nav.sidebar ul li button:focus {
-    color: #c00; /* red for active and hover */
-    font-weight: 400; /* no bold on hover */
-    outline: none;
-  }
-
-  /* Main content area */
-  main.content {
-    margin-left: 200px;
-    padding: 2rem 2.5rem 2rem 2.5rem;
-    flex-grow: 1;
-  }
-
-  /* Section content styling */
-  section.section {
-    display: none; /* hide all sections by default */
-    max-width: 900px;
-  }
-  section.section.active {
-    display: block;
-  }
-
-  /* Section Titles */
-  section.section h2 {
-    font-weight: 900;
-    font-size: 1.6rem;
-    margin-top: 0;
-    margin-bottom: 0.6rem;
-    letter-spacing: -0.02em;
-  }
-
-  /* Description text */
-  section.section .description {
-    font-style: italic;
-    font-weight: 400;
-    font-size: 0.9rem;
-    margin-bottom: 1.5rem;
-    line-height: 1.4;
-    white-space: pre-line;
-  }
-
-  /* Images container */
-  section.section .images {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-  }
-  section.section .images img {
-    width: 100%;
-    height: auto;
-    border: 1px solid #000;
-    object-fit: contain;
-    user-select: none;
-  }
-
-  /* About section specifics */
-  #about img.placeholder {
-    display: block;
-    margin: 0 0 1rem 0;
-    width: 200px;
-    height: 150px;
-    object-fit: contain;
-    border: 1px solid #000;
-  }
-  #about p {
-    margin-top: 0;
-    max-width: 600px;
-    font-size: 1rem;
-    line-height: 1.5;
-  }
-
-  /* Responsive */
-  @media (max-width: 768px) {
     body {
-      flex-direction: column;
-    }
-    nav.sidebar {
-      position: relative;
-      width: 100%;
-      padding: 1rem 2rem;
-      flex-direction: row;
-      overflow-x: auto;
-      white-space: nowrap;
-      border-bottom: 1px solid #000;
-      height: auto;
-      top: auto;
-    }
-    nav.sidebar h1 {
-      font-size: 1.2rem;
-      margin-right: 2rem;
-      flex: 0 0 auto;
-      white-space: nowrap; /* keep no wrap on mobile too */
-    }
-    nav.sidebar ul {
-      display: flex;
-      gap: 1.5rem;
-      flex-wrap: nowrap;
       margin: 0;
-      flex: 1 1 auto;
-      overflow-x: auto;
-      scrollbar-width: thin;
+      font-family: sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
     }
-    nav.sidebar ul li {
-      margin-bottom: 0;
-      flex: 0 0 auto;
+    .layout {
+      display: flex;
+      min-height: 100vh;
     }
-    main.content {
-      margin-left: 0;
-      padding: 1rem 1rem 2rem;
+    nav {
+      position: sticky;
+      top: 0;
+      width: 200px;
+      padding: 2rem 1rem;
+      background: var(--bg);
+      border-right: 1px solid #ccc;
+      height: 100vh;
     }
-  }
-</style>
+    nav h1 {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    nav a {
+      display: block;
+      margin: 1rem 0;
+      text-decoration: none;
+      color: var(--text);
+    }
+    nav a.active {
+      color: var(--highlight);
+    }
+    nav button {
+      margin-top: 2rem;
+      padding: 0.5rem;
+      cursor: pointer;
+    }
+    .content {
+      flex: 1;
+      padding: 2rem;
+      scroll-behavior: smooth;
+    }
+    section {
+      margin-bottom: 5rem;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      margin-top: 1rem;
+    }
+    .back-to-top {
+      display: block;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+    }
+    @media (max-width: 768px) {
+      .layout {
+        flex-direction: column;
+      }
+      nav {
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid #ccc;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="layout">
+    <nav>
+      <h1>SUNDRY SULLEN</h1>
+      <a href="#poster">Poster Series</a>
+      <a href="#pages">One Hundred Pages</a>
+      <a href="#works">Selected Works</a>
+      <a href="#collab">Selected Collaborations</a>
+      <a href="#photo">Selected Photography</a>
+      <a href="#about">About</a>
+      <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+    </nav>
 
-<nav class="sidebar" role="navigation" aria-label="Primary">
-  <h1>SUNDRY SULLEN</h1>
-  <ul>
-    <li><button class="nav-btn active" data-target="poster-series">Poster Series</button></li>
-    <li><button class="nav-btn" data-target="one-hundred-pages">One Hundred Pages</button></li>
-    <li><button class="nav-btn" data-target="selected-works">Selected Works</button></li>
-    <li><button class="nav-btn" data-target="selected-collaborations">Selected Collaborations</button></li>
-    <li><button class="nav-btn" data-target="selected-photography">Selected Photography</button></li>
-    <li><button class="nav-btn" data-target="about">About</button></li>
-  </ul>
-</nav>
+    <div class="content">
+      <section id="poster">
+        <h2>Poster Series</h2>
+        <p><em>2022</em></p>
+        <p><em>18x24", found images and glue on 100lb Bristol.</em></p>
+        <p><em>Exploring themes of Freedom, Americana, Love, Beauty, Meritocracy, Ego, Materialism, Idealism, and The War Within.</em></p>
+        <img src="images/poster-series/IMG_5509.jpeg" alt="Poster Image" />
+        <a class="back-to-top" href="#top">Back to top</a>
+      </section>
 
-<main class="content" tabindex="0">
-  <section id="poster-series" class="section active" tabindex="0" aria-labelledby="poster-series-title">
-    <h2 id="poster-series-title">Poster Series</h2>
-    <div class="description">
-      2022<br />
-      18x24", found images and glue on 100lb Bristol.<br />
-      Exploring themes of Freedom, Americana, Love, Beauty, Meritocracy, Ego, Materialism, Idealism, and The War Within.
+      <section id="pages">
+        <h2>One Hundred Pages</h2>
+        <p><em>2021</em></p>
+        <img src="images/100-Pages/IMG_5313.jpg" alt="Page Image" />
+        <a class="back-to-top" href="#top">Back to top</a>
+      </section>
+
+      <section id="works">
+        <h2>Selected Works</h2>
+        <p><em>2005–2017</em></p>
+        <img src="images/selected-works/01-works.webp" alt="Work Image" />
+        <a class="back-to-top" href="#top">Back to top</a>
+      </section>
+
+      <section id="collab">
+        <h2>Selected Collaborations</h2>
+        <p><em>2005–2017</em></p>
+        <img src="images/selected-collaborations/01-collab.jpeg" alt="Collaboration Image" />
+        <a class="back-to-top" href="#top">Back to top</a>
+      </section>
+
+      <section id="photo">
+        <h2>Selected Photography</h2>
+        <p><em>2010</em></p>
+        <img src="images/selected-photography/01-photo.jpeg" alt="Photo Image" />
+        <a class="back-to-top" href="#top">Back to top</a>
+      </section>
+
+      <section id="about">
+        <h2>About</h2>
+        <p>Write something here about your process, background, or philosophy — or keep it sparse and mysterious. Up to you.</p>
+        <img src="images/about/about-photo.jpg" alt="Portrait or About Image" />
+        <a class="back-to-top" href="#top">Back to top</a>
+      </section>
     </div>
-    <div class="images">
-      <img src="images/poster-series/IMG_5509.JPG" alt="Poster Series artwork 1" />
-      <img src="images/poster-series/IMG_5532.JPG" alt="Poster Series artwork 2" />
-      <img src="images/poster-series/IMG_5595.JPG" alt="Poster Series artwork 3" />
-      <img src="images/poster-series/IMG_5667.JPG" alt="Poster Series artwork 4" />
-      <img src="images/poster-series/IMG_5679.JPG" alt="Poster Series artwork 5" />
-      <img src="images/poster-series/IMG_5740.JPG" alt="Poster Series artwork 6" />
-      <img src="images/poster-series/IMG_5780.JPG" alt="Poster Series artwork 7" />
-      <img src="images/poster-series/IMG_5788.JPG" alt="Poster Series artwork 8" />
-      <img src="images/poster-series/IMG_5817.JPG" alt="Poster Series artwork 9" />
-    </div>
-  </section>
+  </div>
 
-  <section id="one-hundred-pages" class="section" tabindex="0" aria-labelledby="one-hundred-pages-title">
-    <h2 id="one-hundred-pages-title">One Hundred Pages</h2>
-    <div class="description">Content coming soon...</div>
-  </section>
-
-  <section id="selected-works" class="section" tabindex="0" aria-labelledby="selected-works-title">
-    <h2 id="selected-works-title">Selected Works</h2>
-    <div class="description">Content coming soon...</div>
-  </section>
-
-  <section id="selected-collaborations" class="section" tabindex="0" aria-labelledby="selected-collaborations-title">
-    <h2 id="selected-collaborations-title">Selected Collaborations</h2>
-    <div class="description">Content coming soon...</div>
-  </section>
-
-  <section id="selected-photography" class="section" tabindex="0" aria-labelledby="selected-photography-title">
-    <h2 id="selected-photography-title">Selected Photography</h2>
-    <div class="description">Content coming soon...</div>
-  </section>
-
-  <section id="about" class="section" tabindex="0" aria-labelledby="about-title">
-    <h2 id="about-title">About</h2>
-    <img class="placeholder" src="images/about/placeholder.jpg" alt="About placeholder image" />
-    <p>
-      Sundry Sullen is the artist name of John Finnell, a collage artist exploring themes of Americana, freedom, beauty, and the complexities within the human experience. This portfolio showcases a curated selection of series expressing his vision through found images and layered textures.
-    </p>
-  </section>
-</main>
-
-<script>
-  const navButtons = document.querySelectorAll(".nav-btn");
-  const sections = document.querySelectorAll(".section");
-
-  navButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      navButtons.forEach((b) => b.classList.remove("active"));
-      sections.forEach((sec) => sec.classList.remove("active"));
-
-      btn.classList.add("active");
-      document.getElementById(btn.dataset.target).classList.add("active");
-
-      document.querySelector("main.content").focus();
-    });
-  });
-</script>
-
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+    }
+  </script>
 </body>
 </html>
