@@ -5,152 +5,116 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sundry Sullen Portfolio</title>
   <style>
-    :root {
-      --bg: #ffffff;
-      --text: #000000;
-      --highlight: #c00;
-    }
-    body.dark {
-      --bg: #121212;
-      --text: #f0f0f0;
-      --highlight: #ff4444;
-    }
-
     body {
       margin: 0;
-      font-family: sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
+      font-family: Helvetica, Arial, sans-serif;
+      background-color: white;
+      color: black;
     }
-    .layout {
+    .container {
       display: flex;
       min-height: 100vh;
     }
     nav {
-      position: sticky;
-      top: 0;
-      width: 200px;
+      width: 240px;
       padding: 2rem 1rem;
-      background: var(--bg);
-      border-right: 1px solid #ccc;
-      height: 100vh;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      overflow-y: auto;
     }
     nav h1 {
       font-size: 1.2rem;
-      font-weight: bold;
+      margin-bottom: 2rem;
     }
-    nav a {
-      display: block;
+    nav ul {
+      list-style: none;
+      padding: 0;
+    }
+    nav ul li {
       margin: 1rem 0;
+    }
+    nav ul li a {
       text-decoration: none;
-      color: var(--text);
+      color: black;
     }
-    nav a.active {
-      color: var(--highlight);
+    nav ul li a.active,
+    nav ul li a:hover {
+      color: red;
     }
-    nav button {
-      margin-top: 2rem;
-      padding: 0.5rem;
-      cursor: pointer;
-    }
-    .content {
-      flex: 1;
+    main {
+      margin-left: 240px;
       padding: 2rem;
-      scroll-behavior: smooth;
+      width: calc(100% - 240px);
     }
     section {
-      margin-bottom: 5rem;
+      margin-bottom: 6rem;
     }
-    img {
-      max-width: 100%;
-      height: auto;
-      margin-top: 1rem;
+    section h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .description {
+      font-style: italic;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    .image-gallery img {
+      width: 100%;
+      max-width: 700px;
+      margin-bottom: 2rem;
+      display: block;
     }
     .back-to-top {
-      display: block;
       margin-top: 2rem;
       font-size: 0.9rem;
     }
-    @media (max-width: 768px) {
-      .layout {
-        flex-direction: column;
-      }
-      nav {
-        width: 100%;
-        height: auto;
-        border-right: none;
-        border-bottom: 1px solid #ccc;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-      }
+    .back-to-top a {
+      text-decoration: none;
+      color: black;
+    }
+    .back-to-top a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <div class="layout">
+  <div class="container">
     <nav>
       <h1>SUNDRY SULLEN</h1>
-      <a href="#poster">Poster Series</a>
-      <a href="#pages">One Hundred Pages</a>
-      <a href="#works">Selected Works</a>
-      <a href="#collab">Selected Collaborations</a>
-      <a href="#photo">Selected Photography</a>
-      <a href="#about">About</a>
-      <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+      <ul>
+        <li><a href="#poster-series">Poster Series</a></li>
+        <li><a href="#100-pages">One Hundred Pages</a></li>
+        <li><a href="#selected-works">Selected Works</a></li>
+        <li><a href="#selected-collaborations">Selected Collaborations</a></li>
+        <li><a href="#selected-photography">Selected Photography</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
     </nav>
-
-    <div class="content">
-      <section id="poster">
+    <main>
+      <section id="poster-series">
         <h2>Poster Series</h2>
-        <p><em>2022</em></p>
-        <p><em>18x24", found images and glue on 100lb Bristol.</em></p>
-        <p><em>Exploring themes of Freedom, Americana, Love, Beauty, Meritocracy, Ego, Materialism, Idealism, and The War Within.</em></p>
-        <img src="images/poster-series/IMG_5509.jpeg" alt="Poster Image" />
-        <a class="back-to-top" href="#top">Back to top</a>
+        <p class="description">2022<br>18x24", found images and glue on 100lb Bristol.<br><br><em>Exploring themes of Freedom, Americana, Love, Beauty, Meritocracy, Ego, Materialism, Idealism, and The War Within.</em></p>
+        <div class="image-gallery">
+          <img src="images/poster-series/IMG_5313.jpg" alt="Poster Series 1">
+          <img src="images/poster-series/IMG_5314.jpg" alt="Poster Series 2">
+          <img src="images/poster-series/IMG_5315.jpg" alt="Poster Series 3">
+          <img src="images/poster-series/IMG_5316.jpg" alt="Poster Series 4">
+          <img src="images/poster-series/IMG_5317.jpg" alt="Poster Series 5">
+          <img src="images/poster-series/IMG_5318.jpg" alt="Poster Series 6">
+          <img src="images/poster-series/IMG_5319.jpg" alt="Poster Series 7">
+          <img src="images/poster-series/IMG_5320.jpg" alt="Poster Series 8">
+          <img src="images/poster-series/IMG_5322.jpg" alt="Poster Series 9">
+          <img src="images/poster-series/IMG_5323.jpg" alt="Poster Series 10">
+          <img src="images/poster-series/IMG_5324.jpg" alt="Poster Series 11">
+          <img src="images/poster-series/IMG_5325.jpg" alt="Poster Series 12">
+        </div>
+        <div class="back-to-top"><a href="#top">Back to top</a></div>
       </section>
 
-      <section id="pages">
-        <h2>One Hundred Pages</h2>
-        <p><em>2021</em></p>
-        <img src="images/100-Pages/IMG_5313.jpg" alt="Page Image" />
-        <a class="back-to-top" href="#top">Back to top</a>
-      </section>
+      <!-- Add the other sections below with same structure -->
 
-      <section id="works">
-        <h2>Selected Works</h2>
-        <p><em>2005–2017</em></p>
-        <img src="images/selected-works/01-works.webp" alt="Work Image" />
-        <a class="back-to-top" href="#top">Back to top</a>
-      </section>
-
-      <section id="collab">
-        <h2>Selected Collaborations</h2>
-        <p><em>2005–2017</em></p>
-        <img src="images/selected-collaborations/01-collab.jpeg" alt="Collaboration Image" />
-        <a class="back-to-top" href="#top">Back to top</a>
-      </section>
-
-      <section id="photo">
-        <h2>Selected Photography</h2>
-        <p><em>2010</em></p>
-        <img src="images/selected-photography/01-photo.jpeg" alt="Photo Image" />
-        <a class="back-to-top" href="#top">Back to top</a>
-      </section>
-
-      <section id="about">
-        <h2>About</h2>
-        <p>Write something here about your process, background, or philosophy — or keep it sparse and mysterious. Up to you.</p>
-        <img src="images/about/about-photo.jpg" alt="Portrait or About Image" />
-        <a class="back-to-top" href="#top">Back to top</a>
-      </section>
-    </div>
+    </main>
   </div>
-
-  <script>
-    function toggleDarkMode() {
-      document.body.classList.toggle('dark');
-    }
-  </script>
 </body>
 </html>
