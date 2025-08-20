@@ -5,6 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Sundry Sullen</title>
 <style>
+  :root{
+    /* Tweak this to fine-tune the content width */
+    --content-max: 720px;
+    --img-gap: 1.2rem;
+  }
+
   /* Reset */
   * { box-sizing: border-box; }
   body {
@@ -29,13 +35,15 @@
     user-select: none;
     z-index: 20;
   }
-  nav.sidebar h1 {
+  /* Desktop title */
+  nav.sidebar .desktop-title{
     margin: 0 0 2rem 0;
     font-weight: 900;
     font-size: 1.4rem;
     letter-spacing: -0.02em;
     white-space: nowrap;
   }
+
   nav.sidebar ul { list-style: none; padding: 0; margin: 0; }
   nav.sidebar ul li { margin-bottom: 1rem; }
   nav.sidebar ul li button {
@@ -57,9 +65,9 @@
     outline: none;
   }
 
-  /* Hamburger (mobile only) */
+  /* Mobile top bar (hidden on desktop) */
   .sidebar-inner {
-    display: none; /* hidden on desktop */
+    display: none;
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
@@ -77,6 +85,12 @@
   .menu-toggle .bars { display: inline-flex; flex-direction: column; gap: 4px; }
   .menu-toggle .bars span { display: block; width: 20px; height: 2px; background: #000; }
   .menu-toggle .menu-label { font-size: 0.95rem; line-height: 1; color: #000; }
+  .sidebar-inner h1 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+  }
 
   /* Main content */
   main.content {
@@ -88,7 +102,7 @@
   /* Section content */
   section.section {
     display: none; /* SPA: hidden by default */
-    max-width: 900px;
+    max-width: var(--content-max);
   }
   section.section.active { display: block; }
 
@@ -111,17 +125,19 @@
   section.section .images {
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
+    gap: var(--img-gap);
   }
+  /* Images: no borders, fluid width */
   section.section .images img,
-  section.section > img { /* for sections where imgs are direct children */
+  section.section > img {
     display: block;
     width: 100%;
     max-width: 100%;
     height: auto;
-    border: 1px solid #000;
     object-fit: contain;
     user-select: none;
+    /* no border */
+    border: 0;
   }
 
   .back-to-top {
@@ -144,16 +160,12 @@
       padding: 0;
       height: auto;
       flex-direction: column;
-      border-bottom: 0; /* no horizontal line */
     }
 
-    /* Show top bar, hide desktop list until opened */
+    /* Show mobile bar */
     .sidebar-inner { display: flex; }
-    nav.sidebar h1 {
-      margin: 0;
-      font-size: 1.2rem;
-      white-space: nowrap;
-    }
+    /* Hide desktop title on mobile */
+    nav.sidebar .desktop-title{ display:none; }
 
     nav.sidebar ul {
       display: none;
@@ -181,7 +193,10 @@
 <body>
 
 <nav class="sidebar" role="navigation" aria-label="Primary" id="primaryNav">
-  <!-- Mobile top bar (hidden on desktop) -->
+  <!-- Desktop title -->
+  <h1 class="desktop-title">SUNDRY SULLEN</h1>
+
+  <!-- Mobile top bar -->
   <div class="sidebar-inner">
     <h1>SUNDRY SULLEN</h1>
     <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="primary-menu">
@@ -204,11 +219,10 @@
 <main class="content" tabindex="0">
   <!-- Poster Series -->
   <section id="poster-series" class="section active" tabindex="0" aria-labelledby="poster-series-title">
-    <h2 id="poster-series-title">Poster Series</h2>
+    <h2 id="poster-series-title">Selected Works</h2>
     <div class="description">
-      2022<br />
-      18x24 in., found images and glue on 100lb Bristol.<br />
-      Exploring themes of freedom, americana, meritocracy, ego, materialism, idealism, love, beauty, sexuality, and the war within.
+      2005–2017<br />
+      Mixed media, found objects, glue, acrylic, oil, ink
     </div>
     <div class="images">
       <img src="images/poster-series/IMG_5509.jpeg" alt="Poster Series Collage 1" loading="lazy">
@@ -237,61 +251,63 @@
     <a href="#" class="back-to-top">Back to top</a>
   </section>
 
-  <!-- One Hundred Pages (reversed) -->
+  <!-- One Hundred Pages (reversed, now spaced consistently) -->
   <section id="one-hundred-pages" class="section" tabindex="0" aria-labelledby="one-hundred-pages-title">
     <h2 id="one-hundred-pages-title">One Hundred Pages</h2>
     <div class="year">2021</div>
     <div class="details">11x14in. found images and glue on sketch book.</div>
     <div class="description">Exploring narrative, repetition, and the meditative act of sequencing.</div>
 
-    <!-- Last to first -->
-    <img src="images/100-Pages/IMG_5429.jpeg" alt="Collage from One Hundred Pages series, number 47" loading="lazy">
-    <img src="images/100-Pages/IMG_5363.jpeg" alt="Collage from One Hundred Pages series, number 46" loading="lazy">
-    <img src="images/100-Pages/IMG_5362.jpeg" alt="Collage from One Hundred Pages series, number 45" loading="lazy">
-    <img src="images/100-Pages/IMG_5361.jpeg" alt="Collage from One Hundred Pages series, number 44" loading="lazy">
-    <img src="images/100-Pages/IMG_5359.jpeg" alt="Collage from One Hundred Pages series, number 43" loading="lazy">
-    <img src="images/100-Pages/IMG_5358.jpeg" alt="Collage from One Hundred Pages series, number 42" loading="lazy">
-    <img src="images/100-Pages/IMG_5357.jpeg" alt="Collage from One Hundred Pages series, number 41" loading="lazy">
-    <img src="images/100-Pages/IMG_5356.jpeg" alt="Collage from One Hundred Pages series, number 40" loading="lazy">
-    <img src="images/100-Pages/IMG_5354.jpeg" alt="Collage from One Hundred Pages series, number 39" loading="lazy">
-    <img src="images/100-Pages/IMG_5351.jpeg" alt="Collage from One Hundred Pages series, number 38" loading="lazy">
-    <img src="images/100-Pages/IMG_5350.jpeg" alt="Collage from One Hundred Pages series, number 37" loading="lazy">
-    <img src="images/100-Pages/IMG_5349.jpeg" alt="Collage from One Hundred Pages series, number 36" loading="lazy">
-    <img src="images/100-Pages/IMG_5348.jpeg" alt="Collage from One Hundred Pages series, number 35" loading="lazy">
-    <img src="images/100-Pages/IMG_5347.jpeg" alt="Collage from One Hundred Pages series, number 34" loading="lazy">
-    <img src="images/100-Pages/IMG_5346.jpeg" alt="Collage from One Hundred Pages series, number 33" loading="lazy">
-    <img src="images/100-Pages/IMG_5345.jpeg" alt="Collage from One Hundred Pages series, number 32" loading="lazy">
-    <img src="images/100-Pages/IMG_5344.jpeg" alt="Collage from One Hundred Pages series, number 31" loading="lazy">
-    <img src="images/100-Pages/IMG_5343.jpeg" alt="Collage from One Hundred Pages series, number 30" loading="lazy">
-    <img src="images/100-Pages/IMG_5342.jpeg" alt="Collage from One Hundred Pages series, number 29" loading="lazy">
-    <img src="images/100-Pages/IMG_5341.jpeg" alt="Collage from One Hundred Pages series, number 28" loading="lazy">
-    <img src="images/100-Pages/IMG_5340.jpeg" alt="Collage from One Hundred Pages series, number 27" loading="lazy">
-    <img src="images/100-Pages/IMG_5339.jpeg" alt="Collage from One Hundred Pages series, number 26" loading="lazy">
-    <img src="images/100-Pages/IMG_5338.jpeg" alt="Collage from One Hundred Pages series, number 25" loading="lazy">
-    <img src="images/100-Pages/IMG_5337.jpeg" alt="Collage from One Hundred Pages series, number 24" loading="lazy">
-    <img src="images/100-Pages/IMG_5336.jpeg" alt="Collage from One Hundred Pages series, number 23" loading="lazy">
-    <img src="images/100-Pages/IMG_5335.jpeg" alt="Collage from One Hundred Pages series, number 22" loading="lazy">
-    <img src="images/100-Pages/IMG_5334.jpeg" alt="Collage from One Hundred Pages series, number 21" loading="lazy">
-    <img src="images/100-Pages/IMG_5333.jpeg" alt="Collage from One Hundred Pages series, number 20" loading="lazy">
-    <img src="images/100-Pages/IMG_5332.jpeg" alt="Collage from One Hundred Pages series, number 19" loading="lazy">
-    <img src="images/100-Pages/IMG_5331.jpeg" alt="Collage from One Hundred Pages series, number 18" loading="lazy">
-    <img src="images/100-Pages/IMG_5330.jpeg" alt="Collage from One Hundred Pages series, number 17" loading="lazy">
-    <img src="images/100-Pages/IMG_5328.jpeg" alt="Collage from One Hundred Pages series, number 16" loading="lazy">
-    <img src="images/100-Pages/IMG_5327.jpeg" alt="Collage from One Hundred Pages series, number 15" loading="lazy">
-    <img src="images/100-Pages/IMG_5326.jpeg" alt="Collage from One Hundred Pages series, number 14" loading="lazy">
-    <img src="images/100-Pages/IMG_5325.jpeg" alt="Collage from One Hundred Pages series, number 13" loading="lazy">
-    <img src="images/100-Pages/IMG_5324.jpeg" alt="Collage from One Hundred Pages series, number 12" loading="lazy">
-    <img src="images/100-Pages/IMG_5323.jpeg" alt="Collage from One Hundred Pages series, number 11" loading="lazy">
-    <img src="images/100-Pages/IMG_5322.jpeg" alt="Collage from One Hundred Pages series, number 10" loading="lazy">
-    <img src="images/100-Pages/IMG_5321.jpeg" alt="Collage from One Hundred Pages series, number 9" loading="lazy">
-    <img src="images/100-Pages/IMG_5320.jpeg" alt="Collage from One Hundred Pages series, number 8" loading="lazy">
-    <img src="images/100-Pages/IMG_5319.jpeg" alt="Collage from One Hundred Pages series, number 7" loading="lazy">
-    <img src="images/100-Pages/IMG_5318.jpeg" alt="Collage from One Hundred Pages series, number 6" loading="lazy">
-    <img src="images/100-Pages/IMG_5317.jpeg" alt="Collage from One Hundred Pages series, number 5" loading="lazy">
-    <img src="images/100-Pages/IMG_5316.jpeg" alt="Collage from One Hundred Pages series, number 4" loading="lazy">
-    <img src="images/100-Pages/IMG_5315.jpeg" alt="Collage from One Hundred Pages series, number 3" loading="lazy">
-    <img src="images/100-Pages/IMG_5314.jpeg" alt="Collage from One Hundred Pages series, number 2" loading="lazy">
-    <img src="images/100-Pages/IMG_5313.jpeg" alt="Collage from One Hundred Pages series, number 1" loading="lazy">
+    <div class="images">
+      <!-- Last to first -->
+      <img src="images/100-Pages/IMG_5429.jpeg" alt="Collage from One Hundred Pages series, number 47" loading="lazy">
+      <img src="images/100-Pages/IMG_5363.jpeg" alt="Collage from One Hundred Pages series, number 46" loading="lazy">
+      <img src="images/100-Pages/IMG_5362.jpeg" alt="Collage from One Hundred Pages series, number 45" loading="lazy">
+      <img src="images/100-Pages/IMG_5361.jpeg" alt="Collage from One Hundred Pages series, number 44" loading="lazy">
+      <img src="images/100-Pages/IMG_5359.jpeg" alt="Collage from One Hundred Pages series, number 43" loading="lazy">
+      <img src="images/100-Pages/IMG_5358.jpeg" alt="Collage from One Hundred Pages series, number 42" loading="lazy">
+      <img src="images/100-Pages/IMG_5357.jpeg" alt="Collage from One Hundred Pages series, number 41" loading="lazy">
+      <img src="images/100-Pages/IMG_5356.jpeg" alt="Collage from One Hundred Pages series, number 40" loading="lazy">
+      <img src="images/100-Pages/IMG_5354.jpeg" alt="Collage from One Hundred Pages series, number 39" loading="lazy">
+      <img src="images/100-Pages/IMG_5351.jpeg" alt="Collage from One Hundred Pages series, number 38" loading="lazy">
+      <img src="images/100-Pages/IMG_5350.jpeg" alt="Collage from One Hundred Pages series, number 37" loading="lazy">
+      <img src="images/100-Pages/IMG_5349.jpeg" alt="Collage from One Hundred Pages series, number 36" loading="lazy">
+      <img src="images/100-Pages/IMG_5348.jpeg" alt="Collage from One Hundred Pages series, number 35" loading="lazy">
+      <img src="images/100-Pages/IMG_5347.jpeg" alt="Collage from One Hundred Pages series, number 34" loading="lazy">
+      <img src="images/100-Pages/IMG_5346.jpeg" alt="Collage from One Hundred Pages series, number 33" loading="lazy">
+      <img src="images/100-Pages/IMG_5345.jpeg" alt="Collage from One Hundred Pages series, number 32" loading="lazy">
+      <img src="images/100-Pages/IMG_5344.jpeg" alt="Collage from One Hundred Pages series, number 31" loading="lazy">
+      <img src="images/100-Pages/IMG_5343.jpeg" alt="Collage from One Hundred Pages series, number 30" loading="lazy">
+      <img src="images/100-Pages/IMG_5342.jpeg" alt="Collage from One Hundred Pages series, number 29" loading="lazy">
+      <img src="images/100-Pages/IMG_5341.jpeg" alt="Collage from One Hundred Pages series, number 28" loading="lazy">
+      <img src="images/100-Pages/IMG_5340.jpeg" alt="Collage from One Hundred Pages series, number 27" loading="lazy">
+      <img src="images/100-Pages/IMG_5339.jpeg" alt="Collage from One Hundred Pages series, number 26" loading="lazy">
+      <img src="images/100-Pages/IMG_5338.jpeg" alt="Collage from One Hundred Pages series, number 25" loading="lazy">
+      <img src="images/100-Pages/IMG_5337.jpeg" alt="Collage from One Hundred Pages series, number 24" loading="lazy">
+      <img src="images/100-Pages/IMG_5336.jpeg" alt="Collage from One Hundred Pages series, number 23" loading="lazy">
+      <img src="images/100-Pages/IMG_5335.jpeg" alt="Collage from One Hundred Pages series, number 22" loading="lazy">
+      <img src="images/100-Pages/IMG_5334.jpeg" alt="Collage from One Hundred Pages series, number 21" loading="lazy">
+      <img src="images/100-Pages/IMG_5333.jpeg" alt="Collage from One Hundred Pages series, number 20" loading="lazy">
+      <img src="images/100-Pages/IMG_5332.jpeg" alt="Collage from One Hundred Pages series, number 19" loading="lazy">
+      <img src="images/100-Pages/IMG_5331.jpeg" alt="Collage from One Hundred Pages series, number 18" loading="lazy">
+      <img src="images/100-Pages/IMG_5330.jpeg" alt="Collage from One Hundred Pages series, number 17" loading="lazy">
+      <img src="images/100-Pages/IMG_5328.jpeg" alt="Collage from One Hundred Pages series, number 16" loading="lazy">
+      <img src="images/100-Pages/IMG_5327.jpeg" alt="Collage from One Hundred Pages series, number 15" loading="lazy">
+      <img src="images/100-Pages/IMG_5326.jpeg" alt="Collage from One Hundred Pages series, number 14" loading="lazy">
+      <img src="images/100-Pages/IMG_5325.jpeg" alt="Collage from One Hundred Pages series, number 13" loading="lazy">
+      <img src="images/100-Pages/IMG_5324.jpeg" alt="Collage from One Hundred Pages series, number 12" loading="lazy">
+      <img src="images/100-Pages/IMG_5323.jpeg" alt="Collage from One Hundred Pages series, number 11" loading="lazy">
+      <img src="images/100-Pages/IMG_5322.jpeg" alt="Collage from One Hundred Pages series, number 10" loading="lazy">
+      <img src="images/100-Pages/IMG_5321.jpeg" alt="Collage from One Hundred Pages series, number 9" loading="lazy">
+      <img src="images/100-Pages/IMG_5320.jpeg" alt="Collage from One Hundred Pages series, number 8" loading="lazy">
+      <img src="images/100-Pages/IMG_5319.jpeg" alt="Collage from One Hundred Pages series, number 7" loading="lazy">
+      <img src="images/100-Pages/IMG_5318.jpeg" alt="Collage from One Hundred Pages series, number 6" loading="lazy">
+      <img src="images/100-Pages/IMG_5317.jpeg" alt="Collage from One Hundred Pages series, number 5" loading="lazy">
+      <img src="images/100-Pages/IMG_5316.jpeg" alt="Collage from One Hundred Pages series, number 4" loading="lazy">
+      <img src="images/100-Pages/IMG_5315.jpeg" alt="Collage from One Hundred Pages series, number 3" loading="lazy">
+      <img src="images/100-Pages/IMG_5314.jpeg" alt="Collage from One Hundred Pages series, number 2" loading="lazy">
+      <img src="images/100-Pages/IMG_5313.jpeg" alt="Collage from One Hundred Pages series, number 1" loading="lazy">
+    </div>
 
     <a href="#" class="back-to-top">Back to top</a>
   </section>
