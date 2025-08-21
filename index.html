@@ -6,8 +6,7 @@
 <title>Sundry Sullen</title>
 <style>
   :root{
-    /* Tweak this to fine-tune the content width */
-    --content-max: 720px;
+    --content-max: 720px; /* change to 680px, etc. if you want tighter */
     --img-gap: 1.2rem;
   }
 
@@ -45,8 +44,10 @@
   }
 
   nav.sidebar ul { list-style: none; padding: 0; margin: 0; }
-  nav.sidebar ul li { margin-bottom: 1rem; }
-  nav.sidebar ul li button {
+  nav.sidebar li { margin: 0.5rem 0; }
+
+  /* top-level buttons */
+  nav.sidebar .nav-btn {
     all: unset;
     cursor: pointer;
     color: #000;
@@ -58,12 +59,23 @@
     width: 100%;
     text-align: left;
   }
-  nav.sidebar ul li button.active,
-  nav.sidebar ul li button:hover,
-  nav.sidebar ul li button:focus {
-    color: #c00;
-    outline: none;
+  nav.sidebar .nav-btn.active,
+  nav.sidebar .nav-btn:hover,
+  nav.sidebar .nav-btn:focus { color: #c00; outline: none; }
+
+  /* Earlier Works group (always expanded) */
+  .group-label {
+    display: block;
+    margin-top: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
   }
+  .subnav {
+    margin: 0.25rem 0 0 1rem;
+    padding: 0;
+    list-style: none;
+  }
+  .subnav .nav-btn { font-size: 0.95rem; }
 
   /* Mobile top bar (hidden on desktop) */
   .sidebar-inner {
@@ -99,11 +111,8 @@
     flex-grow: 1;
   }
 
-  /* Section content */
-  section.section {
-    display: none; /* SPA: hidden by default */
-    max-width: var(--content-max);
-  }
+  /* Sections */
+  section.section { display: none; max-width: var(--content-max); }
   section.section.active { display: block; }
 
   section.section h2 {
@@ -121,13 +130,12 @@
     white-space: pre-line;
   }
 
-  /* Unified image stack style (matches Posters) */
+  /* Unified image stack */
   section.section .images {
     display: flex;
     flex-direction: column;
     gap: var(--img-gap);
   }
-  /* Images: no borders, fluid width */
   section.section .images img,
   section.section > img {
     display: block;
@@ -136,8 +144,7 @@
     height: auto;
     object-fit: contain;
     user-select: none;
-    /* no border */
-    border: 0;
+    border: 0; /* no borders */
   }
 
   .back-to-top {
@@ -161,10 +168,7 @@
       height: auto;
       flex-direction: column;
     }
-
-    /* Show mobile bar */
     .sidebar-inner { display: flex; }
-    /* Hide desktop title on mobile */
     nav.sidebar .desktop-title{ display:none; }
 
     nav.sidebar ul {
@@ -175,18 +179,13 @@
       background: #fff;
       padding: 0.5rem 1rem 1rem;
       margin: 0;
-      flex-direction: column;
-      gap: 0.75rem;
       z-index: 30;
       box-shadow: 0 10px 24px rgba(0,0,0,0.10);
       border: 0;
     }
-    nav.sidebar.open ul { display: flex; }
+    nav.sidebar.open ul { display: block; }
 
-    main.content {
-      margin-left: 0;
-      padding: 1rem 1rem 2rem;
-    }
+    main.content { margin-left: 0; padding: 1rem 1rem 2rem; }
   }
 </style>
 </head>
@@ -209,10 +208,15 @@
   <ul id="primary-menu">
     <li><button class="nav-btn active" data-target="poster-series">Poster Series</button></li>
     <li><button class="nav-btn" data-target="one-hundred-pages">One Hundred Pages</button></li>
-    <li><button class="nav-btn" data-target="selected-works">Selected Works</button></li>
-    <li><button class="nav-btn" data-target="selected-collaborations">Selected Collaborations</button></li>
-    <li><button class="nav-btn" data-target="selected-photography">Selected Photography</button></li>
     <li><button class="nav-btn" data-target="about">About the Artist</button></li>
+
+    <li><span class="group-label">Earlier Works</span>
+      <ul class="subnav">
+        <li><button class="nav-btn" data-target="works">Works</button></li>
+        <li><button class="nav-btn" data-target="collaborations">Collaborations</button></li>
+        <li><button class="nav-btn" data-target="photography">Photography</button></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 
@@ -221,8 +225,9 @@
   <section id="poster-series" class="section active" tabindex="0" aria-labelledby="poster-series-title">
     <h2 id="poster-series-title">Poster Series</h2>
     <div class="description">
-      2005–2017<br />
-      Mixed media, found objects, glue, acrylic, oil, ink
+      2022<br />
+      18x24 in., found images and glue on 100lb Bristol.<br />
+      Exploring themes of freedom, americana, meritocracy, ego, materialism, idealism, love, beauty, sexuality, and the war within.
     </div>
     <div class="images">
       <img src="images/poster-series/IMG_5509.jpeg" alt="Poster Series Collage 1" loading="lazy">
@@ -230,7 +235,7 @@
       <img src="images/poster-series/IMG_5595.jpeg" alt="Poster Series Collage 3" loading="lazy">
       <img src="images/poster-series/IMG_5596.jpeg" alt="Poster Series Collage 4" loading="lazy">
       <img src="images/poster-series/IMG_5597.jpeg" alt="Poster Series Collage 5" loading="lazy">
-      <!-- Removed 6 & 7 -->
+      <!-- removed 6 & 7 -->
       <img src="images/poster-series/IMG_5667.jpeg" alt="Poster Series Collage 6" loading="lazy">
       <img src="images/poster-series/IMG_5679.jpeg" alt="Poster Series Collage 7" loading="lazy">
       <img src="images/poster-series/IMG_5740.jpeg" alt="Poster Series Collage 8" loading="lazy">
@@ -251,7 +256,7 @@
     <a href="#" class="back-to-top">Back to top</a>
   </section>
 
-  <!-- One Hundred Pages (reversed, now spaced consistently) -->
+  <!-- One Hundred Pages (reversed order) -->
   <section id="one-hundred-pages" class="section" tabindex="0" aria-labelledby="one-hundred-pages-title">
     <h2 id="one-hundred-pages-title">One Hundred Pages</h2>
     <div class="year">2021</div>
@@ -259,9 +264,10 @@
     <div class="description">Exploring narrative, repetition, and the meditative act of sequencing.</div>
 
     <div class="images">
-      <!-- Last to first -->
-      <img src="images/100-Pages/IMG_5362.jpeg" alt="Collage from One Hundred Pages series, number 45" loading="lazy">
+      <!-- last -> first -->
+      <img src="images/100-Pages/IMG_5429.jpeg" alt="Collage from One Hundred Pages series, number 47" loading="lazy">
       <img src="images/100-Pages/IMG_5363.jpeg" alt="Collage from One Hundred Pages series, number 46" loading="lazy">
+      <img src="images/100-Pages/IMG_5362.jpeg" alt="Collage from One Hundred Pages series, number 45" loading="lazy">
       <img src="images/100-Pages/IMG_5361.jpeg" alt="Collage from One Hundred Pages series, number 44" loading="lazy">
       <img src="images/100-Pages/IMG_5359.jpeg" alt="Collage from One Hundred Pages series, number 43" loading="lazy">
       <img src="images/100-Pages/IMG_5358.jpeg" alt="Collage from One Hundred Pages series, number 42" loading="lazy">
@@ -311,49 +317,49 @@
     <a href="#" class="back-to-top">Back to top</a>
   </section>
 
-  <!-- Selected Works -->
-  <section id="selected-works" class="section" tabindex="0" aria-labelledby="selected-works-title">
-    <h2 id="selected-works-title">Selected Works</h2>
-    <div class="description">A selection of works.</div>
+  <!-- Earlier Works: Works -->
+  <section id="works" class="section" tabindex="0" aria-labelledby="works-title">
+    <h2 id="works-title">Works</h2>
+    <div class="description">A selection of earlier works.</div>
     <div class="images">
-      <img src="images/selected-works/01-works.webp" alt="Selected Work 1" loading="lazy">
-      <img src="images/selected-works/02-works.webp" alt="Selected Work 2" loading="lazy">
-      <img src="images/selected-works/03-works.webp" alt="Selected Work 3" loading="lazy">
-      <img src="images/selected-works/04-works.webp" alt="Selected Work 4" loading="lazy">
-      <img src="images/selected-works/05-works.webp" alt="Selected Work 5" loading="lazy">
-      <img src="images/selected-works/06-works.webp" alt="Selected Work 6" loading="lazy">
-      <img src="images/selected-works/07-works.webp" alt="Selected Work 7" loading="lazy">
-      <img src="images/selected-works/08-works.webp" alt="Selected Work 8" loading="lazy">
-      <img src="images/selected-works/09-works.webp" alt="Selected Work 9" loading="lazy">
-      <img src="images/selected-works/10-works.webp" alt="Selected Work 10" loading="lazy">
-      <img src="images/selected-works/11-works.webp" alt="Selected Work 11" loading="lazy">
-      <img src="images/selected-works/12-works.webp" alt="Selected Work 12" loading="lazy">
-      <img src="images/selected-works/13-works.webp" alt="Selected Work 13" loading="lazy">
-      <img src="images/selected-works/14-works.webp" alt="Selected Work 14" loading="lazy">
-      <img src="images/selected-works/15-works.webp" alt="Selected Work 15" loading="lazy">
-      <img src="images/selected-works/16-works.webp" alt="Selected Work 16" loading="lazy">
-      <img src="images/selected-works/17-works.jpeg" alt="Selected Work 17" loading="lazy">
-      <img src="images/selected-works/18-works.jpeg" alt="Selected Work 18" loading="lazy">
-      <img src="images/selected-works/19-works.webp" alt="Selected Work 19" loading="lazy">
-      <img src="images/selected-works/20-works.webp" alt="Selected Work 20" loading="lazy">
-      <img src="images/selected-works/21-works.webp" alt="Selected Work 21" loading="lazy">
-      <img src="images/selected-works/22-works.webp" alt="Selected Work 22" loading="lazy">
-      <img src="images/selected-works/23-works.webp" alt="Selected Work 23" loading="lazy">
-      <img src="images/selected-works/24-works.webp" alt="Selected Work 24" loading="lazy">
-      <img src="images/selected-works/25-works.webp" alt="Selected Work 25" loading="lazy">
-      <img src="images/selected-works/26-works.webp" alt="Selected Work 26" loading="lazy">
-      <img src="images/selected-works/27-works.webp" alt="Selected Work 27" loading="lazy">
-      <img src="images/selected-works/28-works.webp" alt="Selected Work 28" loading="lazy">
-      <img src="images/selected-works/29-works.webp" alt="Selected Work 29" loading="lazy">
-      <img src="images/selected-works/30-works.webp" alt="Selected Work 30" loading="lazy">
+      <img src="images/selected-works/01-works.webp" alt="Work 1" loading="lazy">
+      <img src="images/selected-works/02-works.webp" alt="Work 2" loading="lazy">
+      <img src="images/selected-works/03-works.webp" alt="Work 3" loading="lazy">
+      <img src="images/selected-works/04-works.webp" alt="Work 4" loading="lazy">
+      <img src="images/selected-works/05-works.webp" alt="Work 5" loading="lazy">
+      <img src="images/selected-works/06-works.webp" alt="Work 6" loading="lazy">
+      <img src="images/selected-works/07-works.webp" alt="Work 7" loading="lazy">
+      <img src="images/selected-works/08-works.webp" alt="Work 8" loading="lazy">
+      <img src="images/selected-works/09-works.webp" alt="Work 9" loading="lazy">
+      <img src="images/selected-works/10-works.webp" alt="Work 10" loading="lazy">
+      <img src="images/selected-works/11-works.webp" alt="Work 11" loading="lazy">
+      <img src="images/selected-works/12-works.webp" alt="Work 12" loading="lazy">
+      <img src="images/selected-works/13-works.webp" alt="Work 13" loading="lazy">
+      <img src="images/selected-works/14-works.webp" alt="Work 14" loading="lazy">
+      <img src="images/selected-works/15-works.webp" alt="Work 15" loading="lazy">
+      <img src="images/selected-works/16-works.webp" alt="Work 16" loading="lazy">
+      <img src="images/selected-works/17-works.jpeg" alt="Work 17" loading="lazy">
+      <img src="images/selected-works/18-works.jpeg" alt="Work 18" loading="lazy">
+      <img src="images/selected-works/19-works.webp" alt="Work 19" loading="lazy">
+      <img src="images/selected-works/20-works.webp" alt="Work 20" loading="lazy">
+      <img src="images/selected-works/21-works.webp" alt="Work 21" loading="lazy">
+      <img src="images/selected-works/22-works.webp" alt="Work 22" loading="lazy">
+      <img src="images/selected-works/23-works.webp" alt="Work 23" loading="lazy">
+      <img src="images/selected-works/24-works.webp" alt="Work 24" loading="lazy">
+      <img src="images/selected-works/25-works.webp" alt="Work 25" loading="lazy">
+      <img src="images/selected-works/26-works.webp" alt="Work 26" loading="lazy">
+      <img src="images/selected-works/27-works.webp" alt="Work 27" loading="lazy">
+      <img src="images/selected-works/28-works.webp" alt="Work 28" loading="lazy">
+      <img src="images/selected-works/29-works.webp" alt="Work 29" loading="lazy">
+      <img src="images/selected-works/30-works.webp" alt="Work 30" loading="lazy">
     </div>
     <a href="#" class="back-to-top">Back to top</a>
   </section>
 
-  <!-- Selected Collaborations -->
-  <section id="selected-collaborations" class="section" tabindex="0" aria-labelledby="selected-collaborations-title">
-    <h2 id="selected-collaborations-title">Selected Collaborations</h2>
-    <div class="description">Collaborative works.</div>
+  <!-- Earlier Works: Collaborations -->
+  <section id="collaborations" class="section" tabindex="0" aria-labelledby="collaborations-title">
+    <h2 id="collaborations-title">Collaborations</h2>
+    <div class="description">Earlier collaborations.</div>
     <div class="images">
       <img src="images/selected-collaborations/01-collab.jpeg" alt="Collaboration 1" loading="lazy">
       <img src="images/selected-collaborations/02-collab.jpeg" alt="Collaboration 2" loading="lazy">
@@ -370,9 +376,9 @@
       <img src="images/selected-collaborations/13-collab.png" alt="Collaboration 13" loading="lazy">
       <img src="images/selected-collaborations/14-collab.png" alt="Collaboration 14" loading="lazy">
       <img src="images/selected-collaborations/15-collab.png" alt="Collaboration 15" loading="lazy">
-      <img src="images/selected-collaborations/16-collab.jpeg" alt="Collaboration 16" loading="lazy">
+      <img src="images/selected-collaborations/16-collab.png" alt="Collaboration 16" loading="lazy">
       <img src="images/selected-collaborations/17-collab.png" alt="Collaboration 17" loading="lazy">
-      <img src="images/selected-collaborations/18-collab.jpg" alt="Collaboration 18" loading="lazy">
+      <img src="images/selected-collaborations/18-collab.png" alt="Collaboration 18" loading="lazy">
       <img src="images/selected-collaborations/19-collab.png" alt="Collaboration 19" loading="lazy">
       <img src="images/selected-collaborations/20-collab.png" alt="Collaboration 20" loading="lazy">
       <img src="images/selected-collaborations/21-collab.png" alt="Collaboration 21" loading="lazy">
@@ -380,34 +386,36 @@
       <img src="images/selected-collaborations/23-collab.png" alt="Collaboration 23" loading="lazy">
       <img src="images/selected-collaborations/24-collab.png" alt="Collaboration 24" loading="lazy">
       <img src="images/selected-collaborations/25-collab.png" alt="Collaboration 25" loading="lazy">
-      <img src="images/selected-collaborations/26-collab.jpeg" alt="Collaboration 26" loading="lazy">
-      <img src="images/selected-collaborations/27-collab.jpeg" alt="Collaboration 27" loading="lazy">
-      <img src="images/selected-collaborations/28-collab.jpeg" alt="Collaboration 28" loading="lazy">
-      <img src="images/selected-collaborations/29-collab.jpeg" alt="Collaboration 29" loading="lazy">
+      <img src="images/selected-collaborations/26-collab.png" alt="Collaboration 26" loading="lazy">
+      <img src="images/selected-collaborations/27-collab.png" alt="Collaboration 27" loading="lazy">
+      <img src="images/selected-collaborations/28-collab.png" alt="Collaboration 28" loading="lazy">
+      <img src="images/selected-collaborations/29-collab.png" alt="Collaboration 29" loading="lazy">
       <img src="images/selected-collaborations/30-collab.png" alt="Collaboration 30" loading="lazy">
     </div>
     <a href="#" class="back-to-top">Back to top</a>
   </section>
 
-  <!-- Selected Photography -->
-  <section id="selected-photography" class="section" tabindex="0" aria-labelledby="selected-photography-title">
-    <h2 id="selected-photography-title">Selected Photography</h2>
-    <div class="description">Photographic selections.</div>
+  <!-- Earlier Works: Photography -->
+  <section id="photography" class="section" tabindex="0" aria-labelledby="photography-title">
+    <h2 id="photography-title">Photography</h2>
+    <div class="description">Earlier photography.</div>
     <div class="images">
-      <img src="images/selected-photography/01-photo.jpeg" alt="Selected Photo 1" loading="lazy">
-      <img src="images/selected-photography/02-photo.jpeg" alt="Selected Photo 2" loading="lazy">
-      <img src="images/selected-photography/03-photo.jpeg" alt="Selected Photo 3" loading="lazy">
-      <img src="images/selected-photography/04-photo.jpeg" alt="Selected Photo 4" loading="lazy">
-      <img src="images/selected-photography/05-photo.jpeg" alt="Selected Photo 5" loading="lazy">
-      <img src="images/selected-photography/06-photo.jpeg" alt="Selected Photo 6" loading="lazy">
-      <img src="images/selected-photography/07-photo.jpeg" alt="Selected Photo 7" loading="lazy">
-      <img src="images/selected-photography/08-photo.jpeg" alt="Selected Photo 8" loading="lazy">
-      <img src="images/selected-photography/09-photo.jpeg" alt="Selected Photo 9" loading="lazy">
-      <img src="images/selected-photography/10-photo.jpeg" alt="Selected Photo 10" loading="lazy">
-      <img src="images/selected-photography/11-photo.jpeg" alt="Selected Photo 11" loading="lazy">
-      <img src="images/selected-photography/12-photo.webp" alt="Selected Photo 12" loading="lazy">
-      <img src="images/selected-photography/16-photo.jpeg" alt="Selected Photo 16" loading="lazy">
-      <img src="images/selected-photography/17-photo.jpeg" alt="Selected Photo 17" loading="lazy">
+      <img src="images/selected-photography/01-photo.jpeg" alt="Photo 1" loading="lazy">
+      <img src="images/selected-photography/02-photo.jpeg" alt="Photo 2" loading="lazy">
+      <img src="images/selected-photography/03-photo.jpeg" alt="Photo 3" loading="lazy">
+      <img src="images/selected-photography/04-photo.jpeg" alt="Photo 4" loading="lazy">
+      <img src="images/selected-photography/05-photo.jpeg" alt="Photo 5" loading="lazy">
+      <img src="images/selected-photography/06-photo.jpeg" alt="Photo 6" loading="lazy">
+      <img src="images/selected-photography/07-photo.jpeg" alt="Photo 7" loading="lazy">
+      <img src="images/selected-photography/08-photo.jpeg" alt="Photo 8" loading="lazy">
+      <img src="images/selected-photography/09-photo.jpeg" alt="Photo 9" loading="lazy">
+      <img src="images/selected-photography/10-photo.jpeg" alt="Photo 10" loading="lazy">
+      <img src="images/selected-photography/11-photo.jpeg" alt="Photo 11" loading="lazy">
+      <img src="images/selected-photography/12-photo.webp" alt="Photo 12" loading="lazy">
+      <img src="images/selected-photography/14-photo.JPG" alt="Photo 14" loading="lazy">
+      <img src="images/selected-photography/15-photo.jpg" alt="Photo 15" loading="lazy">
+      <img src="images/selected-photography/16-photo.jpeg" alt="Photo 16" loading="lazy">
+      <img src="images/selected-photography/17-photo.jpeg" alt="Photo 17" loading="lazy">
     </div>
     <a href="#" class="back-to-top">Back to top</a>
   </section>
