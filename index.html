@@ -6,7 +6,7 @@
 <title>Sundry Sullen</title>
 <style>
   :root{
-    --content-max: 720px; /* change to 680px, etc. if you want tighter */
+    --content-max: 720px; /* make smaller (e.g., 680px) if you want */
     --img-gap: 1.2rem;
   }
 
@@ -63,19 +63,20 @@
   nav.sidebar .nav-btn:hover,
   nav.sidebar .nav-btn:focus { color: #c00; outline: none; }
 
-  /* Earlier Works group (always expanded) */
-  .group-label {
-    display: block;
-    margin-top: 1rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
+  /* --- Archive group (always expanded) --- */
+  .group-label{
+    display:block;
+    margin: 0.75rem 0 0.25rem 0;   /* tight spacing; no big gaps */
+    font-weight:700;
+    letter-spacing:-0.01em;
   }
-  .subnav {
-    margin: 0.25rem 0 0 1rem;
+  .subnav{
+    margin: 0 0 0 1rem;            /* indent under group label */
     padding: 0;
     list-style: none;
   }
-  .subnav .nav-btn { font-size: 0.95rem; }
+  .subnav li{ margin: 0.35rem 0; } /* slightly tighter than top-level */
+  .subnav .nav-btn{ font-size: 0.95rem; }
 
   /* Mobile top bar (hidden on desktop) */
   .sidebar-inner {
@@ -185,6 +186,11 @@
     }
     nav.sidebar.open ul { display: block; }
 
+    /* Archive group spacing on mobile: keep subnav snug + indented */
+    .group-label{ margin: 0.5rem 0 0.25rem 0; }
+    .subnav{ margin-left: 1rem; }
+    .subnav li{ margin: 0.25rem 0; }
+
     main.content { margin-left: 0; padding: 1rem 1rem 2rem; }
   }
 </style>
@@ -210,7 +216,8 @@
     <li><button class="nav-btn" data-target="one-hundred-pages">One Hundred Pages</button></li>
     <li><button class="nav-btn" data-target="about">About the Artist</button></li>
 
-    <li><span class="group-label">Earlier Works</span>
+    <li>
+      <span class="group-label">Archive (2005–2017)</span>
       <ul class="subnav">
         <li><button class="nav-btn" data-target="works">Works</button></li>
         <li><button class="nav-btn" data-target="collaborations">Collaborations</button></li>
@@ -317,7 +324,7 @@
     <a href="#" class="back-to-top">Back to top</a>
   </section>
 
-  <!-- Earlier Works: Works -->
+  <!-- Archive: Works -->
   <section id="works" class="section" tabindex="0" aria-labelledby="works-title">
     <h2 id="works-title">Works</h2>
     <div class="description">A selection of earlier works.</div>
@@ -356,7 +363,7 @@
     <a href="#" class="back-to-top">Back to top</a>
   </section>
 
-  <!-- Earlier Works: Collaborations -->
+  <!-- Archive: Collaborations -->
   <section id="collaborations" class="section" tabindex="0" aria-labelledby="collaborations-title">
     <h2 id="collaborations-title">Collaborations</h2>
     <div class="description">Earlier collaborations.</div>
@@ -395,7 +402,7 @@
     <a href="#" class="back-to-top">Back to top</a>
   </section>
 
-  <!-- Earlier Works: Photography -->
+  <!-- Archive: Photography -->
   <section id="photography" class="section" tabindex="0" aria-labelledby="photography-title">
     <h2 id="photography-title">Photography</h2>
     <div class="description">Earlier photography.</div>
