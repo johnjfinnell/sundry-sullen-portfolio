@@ -6,7 +6,7 @@
 <title>Sundry Sullen</title>
 <style>
   :root{
-    --content-max: 720px;     /* shrink if images look soft */
+    --content-max: 720px;     /* adjust smaller if images look soft */
     --img-gap: 1.2rem;
     --header-h: 56px;         /* mobile header height */
   }
@@ -47,16 +47,14 @@
   }
   .subnav li{ margin:.35rem 0; }
 
-  /* Standalone button (“About the Artist”) */
-  .standalone{
-    margin:1rem 0 0 0;
+  /* About as bold header-style but clickable, separated below Past */
+  .about-link { margin-top: 1.5rem; }
+  .about-link .group-label{
+    font-weight:700; font-size:1rem; letter-spacing:-0.01em; color:#000; cursor:pointer;
   }
-  .standalone-btn{
-    all:unset; display:inline-block; cursor:pointer;
-    padding:.5rem .8rem; border:1px solid #000; border-radius:4px;
-    font-weight:600; line-height:1; background:#fff;
-  }
-  .standalone-btn:hover, .standalone-btn:focus{ background:#000; color:#fff; }
+  .about-link .group-label:hover,
+  .about-link .group-label:focus,
+  .about-link .group-label.active{ color:#c00; }
 
   /* ========= MOBILE HEADER + DRAWER ========= */
   .sidebar-inner{ display:none; align-items:center; justify-content:space-between;
@@ -110,7 +108,7 @@
 
     .group-label{ margin:.4rem 0 .25rem !important; }
     .subnav li{ margin:.25rem 0 !important; }
-    .standalone{ margin:1rem 0 0 0; }
+    .about-link{ margin-top:1.25rem; }
 
     main.content{ margin-left:0; padding:1rem 1rem 2rem; }
   }
@@ -155,9 +153,9 @@
       </ul>
     </li>
 
-    <!-- Standalone call-to-action under the nav groups -->
-    <li class="standalone">
-      <button class="standalone-btn nav-btn" data-target="about">About the Artist</button>
+    <!-- About as bold "header style" but clickable -->
+    <li class="about-link">
+      <button class="nav-btn group-label" data-target="about">About the Artist</button>
     </li>
   </ul>
 </nav>
