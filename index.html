@@ -63,12 +63,24 @@
   .sidebar-inner h1{ margin:0; font-size:1.2rem; font-weight:900; letter-spacing:-0.02em; }
 
   .menu-toggle{
-    all:unset; cursor:pointer; display:inline-flex; align-items:center; gap:.4rem;
-    font-weight:600; padding:.25rem .25rem;
-  }
-  .menu-toggle .icon{
-    font-size:1.2rem; line-height:1; display:flex; align-items:center;  /* align ☰ with text */
-  }
+  all:unset;
+  cursor:pointer;
+  display:flex;            /* flex, not inline-flex */
+  align-items:center;      /* vertically center */
+  gap:.4rem;
+  font-weight:600;
+  padding:.25rem .25rem;
+  line-height:1;           /* keeps icon & text tight */
+}
+.menu-toggle .icon{
+  font-size:1.25rem;       /* match better to text size */
+  line-height:1;
+  display:flex;
+  align-items:center;      /* center inside its box */
+}
+.menu-toggle .label{
+  line-height:1;           /* centers Menu/Close with icon */
+}
   .menu-toggle.active .icon{ display:none; }
   .menu-toggle.active .label::before{ content:"✕ "; }
 
