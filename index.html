@@ -246,6 +246,70 @@ nav.sidebar ul,
   border: 0 !important;
   box-shadow: none !important;
 }
+
+  /* =========================
+   Mobile overlay fixes
+   ========================= */
+@media (max-width: 768px) {
+  /* The dropdown panel itself */
+  nav.sidebar ul {
+    display: block;                 /* panel is visible when .open is set; keep block here */
+    list-style: none !important;    /* nuke default bullets */
+    box-shadow: none !important;    /* kill faint divider edge */
+    border: 0 !important;
+    background: #fff;
+    padding: 0.75rem 1rem 1rem !important;
+    margin: 0 !important;
+  }
+
+  /* Top-level items inside overlay */
+  nav.sidebar ul > li {
+    list-style: none !important;
+    border: 0 !important;
+    padding: 0 !important;
+    margin: 0.4rem 0 !important;    /* tighten vertical rhythm */
+    background: transparent !important;
+  }
+
+  /* Group headers */
+  .group-label {
+    margin: 0.35rem 0 0.2rem !important; /* small gap, no big space */
+  }
+
+  /* Ensure subnavs are visible and indented */
+  .subnav {
+    display: block !important;      /* make sure nested ULs render */
+    list-style: none !important;    /* no bullets on iOS */
+    margin: 0.25rem 0 0 1.2rem !important;  /* indent a few px */
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+  }
+  .group-label + .subnav {          /* keep label-to-first-link tight */
+    margin-top: 0.25rem !important;
+  }
+  .subnav::before,
+  .subnav::after { content: none !important; } /* kill any UA pseudo dividers */
+
+  .subnav li {
+    list-style: none !important;
+    margin: 0.22rem 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    padding: 0 !important;
+  }
+}
+
+/* Belt & suspenders: no borders/bullets anywhere in the nav */
+nav.sidebar ul,
+nav.sidebar li,
+.subnav,
+.subnav li {
+  border: 0 !important;
+  list-style: none !important;
+  box-shadow: none !important;
+}
+
 </style>
 </head>
 <body>
