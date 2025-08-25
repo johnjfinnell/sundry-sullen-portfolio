@@ -6,7 +6,7 @@
 <title>Sundry Sullen</title>
 <style>
   :root{
-    --content-max: 720px; /* tweak smaller if needed (e.g., 680px) */
+    --content-max: 720px; /* tweak if you need smaller */
     --img-gap: 1.2rem;
   }
 
@@ -63,24 +63,55 @@
   nav.sidebar .nav-btn:hover,
   nav.sidebar .nav-btn:focus { color: #c00; outline: none; }
 
-/* ---- Group headers + subnav (desktop) ---- */
-.group-label{
-  display:block;
-  font-weight:700;
-  letter-spacing:-0.01em;
-  margin: 0.5rem 0 0.25rem;    /* tight spacing: no big gap */
-}
+  /* ---- Group headers + subnav (desktop) ---- */
+  .group-label{
+    display:block;
+    font-weight:700;
+    letter-spacing:-0.01em;
+    margin: 0.5rem 0 0.25rem;   /* tight spacing: no big gap */
+  }
+  .subnav{
+    list-style:none;
+    margin: 0.2rem 0 0 1.2rem;  /* indent subnav links */
+    padding:0;
+    border: none;               /* nuke any stray dividers */
+  }
+  .subnav li{ margin: 0.3rem 0; border: none; }
+  .subnav .nav-btn{ font-size:0.95rem; }
 
-.subnav{
-  list-style:none;
-  margin: 0.2rem 0 0 1.2rem;   /* indent subnav a bit more */
-  padding:0;
-  border:none;                 /* kill any divider line */
-}
+  /* Mobile top bar (hidden on desktop) */
+  .sidebar-inner {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    gap: 1rem;
+    background: #fff;
+  }
+  .sidebar-inner h1 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+  }
 
-.subnav li{ margin: 0.3rem 0; }
-.subnav .nav-btn{ font-size:0.95rem; }
-
+  /* Hamburger / Close button */
+  .menu-toggle {
+    all: unset;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.25rem;
+    font-weight: 600;
+  }
+  .menu-toggle .icon {
+    font-size: 1.4rem; /* ☰ size */
+    line-height: 1;
+  }
+  .menu-toggle .label { font-size: 1rem; }
+  .menu-toggle.active .icon { display: none; }      /* hide ☰ when open */
+  .menu-toggle.active .label::before { content: "✕ "; }
 
   /* Main content */
   main.content {
@@ -159,21 +190,14 @@
       margin: 0;
       z-index: 30;
       box-shadow: 0 10px 24px rgba(0,0,0,0.10);
-      border: 0;
+      border: 0;                 /* ensure no lines */
     }
     nav.sidebar.open ul { display: block; }
 
-    /* ---- Mobile spacing/indent for groups ---- */
-.group-label{
-  margin: 0.4rem 0 0.2rem;     /* removes any big gap */
-}
-
-.subnav{
-  margin-left: 1.2rem;         /* keep visible indent on mobile */
-  border:none;                 /* no divider */
-}
-
-.subnav li{ margin: 0.22rem 0; }
+    /* Group spacing/indent on mobile */
+    .group-label{ margin: 0.4rem 0 0.2rem; }  /* kills big gap */
+    .subnav{ margin-left: 1.2rem; }           /* keep indent */
+    .subnav li{ margin: 0.22rem 0; border: none; }
 
     main.content { margin-left: 0; padding: 1rem 1rem 2rem; }
   }
@@ -189,15 +213,15 @@
   <div class="sidebar-inner">
     <h1>SUNDRY SULLEN</h1>
     <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="primary-menu">
-      <span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>
-      <span class="menu-label">Menu</span>
+      <span class="icon" aria-hidden="true">☰</span>
+      <span class="label">Menu</span>
     </button>
   </div>
 
   <!-- Menu list (desktop visible; mobile toggled) -->
   <ul id="primary-menu">
     <li>
-      <span class="group-label">Recent (2021–Present)</span>
+      <span class="group-label">Recent (2022–Present)</span>
       <ul class="subnav">
         <li><button class="nav-btn active" data-target="poster-series">Poster Series</button></li>
         <li><button class="nav-btn" data-target="one-hundred-pages">One Hundred Pages</button></li>
@@ -314,7 +338,7 @@
     <a href="#" class="back-to-top">Back to top</a>
   </section>
 
-  <!-- Archive: Works -->
+  <!-- Past: Works -->
   <section id="works" class="section" tabindex="0" aria-labelledby="works-title">
     <h2 id="works-title">Works</h2>
     <div class="description">A selection of earlier works.</div>
@@ -353,7 +377,7 @@
     <a href="#" class="back-to-top">Back to top</a>
   </section>
 
-  <!-- Archive: Collaborations -->
+  <!-- Past: Collaborations -->
   <section id="collaborations" class="section" tabindex="0" aria-labelledby="collaborations-title">
     <h2 id="collaborations-title">Collaborations</h2>
     <div class="description">Earlier collaborations.</div>
@@ -392,7 +416,7 @@
     <a href="#" class="back-to-top">Back to top</a>
   </section>
 
-  <!-- Archive: Photography -->
+  <!-- Past: Photography -->
   <section id="photography" class="section" tabindex="0" aria-labelledby="photography-title">
     <h2 id="photography-title">Photography</h2>
     <div class="description">Earlier photography.</div>
@@ -448,8 +472,9 @@
       const toggle = document.getElementById("menuToggle");
       if (window.matchMedia("(max-width: 768px)").matches && nav.classList.contains("open")) {
         nav.classList.remove("open");
+        toggle.classList.remove("active");
         toggle.setAttribute("aria-expanded", "false");
-        document.querySelector(".menu-label").textContent = "Menu";
+        toggle.querySelector(".label").textContent = "Menu";
       }
     });
   });
@@ -460,8 +485,9 @@
   if (menuToggle) {
     menuToggle.addEventListener("click", () => {
       const open = primaryNav.classList.toggle("open");
+      menuToggle.classList.toggle("active", open);            // swap ☰ / ✕
       menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
-      document.querySelector(".menu-label").textContent = open ? "Close" : "Menu";
+      menuToggle.querySelector(".label").textContent = open ? "Close" : "Menu";
     });
   }
 </script>
