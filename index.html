@@ -201,6 +201,51 @@
 
     main.content { margin-left: 0; padding: 1rem 1rem 2rem; }
   }
+  /* ===== Fix mobile overlay nav: remove stray divider & keep indent ===== */
+@media (max-width: 768px) {
+  /* The dropdown panel itself */
+  nav.sidebar ul {
+    box-shadow: none !important;   /* kill the grey edge/shadow */
+    border: 0 !important;
+    background: #fff;
+  }
+
+  /* Top-level <li> blocks inside the dropdown */
+  nav.sidebar ul > li {
+    border: 0 !important;
+    padding: 0;
+    margin: 0.5rem 0;
+    background: transparent;
+  }
+
+  /* Make group headers tight and consistent */
+  .group-label {
+    margin: 0.35rem 0 0.2rem !important;
+  }
+
+  /* Subnav lists + items (indent + no borders) */
+  .subnav {
+    list-style: none;
+    margin: 0.2rem 0 0 1.2rem !important;  /* indent a few px */
+    padding: 0;
+    border: 0 !important;
+    background: transparent;
+  }
+  .subnav li {
+    margin: 0.22rem 0;
+    border: 0 !important;                 /* remove any UA dividers */
+    background: transparent;
+  }
+}
+
+/* Also ensure no borders on desktop just in case */
+nav.sidebar li,
+nav.sidebar ul,
+.subnav,
+.subnav li {
+  border: 0 !important;
+  box-shadow: none !important;
+}
 </style>
 </head>
 <body>
