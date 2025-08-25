@@ -6,7 +6,7 @@
 <title>Sundry Sullen</title>
 <style>
   :root{
-    --content-max: 720px;     /* shrink if you still see pixelation */
+    --content-max: 720px;     /* shrink if images look soft */
     --img-gap: 1.2rem;
     --header-h: 56px;         /* mobile header height */
   }
@@ -43,13 +43,21 @@
     display:block; font-weight:700; letter-spacing:-0.01em;
     margin:.5rem 0 .25rem;
   }
-  .subnav{ list-style:none; padding:0; margin:.2rem 0 0 1.2rem; border:0; }
-  .subnav li{ margin:.3rem 0; }
+
+  /* Subnav: left-aligned with dash prefix, no indent */
+  .subnav{
+    list-style:none; padding:0; margin:.25rem 0 0 0; border:0;
+  }
+  .subnav li{ margin:.35rem 0; }
+  .subnav li .nav-btn::before{
+    content:"– ";
+    font-weight:400;
+    color:#000;
+  }
 
   /* ========= MOBILE HEADER + DRAWER ========= */
   .sidebar-inner{ display:none; align-items:center; justify-content:space-between;
     padding:.75rem 1rem; gap:1rem; background:#fff; height:var(--header-h);
-    border-bottom:1px solid transparent; /* no visible line */
   }
   .sidebar-inner h1{ margin:0; font-size:1.2rem; font-weight:900; letter-spacing:-0.02em; }
 
@@ -57,14 +65,14 @@
     all:unset; cursor:pointer; display:inline-flex; align-items:center; gap:.4rem;
     font-weight:600; padding:.25rem .25rem;
   }
-  .menu-toggle .icon{ font-size:1.4rem; line-height:1; } /* ☰ */
+  .menu-toggle .icon{
+    font-size:1.2rem; line-height:1; display:flex; align-items:center;  /* align ☰ with text */
+  }
   .menu-toggle.active .icon{ display:none; }
   .menu-toggle.active .label::before{ content:"✕ "; }
 
-  /* The same UL is used for desktop & mobile. On mobile it becomes a fixed overlay. */
-  nav.sidebar ul#primary-menu{
-    list-style:none; padding:0; margin:0; border:0;
-  }
+  /* One UL used for desktop (static) + mobile (overlay) */
+  nav.sidebar ul#primary-menu{ list-style:none; padding:0; margin:0; border:0; }
 
   /* ========= MAIN CONTENT ========= */
   main.content{
@@ -98,14 +106,12 @@
     }
     nav.sidebar.open ul#primary-menu{ display:block; }
 
-    /* Group spacing + indent */
+    /* Group spacing */
     .group-label{ margin:.35rem 0 .2rem !important; }
-    .subnav{
-      display:block !important; margin:.25rem 0 0 1.2rem !important;
-      padding:0 !important; border:0 !important; background:transparent !important;
-      list-style:none !important;
-    }
-    .subnav li{ margin:.22rem 0 !important; border:0 !important; list-style:none !important; }
+
+    /* Subnav stays left-aligned; dashes already applied above */
+    .subnav{ margin:.25rem 0 0 0 !important; }
+    .subnav li{ margin:.22rem 0 !important; }
 
     main.content{ margin-left:0; padding:1rem 1rem 2rem; }
   }
@@ -164,7 +170,7 @@
       Exploring themes of freedom, americana, meritocracy, ego, materialism, idealism, love, beauty, sexuality, and the war within.
     </div>
     <div class="images">
-      <img src="images/poster-series/IMG_5509.jpeg" alt="Poster Series Collage (placeholder)" loading="lazy">
+      <img src="images/poster-series/IMG_5509.jpeg" alt="Poster Series collage (placeholder)" loading="lazy">
     </div>
   </section>
 
@@ -173,7 +179,6 @@
     <h2 id="one-hundred-pages-title">One Hundred Pages</h2>
     <div class="description">2021 — 11x14 in. found images and glue on sketch book.</div>
     <div class="images">
-      <!-- showing the LAST page as placeholder to reflect reversed intent -->
       <img src="images/100-Pages/IMG_5429.jpeg" alt="One Hundred Pages collage (placeholder)" loading="lazy">
     </div>
   </section>
@@ -219,13 +224,11 @@
 
   navButtons.forEach(btn => {
     btn.addEventListener("click", () => {
-      // set active link + section
       navButtons.forEach(b => b.classList.remove("active"));
       sections.forEach(s => s.classList.remove("active"));
       btn.classList.add("active");
       document.getElementById(btn.dataset.target).classList.add("active");
 
-      // scroll content to top
       mainEl.scrollTo({ top: 0, behavior: "smooth" });
 
       // close mobile drawer if open
