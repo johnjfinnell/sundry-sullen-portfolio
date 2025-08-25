@@ -63,7 +63,7 @@
   nav.sidebar .nav-btn:hover,
   nav.sidebar .nav-btn:focus { color: #c00; outline: none; }
 
- /* ---- Group headers + subnav (desktop) ---- */
+/* ---- Group headers + subnav (desktop) ---- */
 .group-label{
   display:block;
   font-weight:700;
@@ -163,10 +163,17 @@
     }
     nav.sidebar.open ul { display: block; }
 
-    /* Group spacing/indent on mobile */
-    .group-label{ margin: 0.4rem 0 0.2rem; }  /* kills big gap */
-    .subnav{ margin-left: 1rem; }             /* keep indent */
-    .subnav li{ margin: 0.22rem 0; }
+    /* ---- Mobile spacing/indent for groups ---- */
+.group-label{
+  margin: 0.4rem 0 0.2rem;     /* removes any big gap */
+}
+
+.subnav{
+  margin-left: 1.2rem;         /* keep visible indent on mobile */
+  border:none;                 /* no divider */
+}
+
+.subnav li{ margin: 0.22rem 0; }
 
     main.content { margin-left: 0; padding: 1rem 1rem 2rem; }
   }
