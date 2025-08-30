@@ -63,24 +63,14 @@
   .sidebar-inner h1{ margin:0; font-size:1.2rem; font-weight:900; letter-spacing:-0.02em; }
 
   .menu-toggle{
-  all:unset;
-  cursor:pointer;
-  display:flex;            /* flex, not inline-flex */
-  align-items:center;      /* vertically center */
-  gap:.4rem;
-  font-weight:600;
-  padding:.25rem .25rem;
-  line-height:1;           /* keeps icon & text tight */
-}
-.menu-toggle .icon{
-  font-size:1.25rem;       /* match better to text size */
-  line-height:1;
-  display:flex;
-  align-items:center;      /* center inside its box */
-}
-.menu-toggle .label{
-  line-height:1;           /* centers Menu/Close with icon */
-}
+    all:unset; cursor:pointer;
+    display:flex; align-items:center; gap:.4rem;
+    font-weight:600; padding:.25rem .25rem; line-height:1;
+  }
+  .menu-toggle .icon{
+    font-size:1.25rem; line-height:1; display:flex; align-items:center;
+  }
+  .menu-toggle .label{ line-height:1; }
   .menu-toggle.active .icon{ display:none; }
   .menu-toggle.active .label::before{ content:"✕ "; }
 
@@ -97,6 +87,22 @@
   .description{ font-style:italic; font-size:.95rem; margin:.25rem 0 1.2rem; line-height:1.45; }
   .images{ display:flex; flex-direction:column; gap:var(--img-gap); }
   .images img, .section > img{ width:100%; height:auto; display:block; border:0; object-fit:contain; }
+
+  /* ========= Subscribe form styles (About section) ========= */
+  #subscribeForm {
+    display:flex; flex-wrap:wrap; gap:.6rem;
+    max-width:var(--content-max); margin-top:1rem;
+  }
+  #subscribeForm input[type="email"]{
+    flex:1; padding:.65rem .75rem; border:1px solid #000; font:inherit; background:#fff;
+  }
+  #subscribeForm button{
+    padding:.7rem 1rem; border:1px solid #000; background:#000; color:#fff; font-weight:700; cursor:pointer;
+  }
+  #subscribeForm button:hover{ background:#c00; border-color:#c00; }
+  #subscribeStatus{ flex-basis:100%; margin-top:.5rem; font-size:.9rem; }
+  #subscribeStatus.success{ color:#0a7f2e; }
+  #subscribeStatus.error{ color:#b00020; }
 
   /* ========= MOBILE ========= */
   @media (max-width: 768px){
@@ -153,6 +159,8 @@
       <ul class="subnav">
         <li><button class="nav-btn active" data-target="poster-series">Poster Series</button></li>
         <li><button class="nav-btn" data-target="one-hundred-pages">One Hundred Pages</button></li>
+        <li><button class="nav-btn" data-target="chaos-series">Chaos Series</button></li>
+        <li><button class="nav-btn" data-target="faceless-series">Faceless Series</button></li>
       </ul>
     </li>
 
@@ -195,6 +203,46 @@
     </div>
   </section>
 
+  <!-- Chaos Series -->
+  <section id="chaos-series" class="section" tabindex="0" aria-labelledby="chaos-series-title">
+    <h2 id="chaos-series-title">Chaos Series</h2>
+    <div class="images">
+      <img src="images/chaos-series/AI.JPG" alt="Chaos Series — AI" loading="lazy">
+      <img src="images/chaos-series/cat.JPG" alt="Chaos Series — Cat" loading="lazy">
+      <img src="images/chaos-series/chaos.jpeg" alt="Chaos Series — Chaos" loading="lazy">
+      <img src="images/chaos-series/circular.JPG" alt="Chaos Series — Circular" loading="lazy">
+      <img src="images/chaos-series/edge.JPG" alt="Chaos Series — Edge" loading="lazy">
+      <img src="images/chaos-series/feather.JPG" alt="Chaos Series — Feather" loading="lazy">
+      <img src="images/chaos-series/first.JPG" alt="Chaos Series — First" loading="lazy">
+      <img src="images/chaos-series/formless.JPG" alt="Chaos Series — Formless" loading="lazy">
+      <img src="images/chaos-series/freedom.jpeg" alt="Chaos Series — Freedom" loading="lazy">
+      <img src="images/chaos-series/hair.JPG" alt="Chaos Series — Hair" loading="lazy">
+      <img src="images/chaos-series/horse.JPG" alt="Chaos Series — Horse" loading="lazy">
+      <img src="images/chaos-series/peace.jpeg" alt="Chaos Series — Peace" loading="lazy">
+      <img src="images/chaos-series/vision.jpeg" alt="Chaos Series — Vision" loading="lazy">
+      <img src="images/chaos-series/yellowpink.JPG" alt="Chaos Series — Yellow Pink" loading="lazy">
+    </div>
+  </section>
+
+  <!-- Faceless Series -->
+  <section id="faceless-series" class="section" tabindex="0" aria-labelledby="faceless-series-title">
+    <h2 id="faceless-series-title">Faceless Series</h2>
+    <div class="images">
+      <img src="images/faceless-series/blackwhite.jpg" alt="Faceless Series — Black & White" loading="lazy">
+      <img src="images/faceless-series/cowboy.jpg" alt="Faceless Series — Cowboy" loading="lazy">
+      <img src="images/faceless-series/dance.jpg" alt="Faceless Series — Dance" loading="lazy">
+      <img src="images/faceless-series/goodforyou.jpg" alt="Faceless Series — Good For You" loading="lazy">
+      <img src="images/faceless-series/inamerica.jpg" alt="Faceless Series — In America" loading="lazy">
+      <img src="images/faceless-series/mad.JPG" alt="Faceless Series — Mad" loading="lazy">
+      <img src="images/faceless-series/myfaithholds.jpg" alt="Faceless Series — My Faith Holds" loading="lazy">
+      <img src="images/faceless-series/new-face.JPG" alt="Faceless Series — New Face" loading="lazy">
+      <img src="images/faceless-series/power.JPG" alt="Faceless Series — Power" loading="lazy">
+      <img src="images/faceless-series/red-black.JPG" alt="Faceless Series — Red Black" loading="lazy">
+      <img src="images/faceless-series/requiem.JPG" alt="Faceless Series — Requiem" loading="lazy">
+      <img src="images/faceless-series/three.jpg" alt="Faceless Series — Three" loading="lazy">
+    </div>
+  </section>
+
   <!-- Works (placeholder) -->
   <section id="works" class="section" tabindex="0" aria-labelledby="works-title">
     <h2 id="works-title">Works</h2>
@@ -219,10 +267,21 @@
     </div>
   </section>
 
-  <!-- About -->
+  <!-- About + Subscribe -->
   <section id="about" class="section" tabindex="0" aria-labelledby="about-title">
     <h2 id="about-title">About the Artist</h2>
-    <p class="description">Short bio and statement will go here.</p>
+    <p class="description">
+      Short bio and statement will go here.
+    </p>
+
+    <h3 style="margin:1.25rem 0 .25rem 0; font-size:1.1rem;">Subscribe for updates</h3>
+    <p class="description">Get news on new series, events, and print releases.</p>
+
+    <form id="subscribeForm">
+      <input type="email" name="email" id="email" placeholder="you@example.com" required />
+      <button type="submit">Subscribe</button>
+      <div id="subscribeStatus" class=""></div>
+    </form>
   </section>
 </main>
 
@@ -254,12 +313,53 @@
   });
 
   // Mobile drawer toggle
-  toggle.addEventListener("click", () => {
+  toggle && toggle.addEventListener("click", () => {
     const isOpen = nav.classList.toggle("open");
     toggle.classList.toggle("active", isOpen);
     toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
     toggle.querySelector(".label").textContent = isOpen ? "Close" : "Menu";
   });
+
+  // ========== Google Sheets newsletter form ==========
+  const subscribeForm = document.getElementById('subscribeForm');
+  if (subscribeForm) {
+    const status = document.getElementById('subscribeStatus');
+    subscribeForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      status.textContent = 'Submitting...';
+      status.className = '';
+
+      const email = subscribeForm.email.value.trim();
+      if (!email) {
+        status.textContent = 'Please enter your email.';
+        status.className = 'error';
+        return;
+      }
+
+      try {
+        const res = await fetch("YOUR_GOOGLE_SCRIPT_URL_HERE", {
+          method: "POST",
+          body: JSON.stringify({
+            email: email,
+            source: "sundry-sullen-site",
+            notes: ""
+          }),
+          headers: { "Content-Type": "application/json" }
+        });
+        if (res.ok) {
+          subscribeForm.reset();
+          status.textContent = 'Thanks! You’re subscribed.';
+          status.className = 'success';
+        } else {
+          status.textContent = 'Something went wrong. Try again.';
+          status.className = 'error';
+        }
+      } catch (err) {
+        status.textContent = 'Network error. Please try again.';
+        status.className = 'error';
+      }
+    });
+  }
 </script>
 
 </body>
