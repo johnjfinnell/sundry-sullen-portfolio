@@ -6,7 +6,7 @@
 <title>Sundry Sullen</title>
 <style>
   :root{
-    --content-max: 850px;  /* content width cap */
+    --content-max: 640px;  /* balanced width for 13" laptops */
     --header-h: 56px;
   }
 
@@ -33,7 +33,7 @@
     white-space:nowrap;
   }
   nav.sidebar ul{ list-style:none; padding:0; margin:0; }
-  nav.sidebar li{ margin-bottom:0.7rem; }
+  nav.sidebar li{ margin-bottom:0.8rem; } /* tighter nav spacing */
 
   .group-label{
     font-weight:700; margin:1.2rem 0 .5rem 0; letter-spacing:-0.01em;
@@ -50,7 +50,7 @@
 
   /* ===== Main content ===== */
   main.content{
-    flex:1; padding:2rem 2rem; margin-left:40px;   /* a hair more space from sidebar */
+    flex:1; padding:2rem 2rem; margin-left:60px;   /* ~1/3 tighter than before */
   }
   .section{ display:none; max-width:var(--content-max); margin:0 auto; }
   .section.active{ display:block; }
@@ -62,36 +62,32 @@
 
   /* Tall-image sections (Poster, Chaos, Faceless): left align under heading */
   .tall-series .images img{
-    max-width:640px;
+    max-width:700px;
     margin:0;           /* left aligned (no auto-centering) */
   }
 
-  /* About photo larger */
-  #about .images img.profile{
-    max-width:480px; width:100%; height:auto;
-    display:block; margin:0 0 1.5rem 0; border:0;
+  /* ===== About (stacked: text -> form -> image centered) ===== */
+  #about .about-text{
+    max-width: var(--content-max);
   }
-  #about p{ margin-top:0; max-width:600px; font-size:1rem; line-height:1.5; }
-
-  .about-container {
-  display: flex;
-  align-items: flex-start;  /* aligns image with top of text */
-  gap: 2rem; /* space between text and image */
-}
-
-.about-text {
-  flex: 1;  /* text takes remaining space */
-}
-
-.about-image img {
-  width: 350px;   /* adjust size as you like */
-  height: auto;
-  object-fit: cover;
-}
+  #about .about-text p{
+    margin: 0 0 1rem 0;
+    line-height: 1.55;
+  }
+  #about .about-image{
+    margin-top: 1.25rem;
+    display: flex;
+    justify-content: center;
+  }
+  #about .about-image img{
+    max-width: 420px;   /* adjust if you want bigger/smaller */
+    width: 100%;
+    height: auto;
+  }
 
   /* Subscribe form */
   #subscribeForm{
-    display:flex; flex-wrap:wrap; gap:.6rem; max-width:var(--content-max); margin-top:1rem;
+    display:flex; flex-wrap:wrap; gap:.6rem; max-width:var(--content-max); margin-top:.5rem;
   }
   #subscribeForm input[type="email"]{
     flex:1; padding:.65rem .75rem; border:1px solid #000; background:#fff; font:inherit;
@@ -125,8 +121,8 @@
 
     main.content{ margin-left:0; padding:1rem; }
 
-    /* About photo slightly smaller on mobile */
-    #about .images img.profile{ max-width:360px; }
+    /* About image a bit smaller on mobile to keep things tidy */
+    #about .about-image img{ max-width: 360px; }
   }
 </style>
 </head>
@@ -159,11 +155,10 @@
 
 <main class="content" tabindex="0">
 
-  <!-- Vintage Collage Book (sample image; add more as needed) -->
+  <!-- Vintage Collage Book (sample; add full set when ready) -->
   <section id="vintage-collage-book" class="section" tabindex="0" aria-labelledby="vcb-title">
     <h2 id="vcb-title">Vintage Collage Book</h2>
     <div class="images">
-      <!-- Add your full reversed set here; kept one for brevity -->
       <img src="images/collage-book/collage-book-13.jpg" alt="Vintage Collage Book page" loading="lazy">
     </div>
   </section>
@@ -220,32 +215,23 @@
     <div class="images"><p>Content coming soon…</p></div>
   </section>
 
-  <!-- About + Subscribe -->
-<section id="about" class="section" tabindex="0" aria-labelledby="about-title">
-  <h2 id="about-title">About the Artist</h2>
-  <div class="about-container">
+  <!-- About (DEFAULT ACTIVE) -->
+  <section id="about" class="section active" tabindex="0" aria-labelledby="about-title">
+    <h2 id="about-title">About the Artist</h2>
     <div class="about-text">
-      <p>
-My name is John Finnell, and I create art under the name Sundry Sullen. I’ve been making collage on and off for over 20 years, weaving together timeworn and contemporary imagery to explore emotion, transformation, and transcendence. A lot of my pieces end up as this mix of order and fracture, fragments that come together into something otherworldly, sparking reflection and mystery and touching on the shifting boundaries of self and no-self.
-
-Beyond art, I practice acupuncture and holistic medicine in Oceanside, CA, surf whenever I can, and am building toward Nervous System Reset retreats in Central America that bring together art, healing, and community.
-
-If you’re curious about new art or the retreats I’m putting together, you can drop your email through the link in my bio. I email very infrequently and only for big updates, so you won’t get spammed.
-      </p>
-      <div class="subscribe">
-        <h3>Subscribe for updates</h3>
-        <p><em>Get news on new series, events, and print releases.</em></p>
-        <form>
-          <input type="email" placeholder="you@example.com" required>
-          <button type="submit">Subscribe</button>
-        </form>
-      </div>
+      <p>My name is John Finnell, and I create art under the name Sundry Sullen. I’ve been making collage on and off for over 20 years, weaving together timeworn and contemporary imagery to explore emotion, transformation, and transcendence. A lot of my work ends up as a mix of order and fracture, fragments that come together into something otherworldly, sparking reflection and mystery and touching on the shifting boundaries of self and no-self. Beyond art, I practice acupuncture and holistic medicine in Oceanside, CA, surf whenever I can, and am building toward Nervous System Reset retreats in Central America that bring together art, healing, and community. If you’re curious about new art or the retreats I’m putting together, you can drop your email below. I email very infrequently and only for big updates, so you won’t get spammed.</p>
+      <h3 style="margin:1rem 0 .25rem 0; font-size:1.1rem;">Subscribe for updates</h3>
+      <p class="description">Get news on new series, events, and print releases.</p>
+      <form id="subscribeForm">
+        <input type="email" name="email" id="email" placeholder="you@example.com" required />
+        <button type="submit">Subscribe</button>
+        <div id="subscribeStatus"></div>
+      </form>
     </div>
     <div class="about-image">
-      <img src="images/about/studio-selfie-1.jpg" alt="Photo of John Finnell in studio" />
+      <img src="images/about/studio-selfie-1.jpg" alt="Portrait of John Finnell in studio" loading="lazy">
     </div>
-  </div>
-</section>
+  </section>
 
 </main>
 
