@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title=Sundry Sullen</title>
+<title>Sundry Sullen</title>
 <style>
   :root{
     --content-max: 640px;   /* down from 720px */
@@ -79,16 +79,26 @@
   .description{ font-style:italic; font-size:.95rem; margin:.25rem 0 1.2rem; line-height:1.45; }
   .images{ display:flex; flex-direction:column; gap:var(--img-gap); }
 
-  /* NEW: better portrait behavior */
+  /* General: landscape can go full width; portraits get a height cap */
   .images img, .section > img{
-    max-width:100%;         /* don’t overflow width */
-    max-height:88vh;        /* don’t exceed viewport height */
-    width:auto;             /* allow height cap to kick in */
+    max-width:100%;
     height:auto;
     display:block;
     border:0;
     object-fit:contain;
-    margin:0 auto;          /* center when width < container */
+    margin:0 auto;
+  }
+  .images img.portrait, .section > img.portrait{
+    max-height:88vh;
+  }
+
+  /* About profile image smaller */
+  #about img.profile{
+    display:block;
+    max-width:250px;
+    height:auto;
+    margin:0 0 1.5rem 0;
+    border:0;
   }
 
   /* ===== Subscribe form styles ===== */
@@ -200,52 +210,52 @@
     </div>
   </section>
 
-  <!-- Chaos Series -->
+  <!-- Chaos Series (all portrait) -->
   <section id="chaos-series" class="section" tabindex="0" aria-labelledby="chaos-series-title">
     <h2 id="chaos-series-title">Chaos Series</h2>
     <div class="images">
-      <img src="images/chaos-series/AI.JPG" alt="Chaos Series — AI" loading="lazy">
-      <img src="images/chaos-series/cat.JPG" alt="Chaos Series — Cat" loading="lazy">
-      <img src="images/chaos-series/chaos.jpeg" alt="Chaos Series — Chaos" loading="lazy">
-      <img src="images/chaos-series/circular.JPG" alt="Chaos Series — Circular" loading="lazy">
-      <img src="images/chaos-series/edge.JPG" alt="Chaos Series — Edge" loading="lazy">
-      <img src="images/chaos-series/feather.JPG" alt="Chaos Series — Feather" loading="lazy">
-      <img src="images/chaos-series/first.JPG" alt="Chaos Series — First" loading="lazy">
-      <img src="images/chaos-series/formless.JPG" alt="Chaos Series — Formless" loading="lazy">
-      <img src="images/chaos-series/freedom.jpeg" alt="Chaos Series — Freedom" loading="lazy">
-      <img src="images/chaos-series/hair.JPG" alt="Chaos Series — Hair" loading="lazy">
-      <img src="images/chaos-series/horse.JPG" alt="Chaos Series — Horse" loading="lazy">
-      <img src="images/chaos-series/peace.jpeg" alt="Chaos Series — Peace" loading="lazy">
-      <img src="images/chaos-series/vision.jpeg" alt="Chaos Series — Vision" loading="lazy">
-      <img src="images/chaos-series/yellowpink.JPG" alt="Chaos Series — Yellow Pink" loading="lazy">
+      <img class="portrait" src="images/chaos-series/AI.JPG" alt="Chaos Series — AI" loading="lazy">
+      <img class="portrait" src="images/chaos-series/cat.JPG" alt="Chaos Series — Cat" loading="lazy">
+      <img class="portrait" src="images/chaos-series/chaos.jpeg" alt="Chaos Series — Chaos" loading="lazy">
+      <img class="portrait" src="images/chaos-series/circular.JPG" alt="Chaos Series — Circular" loading="lazy">
+      <img class="portrait" src="images/chaos-series/edge.JPG" alt="Chaos Series — Edge" loading="lazy">
+      <img class="portrait" src="images/chaos-series/feather.JPG" alt="Chaos Series — Feather" loading="lazy">
+      <img class="portrait" src="images/chaos-series/first.JPG" alt="Chaos Series — First" loading="lazy">
+      <img class="portrait" src="images/chaos-series/formless.JPG" alt="Chaos Series — Formless" loading="lazy">
+      <img class="portrait" src="images/chaos-series/freedom.jpeg" alt="Chaos Series — Freedom" loading="lazy">
+      <img class="portrait" src="images/chaos-series/hair.JPG" alt="Chaos Series — Hair" loading="lazy">
+      <img class="portrait" src="images/chaos-series/horse.JPG" alt="Chaos Series — Horse" loading="lazy">
+      <img class="portrait" src="images/chaos-series/peace.jpeg" alt="Chaos Series — Peace" loading="lazy">
+      <img class="portrait" src="images/chaos-series/vision.jpeg" alt="Chaos Series — Vision" loading="lazy">
+      <img class="portrait" src="images/chaos-series/yellowpink.JPG" alt="Chaos Series — Yellow Pink" loading="lazy">
     </div>
   </section>
 
-  <!-- Faceless Series -->
+  <!-- Faceless Series (all portrait) -->
   <section id="faceless-series" class="section" tabindex="0" aria-labelledby="faceless-series-title">
     <h2 id="faceless-series-title">Faceless Series</h2>
     <div class="images">
-      <img src="images/faceless-series/blackwhite.jpg" alt="Faceless Series — Black & White" loading="lazy">
-      <img src="images/faceless-series/cowboy.jpg" alt="Faceless Series — Cowboy" loading="lazy">
-      <img src="images/faceless-series/dance.jpg" alt="Faceless Series — Dance" loading="lazy">
-      <img src="images/faceless-series/goodforyou.jpg" alt="Faceless Series — Good For You" loading="lazy">
-      <img src="images/faceless-series/inamerica.jpg" alt="Faceless Series — In America" loading="lazy">
-      <img src="images/faceless-series/mad.JPG" alt="Faceless Series — Mad" loading="lazy">
-      <img src="images/faceless-series/myfaithholds.jpg" alt="Faceless Series — My Faith Holds" loading="lazy">
-      <img src="images/faceless-series/new-face.JPG" alt="Faceless Series — New Face" loading="lazy">
-      <img src="images/faceless-series/power.JPG" alt="Faceless Series — Power" loading="lazy">
-      <img src="images/faceless-series/red-black.JPG" alt="Faceless Series — Red Black" loading="lazy">
-      <img src="images/faceless-series/requiem.JPG" alt="Faceless Series — Requiem" loading="lazy">
-      <img src="images/faceless-series/three.jpg" alt="Faceless Series — Three" loading="lazy">
+      <img class="portrait" src="images/faceless-series/blackwhite.jpg" alt="Faceless Series — Black & White" loading="lazy">
+      <img class="portrait" src="images/faceless-series/cowboy.jpg" alt="Faceless Series — Cowboy" loading="lazy">
+      <img class="portrait" src="images/faceless-series/dance.jpg" alt="Faceless Series — Dance" loading="lazy">
+      <img class="portrait" src="images/faceless-series/goodforyou.jpg" alt="Faceless Series — Good For You" loading="lazy">
+      <img class="portrait" src="images/faceless-series/inamerica.jpg" alt="Faceless Series — In America" loading="lazy">
+      <img class="portrait" src="images/faceless-series/mad.JPG" alt="Faceless Series — Mad" loading="lazy">
+      <img class="portrait" src="images/faceless-series/myfaithholds.jpg" alt="Faceless Series — My Faith Holds" loading="lazy">
+      <img class="portrait" src="images/faceless-series/new-face.JPG" alt="Faceless Series — New Face" loading="lazy">
+      <img class="portrait" src="images/faceless-series/power.JPG" alt="Faceless Series — Power" loading="lazy">
+      <img class="portrait" src="images/faceless-series/red-black.JPG" alt="Faceless Series — Red Black" loading="lazy">
+      <img class="portrait" src="images/faceless-series/requiem.JPG" alt="Faceless Series — Requiem" loading="lazy">
+      <img class="portrait" src="images/faceless-series/three.jpg" alt="Faceless Series — Three" loading="lazy">
     </div>
   </section>
 
-  <!-- Poster Series (placeholder) -->
+  <!-- Poster Series (portrait placeholder) -->
   <section id="poster-series" class="section" tabindex="0" aria-labelledby="poster-series-title">
     <h2 id="poster-series-title">Poster Series</h2>
     <div class="description">2022 — 18x24 in., found images and glue on 100lb Bristol.</div>
     <div class="images">
-      <img src="images/poster-series/IMG_5509.jpeg" alt="Poster Series collage (placeholder)" loading="lazy">
+      <img class="portrait" src="images/poster-series/IMG_5509.jpeg" alt="Poster Series collage (placeholder)" loading="lazy">
     </div>
   </section>
 
@@ -286,7 +296,7 @@
   <section id="about" class="section" tabindex="0" aria-labelledby="about-title">
     <h2 id="about-title">About the Artist</h2>
     <div class="images" style="margin-bottom:.6rem;">
-      <img src="images/about/studio-selfie-1.jpg" alt="John Finnell in the studio" loading="lazy">
+      <img class="profile" src="images/about/studio-selfie-1.jpg" alt="Portrait of John Finnell in studio" loading="lazy">
     </div>
     <p class="description">Short bio and statement will go here.</p>
 
