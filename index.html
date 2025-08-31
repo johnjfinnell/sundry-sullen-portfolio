@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sundry Sullen</title>
+<title=Sundry Sullen</title>
 <style>
   :root{
-    --content-max: 720px;
+    --content-max: 640px;   /* down from 720px */
     --img-gap: 1.2rem;
     --header-h: 56px;
   }
@@ -78,7 +78,18 @@
   .section h2{ font-weight:900; font-size:1.6rem; margin:0 0 .6rem 0; letter-spacing:-0.02em; }
   .description{ font-style:italic; font-size:.95rem; margin:.25rem 0 1.2rem; line-height:1.45; }
   .images{ display:flex; flex-direction:column; gap:var(--img-gap); }
-  .images img, .section > img{ width:100%; height:auto; display:block; border:0; object-fit:contain; }
+
+  /* NEW: better portrait behavior */
+  .images img, .section > img{
+    max-width:100%;         /* don’t overflow width */
+    max-height:88vh;        /* don’t exceed viewport height */
+    width:auto;             /* allow height cap to kick in */
+    height:auto;
+    display:block;
+    border:0;
+    object-fit:contain;
+    margin:0 auto;          /* center when width < container */
+  }
 
   /* ===== Subscribe form styles ===== */
   #subscribeForm {
@@ -169,23 +180,23 @@
 </nav>
 
 <main class="content" tabindex="0">
-  <!-- Vintage Collage Book -->
+  <!-- Vintage Collage Book (REVERSED: 13 -> 01) -->
   <section id="vintage-collage-book" class="section active" tabindex="0" aria-labelledby="vintage-title">
     <h2 id="vintage-title">Vintage Collage Book</h2>
     <div class="images">
-      <img src="images/collage-book/collage-book-01.jpg" alt="Vintage Collage Book page 1" loading="lazy">
-      <img src="images/collage-book/collage-book-02.jpg" alt="Vintage Collage Book page 2" loading="lazy">
-      <img src="images/collage-book/collage-book-03.jpg" alt="Vintage Collage Book page 3" loading="lazy">
-      <img src="images/collage-book/collage-book-04.jpg" alt="Vintage Collage Book page 4" loading="lazy">
-      <img src="images/collage-book/collage-book-05.jpg" alt="Vintage Collage Book page 5" loading="lazy">
-      <img src="images/collage-book/collage-book-06.jpg" alt="Vintage Collage Book page 6" loading="lazy">
-      <img src="images/collage-book/collage-book-07.jpg" alt="Vintage Collage Book page 7" loading="lazy">
-      <img src="images/collage-book/collage-book-08.jpg" alt="Vintage Collage Book page 8" loading="lazy">
-      <img src="images/collage-book/collage-book-09.jpg" alt="Vintage Collage Book page 9" loading="lazy">
-      <img src="images/collage-book/collage-book-10.jpg" alt="Vintage Collage Book page 10" loading="lazy">
-      <img src="images/collage-book/collage-book-11.jpg" alt="Vintage Collage Book page 11" loading="lazy">
-      <img src="images/collage-book/collage-book-12.jpg" alt="Vintage Collage Book page 12" loading="lazy">
       <img src="images/collage-book/collage-book-13.jpg" alt="Vintage Collage Book page 13" loading="lazy">
+      <img src="images/collage-book/collage-book-12.jpg" alt="Vintage Collage Book page 12" loading="lazy">
+      <img src="images/collage-book/collage-book-11.jpg" alt="Vintage Collage Book page 11" loading="lazy">
+      <img src="images/collage-book/collage-book-10.jpg" alt="Vintage Collage Book page 10" loading="lazy">
+      <img src="images/collage-book/collage-book-09.jpg" alt="Vintage Collage Book page 9" loading="lazy">
+      <img src="images/collage-book/collage-book-08.jpg" alt="Vintage Collage Book page 8" loading="lazy">
+      <img src="images/collage-book/collage-book-07.jpg" alt="Vintage Collage Book page 7" loading="lazy">
+      <img src="images/collage-book/collage-book-06.jpg" alt="Vintage Collage Book page 6" loading="lazy">
+      <img src="images/collage-book/collage-book-05.jpg" alt="Vintage Collage Book page 5" loading="lazy">
+      <img src="images/collage-book/collage-book-04.jpg" alt="Vintage Collage Book page 4" loading="lazy">
+      <img src="images/collage-book/collage-book-03.jpg" alt="Vintage Collage Book page 3" loading="lazy">
+      <img src="images/collage-book/collage-book-02.jpg" alt="Vintage Collage Book page 2" loading="lazy">
+      <img src="images/collage-book/collage-book-01.jpg" alt="Vintage Collage Book page 1" loading="lazy">
     </div>
   </section>
 
@@ -229,18 +240,16 @@
     </div>
   </section>
 
-  <!-- Poster Series (single placeholder for now) -->
+  <!-- Poster Series (placeholder) -->
   <section id="poster-series" class="section" tabindex="0" aria-labelledby="poster-series-title">
     <h2 id="poster-series-title">Poster Series</h2>
-    <div class="description">
-      2022 — 18x24 in., found images and glue on 100lb Bristol.
-    </div>
+    <div class="description">2022 — 18x24 in., found images and glue on 100lb Bristol.</div>
     <div class="images">
       <img src="images/poster-series/IMG_5509.jpeg" alt="Poster Series collage (placeholder)" loading="lazy">
     </div>
   </section>
 
-  <!-- One Hundred Pages (single placeholder for now) -->
+  <!-- One Hundred Pages (placeholder) -->
   <section id="one-hundred-pages" class="section" tabindex="0" aria-labelledby="one-hundred-pages-title">
     <h2 id="one-hundred-pages-title">One Hundred Pages</h2>
     <div class="description">2021 — 11x14 in. found images and glue on sketch book.</div>
@@ -279,9 +288,7 @@
     <div class="images" style="margin-bottom:.6rem;">
       <img src="images/about/studio-selfie-1.jpg" alt="John Finnell in the studio" loading="lazy">
     </div>
-    <p class="description">
-      Short bio and statement will go here.
-    </p>
+    <p class="description">Short bio and statement will go here.</p>
 
     <h3 style="margin:1.25rem 0 .25rem 0; font-size:1.1rem;">Subscribe for updates</h3>
     <p class="description">Get news on new series, events, and print releases.</p>
