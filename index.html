@@ -7,7 +7,6 @@
 <style>
   :root{
     --content-max: 640px;  /* balanced width for 13" laptops */
-    --header-h: 56px;
   }
 
   *{ box-sizing: border-box; }
@@ -33,7 +32,7 @@
     white-space:nowrap;
   }
   nav.sidebar ul{ list-style:none; padding:0; margin:0; }
-  nav.sidebar li{ margin-bottom:0.8rem; } /* tighter nav spacing */
+  nav.sidebar li{ margin-bottom:0.8rem; } /* tight nav spacing */
 
   .group-label{
     font-weight:700; margin:1.2rem 0 .5rem 0; letter-spacing:-0.01em;
@@ -50,9 +49,16 @@
 
   /* ===== Main content ===== */
   main.content{
-    flex:1; padding:2rem 2rem; margin-left:0;   /* gap = 0px per request */
+    flex:1;
+    /* Left gap reduced ~half (was 2rem); also left-align sections (no centering) */
+    padding:1rem 2rem 2rem 1rem;
+    margin-left:0;
   }
-  .section{ display:none; max-width:var(--content-max); margin:0 auto; }
+  .section{
+    display:none;
+    max-width:var(--content-max);
+    margin:0 auto 0 0; /* left aligned inside main (no extra left gap) */
+  }
   .section.active{ display:block; }
   .section h2{ font-weight:900; font-size:1.6rem; margin:0 0 .6rem 0; letter-spacing:-0.02em; }
   .description{ font-style:italic; font-size:.95rem; margin:.25rem 0 1.2rem; line-height:1.45; }
@@ -66,8 +72,8 @@
     margin:0;           /* left aligned (no auto-centering) */
   }
 
-  /* ===== About (image floats left; text wraps right & below) ===== */
-  #about .lead{
+  /* ===== About (intro above, image left with wrap) ===== */
+  #about .intro-top{
     line-height: 1.55;
     margin: 0 0 1rem 0;
   }
@@ -75,20 +81,19 @@
   /* Float image left so following content wraps to the right and then below */
   #about .about-figure{
     float: left;
-    width: 360px;          /* adjust image width here */
-    max-width: 48%;        /* guardrail on small content widths */
+    width: 420px;          /* slightly larger portrait */
+    max-width: 48%;
     margin: 0 1.25rem 1rem 0;  /* space to the right & below the image */
   }
   #about .about-figure img{
     display:block; width:100%; height:auto; border:0;
   }
 
-  /* The copy block follows the floated image and will sit to the right, then wrap under */
   #about .about-copy{
     line-height: 1.6;
   }
   #about .about-copy h3{
-    margin: .75rem 0 .4rem 0;
+    margin: 1rem 0 .4rem 0;
     font-size: 1.05rem;
   }
 
@@ -108,10 +113,8 @@
   #subscribeStatus.success{ color:#0a7f2e; }
   #subscribeStatus.error{ color:#b00020; }
 
-  /* Clear floats at the end of the About section so later content doesn't snag */
-  #about::after{
-    content:""; display:block; clear:both;
-  }
+  /* Clear floats so later sections don't snag */
+  #about::after{ content:""; display:block; clear:both; }
 
   /* ===== Mobile ===== */
   @media (max-width: 768px){
@@ -134,11 +137,11 @@
 
     main.content{ margin-left:0; padding:1rem; }
 
-    /* On mobile, un-float the About image and stack */
+    /* On mobile, stack About content */
     #about .about-figure{
       float:none; width:100%; max-width: 420px; margin: 0 auto 1rem auto;
     }
-    #about .about-copy{ width:100%; }
+    .section{ margin:0 auto; } /* center sections on mobile */
   }
 </style>
 </head>
@@ -171,46 +174,36 @@
 
 <main class="content" tabindex="0">
 
-  <!-- Vintage Collage Book (sample; add full set when ready) -->
+  <!-- Vintage Collage Book (sample) -->
   <section id="vintage-collage-book" class="section" tabindex="0" aria-labelledby="vcb-title">
     <h2 id="vcb-title">Vintage Collage Book</h2>
-    <div class="images">
-      <img src="images/collage-book/collage-book-13.jpg" alt="Vintage Collage Book page" loading="lazy">
-    </div>
+    <div class="images"><img src="images/collage-book/collage-book-13.jpg" alt="Vintage Collage Book page" loading="lazy"></div>
   </section>
 
   <!-- Chaos Series (tall; left-aligned) -->
   <section id="chaos-series" class="section tall-series" tabindex="0" aria-labelledby="chaos-title">
     <h2 id="chaos-title">Chaos Series</h2>
-    <div class="images">
-      <img src="images/chaos-series/chaos.jpeg" alt="Chaos Series sample" loading="lazy">
-    </div>
+    <div class="images"><img src="images/chaos-series/chaos.jpeg" alt="Chaos Series sample" loading="lazy"></div>
   </section>
 
   <!-- Faceless Series (tall; left-aligned) -->
   <section id="faceless-series" class="section tall-series" tabindex="0" aria-labelledby="faceless-title">
     <h2 id="faceless-title">Faceless Series</h2>
-    <div class="images">
-      <img src="images/faceless-series/blackwhite.jpg" alt="Faceless Series sample" loading="lazy">
-    </div>
+    <div class="images"><img src="images/faceless-series/blackwhite.jpg" alt="Faceless Series sample" loading="lazy"></div>
   </section>
 
   <!-- Poster Series (tall; left-aligned) -->
   <section id="poster-series" class="section tall-series" tabindex="0" aria-labelledby="poster-series-title">
     <h2 id="poster-series-title">Poster Series</h2>
     <div class="description">2022 — 18x24 in., found images and glue on 100lb Bristol.</div>
-    <div class="images">
-      <img src="images/poster-series/IMG_5509.jpeg" alt="Poster Series collage" loading="lazy">
-    </div>
+    <div class="images"><img src="images/poster-series/IMG_5509.jpeg" alt="Poster Series collage" loading="lazy"></div>
   </section>
 
   <!-- One Hundred Pages -->
   <section id="one-hundred-pages" class="section" tabindex="0" aria-labelledby="ohp-title">
     <h2 id="ohp-title">One Hundred Pages</h2>
     <div class="description">2021 — 11x14 in. found images and glue on sketch book.</div>
-    <div class="images">
-      <img src="images/100-Pages/IMG_5429.jpeg" alt="One Hundred Pages collage (sample)" loading="lazy">
-    </div>
+    <div class="images"><img src="images/100-Pages/IMG_5429.jpeg" alt="One Hundred Pages collage (sample)" loading="lazy"></div>
   </section>
 
   <!-- Past: Works -->
@@ -235,19 +228,24 @@
   <section id="about" class="section active" tabindex="0" aria-labelledby="about-title">
     <h2 id="about-title">About the Artist</h2>
 
-    <!-- Float-left image; text wraps on the right and then below -->
+    <!-- 3-sentence intro ABOVE the photo -->
+    <p class="intro-top">
+      My name is John Finnell, and I create art under the name Sundry Sullen. I’ve been making collage on and off for over 20 years, weaving together timeworn and contemporary imagery to explore emotion, transformation, and transcendence. A lot of my work ends up as a mix of order and fracture, fragments that come together into something otherworldly, sparking reflection and mystery and touching on the shifting boundaries of self and no-self.
+    </p>
+
+    <!-- Float-left image; remaining copy wraps on the right and then below -->
     <figure class="about-figure">
       <img src="images/about/studio-selfie-1.jpg" alt="Portrait of John Finnell in studio" loading="lazy">
     </figure>
 
     <div class="about-copy">
-      <p class="lead">
-        My name is John Finnell, and I create art under the name Sundry Sullen. I’ve been making collage on and off for over 20 years, weaving together timeworn and contemporary imagery to explore emotion, transformation, and transcendence. A lot of my work ends up as a mix of order and fracture, fragments that come together into something otherworldly, sparking reflection and mystery and touching on the shifting boundaries of self and no-self. Beyond art, I practice acupuncture and holistic medicine in Oceanside, CA, surf whenever I can, and am building toward Nervous System Reset retreats in Central America that bring together art, healing, and community. If you’re curious about new art or the retreats I’m putting together, you can drop your email below. I email very infrequently and only for big updates, so you won’t get spammed.
+      <p>
+        Beyond art, I practice acupuncture and holistic medicine in Oceanside, CA, surf whenever I can, and am building toward Nervous System Reset retreats in Central America that bring together art, healing, and community. If you’re curious about new art or the retreats I’m putting together, you can drop your email below. I email very infrequently and only for big updates, so you won’t get spammed.
       </p>
 
       <h3>History</h3>
       <p>
-        (Add your history text here.) This block lives to the right of the image on wide screens and continues naturally below the image. You can insert additional images between paragraphs later—everything will wrap cleanly around the floated photo.
+        (Add your history text here.) This block sits to the right of the image on wide screens and continues below the image on narrow ones. You can insert additional inline images between paragraphs later—text will wrap cleanly.
       </p>
 
       <h3 style="margin:1rem 0 .25rem 0; font-size:1.1rem;">Subscribe for updates</h3>
