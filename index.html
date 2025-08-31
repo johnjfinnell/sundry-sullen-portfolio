@@ -3,286 +3,286 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sundry Sullen</title>
+<title>SUNDRY SULLEN</title>
 <style>
-  :root{ --content-max: 640px; }
-
-  *{ box-sizing:border-box; }
-  body{
-    margin:0; font-family:Arial, Helvetica, sans-serif;
-    color:#000; background:#fff; display:flex; min-height:100vh;
+  /* ===== Reset ===== */
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color:#000; background:#fff;
+    display:flex; min-height:100vh;
   }
 
   /* ===== Sidebar ===== */
   nav.sidebar{
-    width:300px; flex-shrink:0; background:#fff;
-    display:flex; flex-direction:column;
-    padding:2rem 1.5rem; position:sticky; top:0; height:fit-content; z-index:20;
+    width:300px; flex:0 0 300px;
+    padding:2rem 1.25rem;
+    position:sticky; top:0; align-self:flex-start;
+    background:#fff; z-index:5;
   }
-  nav.sidebar h1{ margin:0 0 2rem 0; font-weight:900; font-size:1.4rem; letter-spacing:-0.02em; white-space:nowrap; }
+  nav.sidebar h1{
+    margin:0 0 1.25rem 0;
+    font-size:1.6rem; font-weight:900; letter-spacing:-0.02em;
+  }
+  .group-label{
+    font-weight:800; margin:1.1rem 0 .4rem 0;
+  }
   nav.sidebar ul{ list-style:none; padding:0; margin:0; }
-  nav.sidebar li{ margin-bottom:.8rem; }
-  .group-label{ font-weight:700; margin:1.2rem 0 .5rem 0; letter-spacing:-0.01em; }
-  .nav-btn{ all:unset; cursor:pointer; color:#000; font-size:1rem; line-height:1.3; display:block; width:100%; text-align:left; transition:color .25s; }
-  .nav-btn:hover,.nav-btn:focus,.nav-btn.active{ color:#c00; outline:none; }
+  nav.sidebar li{ margin:.48rem 0; }
+  .nav-btn{
+    all:unset; cursor:pointer; display:block; width:100%;
+    font-size:1rem; line-height:1.15;
+  }
+  .nav-btn.active, .nav-btn:hover, .nav-btn:focus{ color:#c00; outline:none; }
 
-  /* ===== Mobile toggle ===== */
-  .menu-toggle{ display:none; }
-
-  /* ===== Main ===== */
+  /* ===== Content ===== */
   main.content{
-    flex:1;
-    /* TOP padding aligns section H2 with brand name in sidebar */
-    padding:1rem 2rem 2rem 1.5rem;
-    margin-left:0;
+    flex:1; padding:2rem 2rem 4rem 0; /* right content; gap controlled here */
   }
-  .section{ display:none; max-width:var(--content-max); margin:0 auto 0 0; }
+  .content-inner{ max-width:980px; margin-left:20px; } /* << gap from sidebar ~20px */
+  .section{ display:none; }
   .section.active{ display:block; }
-  .section h2{ font-weight:900; font-size:1.6rem; margin:0 0 .6rem 0; letter-spacing:-0.02em; }
-  .description{ font-style:italic; font-size:.95rem; margin:.25rem 0 1.2rem; line-height:1.45; }
-  .images{ display:flex; flex-direction:column; gap:1.2rem; }
-  .images img{ max-width:100%; height:auto; display:block; object-fit:contain; border:0; }
-
-  /* Tall-series: left align under heading with a reasonable cap */
-  .tall-series .images{ gap:1rem; }
-  .tall-series .images img{ max-width:700px; margin:0; }
-
-  /* ===== About: image left, text wraps under ===== */
-  #about .about-figure{
-    float:left;
-    width:620px;          /* larger portrait */
-    max-width:55%;
-    margin:0 1.25rem 1rem 0;
+  .section h2{
+    margin:0 0 .75rem 0; font-size:2rem; font-weight:900; letter-spacing:-0.02em;
+    line-height:1.1;
   }
-  #about .about-figure img{ display:block; width:100%; height:auto; border:0; }
-  #about .about-copy{ line-height:1.6; }
-  #about .about-copy h3{ margin:1rem 0 .4rem 0; font-size:1.05rem; }
+  .meta{ font-style:italic; margin:.25rem 0 1rem 0; }
+  .images{ display:flex; flex-direction:column; gap:1rem; }
+  .images img{ width:100%; height:auto; display:block; }
 
-  /* Subscribe form */
-  #subscribeForm{ display:flex; flex-wrap:wrap; gap:.6rem; max-width:100%; margin:.5rem 0 0 0; }
-  #subscribeForm input[type="email"]{ flex:1; min-width:220px; padding:.65rem .75rem; border:1px solid #000; background:#fff; font:inherit; }
-  #subscribeForm button{ padding:.7rem 1rem; border:1px solid #000; background:#000; color:#fff; font-weight:700; cursor:pointer; }
-  #subscribeForm button:hover{ background:#c00; border-color:#c00; }
-  #subscribeStatus{ flex-basis:100%; margin-top:.5rem; font-size:.9rem; }
-  #subscribeStatus.success{ color:#0a7f2e; } #subscribeStatus.error{ color:#b00020; }
+  /* ===== About layout (image left, text wraps on right/under) ===== */
+  #about .about-figure{
+    float:left; width:360px; max-width:45%;
+    margin:0 1.5rem 1rem 0;
+  }
+  #about .about-figure img{ width:100%; height:auto; display:block; }
+  #about .about-text{ font-size:1rem; line-height:1.6; }
+  #about h3{ margin:2rem 0 .75rem; }
 
-  /* Clear float after About so later sections don’t snag */
-  #about::after{ content:""; display:block; clear:both; }
+  /* ===== Menu toggle (mobile) ===== */
+  .menu-toggle{
+    display:none; /* shown on mobile */
+    position:fixed; right:1rem; top:1rem; z-index:1100;
+    background:none; border:none; cursor:pointer;
+    font-weight:600; color:#000; /* black */
+  }
+  .menu-toggle .menu-label{ color:#000; }
+  .menu-toggle .hamburger{ display:inline-flex; flex-direction:column; gap:4px; margin-right:.5rem; vertical-align:middle; }
+  .menu-toggle .bar{ width:20px; height:2px; background:#000; display:block; }
+  .menu-toggle.open .hamburger{ display:none; }
+  .menu-toggle.open .menu-label::before{ content:"✕ "; }
 
-  /* ===== Mobile ===== */
-  @media (max-width:768px){
+  /* ===== Responsive ===== */
+  @media (max-width: 1024px){
+    .content-inner{ margin-left:16px; }
+    #about .about-figure{ width:320px; }
+  }
+
+  @media (max-width: 768px){
     body{ flex-direction:column; }
+    /* Mobile drawer */
     nav.sidebar{
       position:fixed; top:0; left:0; height:100%; width:260px;
       padding:2rem 1.2rem; overflow-y:auto; transform:translateX(-100%);
-      transition:transform .3s ease; z-index:1000;
+      transition:transform .3s ease; z-index:1000; border-right:1px solid #eee;
     }
     nav.sidebar.open{ transform:translateX(0); }
-    .menu-toggle{
-      display:flex; align-items:center; gap:.5rem;
-      position:fixed; right:1rem; top:1rem; z-index:1100;
-      background:none; border:none; font-weight:600; cursor:pointer;
-    }
-    .menu-toggle .bar{ width:20px; height:2px; background:#000; display:block; margin:4px 0; }
+    .menu-toggle{ display:flex; align-items:center; }
     main.content{ padding:1rem; }
+    .content-inner{ margin-left:0; }
+    /* About flows vertical on mobile */
     #about .about-figure{ float:none; width:100%; max-width:420px; margin:0 auto 1rem auto; }
-    .section{ margin:0 auto; }
   }
 </style>
 </head>
 <body>
 
+<!-- Mobile menu toggle -->
 <button class="menu-toggle" aria-label="Toggle menu" id="menuToggle">
-  <span class="bar"></span><span class="bar"></span><span class="bar"></span> Menu
+  <span class="hamburger" aria-hidden="true">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </span>
+  <span class="menu-label">Menu</span>
 </button>
 
-<nav class="sidebar" role="navigation" aria-label="Primary" id="sidebar">
+<!-- Sidebar -->
+<nav class="sidebar" id="sidebar" role="navigation" aria-label="Primary">
   <h1>SUNDRY SULLEN</h1>
+
+  <div class="group-label">Recent (2022–Present)</div>
   <ul>
-    <li class="group-label">Recent (2022–Present)</li>
     <li><button class="nav-btn" data-target="vintage-collage-book">Vintage Collage Book</button></li>
     <li><button class="nav-btn" data-target="chaos-series">Chaos Series</button></li>
     <li><button class="nav-btn" data-target="faceless-series">Faceless Series</button></li>
     <li><button class="nav-btn" data-target="poster-series">Poster Series</button></li>
     <li><button class="nav-btn" data-target="one-hundred-pages">One Hundred Pages</button></li>
+  </ul>
 
-    <li class="group-label">Past (2005–2017)</li>
+  <div class="group-label">Past (2005–2017)</div>
+  <ul>
     <li><button class="nav-btn" data-target="works">Works</button></li>
     <li><button class="nav-btn" data-target="collaborations">Collaborations</button></li>
     <li><button class="nav-btn" data-target="photography">Photography</button></li>
+  </ul>
 
-    <li class="group-label"><button class="nav-btn active" data-target="about">About the Artist</button></li>
+  <div class="group-label" style="margin-top:1.25rem;">About the Artist</div>
+  <ul>
+    <li><button class="nav-btn" data-target="about">About the Artist</button></li>
   </ul>
 </nav>
 
+<!-- Main -->
 <main class="content" tabindex="0">
+  <div class="content-inner">
 
-  <!-- ===== Vintage Collage Book ===== -->
-  <section id="vintage-collage-book" class="section" aria-labelledby="vcb-title">
-    <h2 id="vcb-title">Vintage Collage Book</h2>
-    <div class="images">
-      <img src="images/collage-book/collage-book-01.jpg" alt="Vintage Collage Book, spread 1" loading="lazy">
-      <img src="images/collage-book/collage-book-02.jpg" alt="Vintage Collage Book, spread 2" loading="lazy">
-      <img src="images/collage-book/collage-book-03.jpg" alt="Vintage Collage Book, spread 3" loading="lazy">
-    </div>
-  </section>
+    <!-- ABOUT first/active -->
+    <section id="about" class="section active" aria-labelledby="about-title">
+      <h2 id="about-title">About the Artist</h2>
 
-  <!-- ===== Chaos Series (tall) ===== -->
-  <section id="chaos-series" class="section tall-series" aria-labelledby="chaos-title">
-    <h2 id="chaos-title">Chaos Series</h2>
-    <div class="images">
-      <img src="images/chaos-series/chaos.jpeg" alt="Chaos Series collage — Chaos" loading="lazy">
-      <img src="images/chaos-series/freedom.jpeg" alt="Chaos Series collage — Freedom" loading="lazy">
-      <img src="images/chaos-series/vision.jpeg" alt="Chaos Series collage — Vision" loading="lazy">
-    </div>
-  </section>
+      <figure class="about-figure">
+        <img src="images/about/studio-selfie-2.jpg" alt="Portrait of John Finnell in studio" loading="lazy">
+      </figure>
 
-  <!-- ===== Faceless Series (tall) ===== -->
-  <section id="faceless-series" class="section tall-series" aria-labelledby="faceless-title">
-    <h2 id="faceless-title">Faceless Series</h2>
-    <div class="images">
-      <img src="images/faceless-series/blackwhite.jpg" alt="Faceless Series — Black & White" loading="lazy">
-      <img src="images/faceless-series/cowboy.jpg" alt="Faceless Series — Cowboy" loading="lazy">
-      <img src="images/faceless-series/dance.jpg" alt="Faceless Series — Dance" loading="lazy">
-    </div>
-  </section>
-
-  <!-- ===== Poster Series (tall) ===== -->
-  <section id="poster-series" class="section tall-series" aria-labelledby="poster-series-title">
-    <h2 id="poster-series-title">Poster Series</h2>
-    <div class="description">2022 — 18x24 in., found images and glue on 100lb Bristol.</div>
-    <div class="images">
-      <img src="images/poster-series/IMG_5509.jpeg" alt="Poster Series collage 1" loading="lazy">
-      <img src="images/poster-series/IMG_5532.jpeg" alt="Poster Series collage 2" loading="lazy">
-      <img src="images/poster-series/IMG_5595.jpeg" alt="Poster Series collage 3" loading="lazy">
-    </div>
-  </section>
-
-  <!-- ===== One Hundred Pages ===== -->
-  <section id="one-hundred-pages" class="section" aria-labelledby="ohp-title">
-    <h2 id="ohp-title">One Hundred Pages</h2>
-    <div class="description">2021 — 11x14 in. found images and glue on sketch book.</div>
-    <div class="images">
-      <img src="images/100-Pages/IMG_5313.jpeg" alt="One Hundred Pages — page 1" loading="lazy">
-      <img src="images/100-Pages/IMG_5314.jpeg" alt="One Hundred Pages — page 2" loading="lazy">
-      <img src="images/100-Pages/IMG_5315.jpeg" alt="One Hundred Pages — page 3" loading="lazy">
-    </div>
-  </section>
-
-  <!-- ===== Past: Works ===== -->
-  <section id="works" class="section" aria-labelledby="works-title">
-    <h2 id="works-title">Works</h2>
-    <div class="images">
-      <img src="images/selected-works/01-works.webp" alt="Selected Work 1" loading="lazy">
-      <img src="images/selected-works/02-works.webp" alt="Selected Work 2" loading="lazy">
-      <img src="images/selected-works/03-works.webp" alt="Selected Work 3" loading="lazy">
-    </div>
-  </section>
-
-  <!-- ===== Past: Collaborations ===== -->
-  <section id="collaborations" class="section" aria-labelledby="collab-title">
-    <h2 id="collab-title">Collaborations</h2>
-    <div class="images">
-      <img src="images/selected-collaborations/01-collab.jpeg" alt="Collaboration 1" loading="lazy">
-      <img src="images/selected-collaborations/02-collab.jpeg" alt="Collaboration 2" loading="lazy">
-      <img src="images/selected-collaborations/03-collab.png" alt="Collaboration 3" loading="lazy">
-    </div>
-  </section>
-
-  <!-- ===== Past: Photography ===== -->
-  <section id="photography" class="section" aria-labelledby="photo-title">
-    <h2 id="photo-title">Photography</h2>
-    <div class="images">
-      <img src="images/selected-photography/01-photo.jpeg" alt="Photography 1" loading="lazy">
-      <img src="images/selected-photography/02-photo.jpeg" alt="Photography 2" loading="lazy">
-      <img src="images/selected-photography/03-photo.jpeg" alt="Photography 3" loading="lazy">
-    </div>
-  </section>
-
-  <!-- ===== About (DEFAULT ACTIVE) ===== -->
-  <section id="about" class="section active" aria-labelledby="about-title">
-    <h2 id="about-title">About the Artist</h2>
-
-    <figure class="about-figure">
-      <img src="images/about/studio-selfie-1.jpg" alt="Portrait of John Finnell in studio" loading="lazy">
-    </figure>
-
-    <div class="about-copy">
-      <p>
-        My name is John Finnell, and I create art under the name Sundry Sullen. I’ve been making collage on and off for over 20 years, weaving together timeworn and contemporary imagery to explore emotion, transformation, and transcendence. A lot of my work ends up as a mix of order and fracture, fragments that come together into something otherworldly, sparking reflection and mystery and touching on the shifting boundaries of self and no-self.
-      </p>
-      <p>
-        Beyond art, I practice acupuncture and holistic medicine in Oceanside, CA, surf whenever I can, and am building toward Nervous System Reset retreats in Central America that bring together art, healing, and community. If you’re curious about new art or the retreats I’m putting together, you can drop your email below. I email very infrequently and only for big updates, so you won’t get spammed.
-      </p>
+      <div class="about-text">
+        <p>
+          My name is John Finnell, and I create art under the name Sundry Sullen. I’ve been making collage on and off for over 20 years, weaving together timeworn and contemporary imagery to explore emotion, transformation, and transcendence. A lot of my work ends up as a mix of order and fracture, fragments that come together into something otherworldly, sparking reflection and mystery and touching on the shifting boundaries of self and no-self.
+        </p>
+        <p>
+          Beyond art, I practice acupuncture and holistic medicine in Oceanside, CA, surf whenever I can, and am building toward Nervous System Reset retreats in Central America that bring together art, healing, and community. If you’re curious about new art or the retreats I’m putting together, you can drop your email below. I email very infrequently and only for big updates, so you won’t get spammed.
+        </p>
+      </div>
 
       <h3>History</h3>
-      <p>
-        (Add your history text here.) This copy sits beside the portrait, then continues below once the image ends. Later you can insert additional images between paragraphs—text will wrap cleanly.
-      </p>
+      <p>More long-form biography and studio notes can go here. You can interleave additional images later as the story expands.</p>
+    </section>
 
-      <h3 style="margin:1rem 0 .25rem 0; font-size:1.1rem;">Subscribe for updates</h3>
-      <p class="description">Get news on new series, events, and print releases.</p>
-      <form id="subscribeForm">
-        <input type="email" name="email" id="email" placeholder="you@example.com" required />
-        <button type="submit">Subscribe</button>
-        <div id="subscribeStatus"></div>
-      </form>
-    </div>
-  </section>
+    <!-- Vintage Collage Book -->
+    <section id="vintage-collage-book" class="section" aria-labelledby="vintage-title">
+      <h2 id="vintage-title">Vintage Collage Book</h2>
+      <div class="images">
+        <img src="images/collage-book/collage-book-01.jpg" alt="Vintage collage book spread 1" loading="lazy">
+        <img src="images/collage-book/collage-book-02.jpg" alt="Vintage collage book spread 2" loading="lazy">
+        <img src="images/collage-book/collage-book-03.jpg" alt="Vintage collage book spread 3" loading="lazy">
+      </div>
+    </section>
 
+    <!-- Chaos Series -->
+    <section id="chaos-series" class="section" aria-labelledby="chaos-title">
+      <h2 id="chaos-title">Chaos Series</h2>
+      <div class="images">
+        <img src="images/chaos-series/first.JPG" alt="Chaos Series piece 1" loading="lazy">
+        <img src="images/chaos-series/chaos.jpeg" alt="Chaos Series piece 2" loading="lazy">
+        <img src="images/chaos-series/AI.JPG" alt="Chaos Series piece 3" loading="lazy">
+      </div>
+    </section>
+
+    <!-- Faceless Series -->
+    <section id="faceless-series" class="section" aria-labelledby="faceless-title">
+      <h2 id="faceless-title">Faceless Series</h2>
+      <div class="images">
+        <img src="images/faceless-series/blackwhite.jpg" alt="Faceless Series piece 1" loading="lazy">
+        <img src="images/faceless-series/cowboy.jpg" alt="Faceless Series piece 2" loading="lazy">
+        <img src="images/faceless-series/dance.jpg" alt="Faceless Series piece 3" loading="lazy">
+      </div>
+    </section>
+
+    <!-- Poster Series -->
+    <section id="poster-series" class="section" aria-labelledby="poster-title">
+      <h2 id="poster-title">Poster Series</h2>
+      <div class="meta">2022 — 18x24 in., found images and glue on 100lb Bristol.</div>
+      <div class="images">
+        <img src="images/poster-series/IMG_5509.jpeg" alt="Poster Series collage 1" loading="lazy">
+        <img src="images/poster-series/IMG_5532.jpeg" alt="Poster Series collage 2" loading="lazy">
+        <img src="images/poster-series/IMG_5595.jpeg" alt="Poster Series collage 3" loading="lazy">
+      </div>
+    </section>
+
+    <!-- One Hundred Pages -->
+    <section id="one-hundred-pages" class="section" aria-labelledby="pages-title">
+      <h2 id="pages-title">One Hundred Pages</h2>
+      <div class="meta">2021 — 11x14 in., found images and glue on sketch book.</div>
+      <div class="images">
+        <img src="images/100-Pages/IMG_5313.jpeg" alt="One Hundred Pages collage 1" loading="lazy">
+        <img src="images/100-Pages/IMG_5314.jpeg" alt="One Hundred Pages collage 2" loading="lazy">
+        <img src="images/100-Pages/IMG_5315.jpeg" alt="One Hundred Pages collage 3" loading="lazy">
+      </div>
+    </section>
+
+    <!-- Past: Works -->
+    <section id="works" class="section" aria-labelledby="works-title">
+      <h2 id="works-title">Works</h2>
+      <div class="images">
+        <img src="images/selected-works/01-works.webp" alt="Work 1" loading="lazy">
+        <img src="images/selected-works/02-works.webp" alt="Work 2" loading="lazy">
+        <img src="images/selected-works/03-works.webp" alt="Work 3" loading="lazy">
+      </div>
+    </section>
+
+    <!-- Past: Collaborations -->
+    <section id="collaborations" class="section" aria-labelledby="collab-title">
+      <h2 id="collab-title">Collaborations</h2>
+      <div class="images">
+        <img src="images/selected-collaborations/01-collab.jpeg" alt="Collaboration 1" loading="lazy">
+        <img src="images/selected-collaborations/02-collab.jpeg" alt="Collaboration 2" loading="lazy">
+        <img src="images/selected-collaborations/03-collab.png" alt="Collaboration 3" loading="lazy">
+      </div>
+    </section>
+
+    <!-- Past: Photography -->
+    <section id="photography" class="section" aria-labelledby="photo-title">
+      <h2 id="photo-title">Photography</h2>
+      <div class="images">
+        <img src="images/selected-photography/01-photo.jpeg" alt="Photo 1" loading="lazy">
+        <img src="images/selected-photography/02-photo.jpeg" alt="Photo 2" loading="lazy">
+        <img src="images/selected-photography/03-photo.jpeg" alt="Photo 3" loading="lazy">
+      </div>
+    </section>
+
+  </div>
 </main>
 
 <script>
-  // Section switching
+  // Grab elements
   const navButtons = document.querySelectorAll(".nav-btn");
   const sections = document.querySelectorAll(".section");
   const sidebar  = document.getElementById("sidebar");
   const toggle   = document.getElementById("menuToggle");
+  const menuLabel = document.querySelector(".menu-label");
 
+  // Make ABOUT active by default (already in markup) — ensure only it is active
+  sections.forEach(s => s.id === "about" ? s.classList.add("active") : s.classList.remove("active"));
+  navButtons.forEach(b => {
+    if (b.dataset.target === "about") b.classList.add("active");
+    else b.classList.remove("active");
+  });
+
+  // Section switching
   navButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
       navButtons.forEach(b => b.classList.remove("active"));
       sections.forEach(s => s.classList.remove("active"));
       btn.classList.add("active");
       document.getElementById(btn.dataset.target).classList.add("active");
-      document.querySelector("main.content").scrollTo({ top: 0, behavior: "smooth" });
-
+      // close drawer on mobile
       if (window.matchMedia("(max-width: 768px)").matches && sidebar.classList.contains("open")) {
         sidebar.classList.remove("open");
-        toggle.innerHTML = '<span class="bar"></span><span class="bar"></span><span class="bar"></span> Menu';
+        toggle.classList.remove("open");
+        if (menuLabel) menuLabel.textContent = "Menu";
       }
+      // scroll content to top
+      document.querySelector("main.content").scrollTo({ top: 0, behavior: "smooth" });
     });
   });
 
-  // Mobile drawer toggle
+  // Mobile menu toggle
   toggle.addEventListener("click", () => {
     const isOpen = sidebar.classList.toggle("open");
-    toggle.innerHTML = isOpen ? '&#10005; Close'
-      : '<span class="bar"></span><span class="bar"></span><span class="bar"></span> Menu';
+    toggle.classList.toggle("open", isOpen);
+    if (menuLabel) menuLabel.textContent = isOpen ? "Close" : "Menu";
   });
-
-  // Simple Sheets hook (replace URL)
-  const subscribeForm = document.getElementById('subscribeForm');
-  if (subscribeForm) {
-    const status = document.getElementById('subscribeStatus');
-    subscribeForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      status.textContent = 'Submitting...'; status.className = '';
-      const email = subscribeForm.email.value.trim();
-      if (!email) { status.textContent = 'Please enter your email.'; status.className='error'; return; }
-      try {
-        const res = await fetch("YOUR_GOOGLE_SCRIPT_URL_HERE", {
-          method: "POST",
-          body: JSON.stringify({ email, source: "sundry-sullen-site" }),
-          headers: { "Content-Type": "application/json" }
-        });
-        if (res.ok){ subscribeForm.reset(); status.textContent='Thanks! You’re subscribed.'; status.className='success'; }
-        else{ status.textContent='Something went wrong. Try again.'; status.className='error'; }
-      } catch {
-        status.textContent='Network error. Please try again.'; status.className='error';
-      }
-    });
-  }
 </script>
 
 </body>
