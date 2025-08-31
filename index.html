@@ -5,116 +5,115 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SUNDRY SULLEN</title>
 <style>
-  /* ===== Reset ===== */
-  * { box-sizing: border-box; }
-  html, body { margin:0; padding:0; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  :root{
+    /* Caps that matched the “dialed in” look */
+    --wide-cap: 980px;   /* wide landscape pieces & books */
+    --tall-cap: 660px;   /* tall series like poster/faceless/chaos */
+    --gut: 20px;         /* content gutter from sidebar */
+  }
+
+  /* Base */
+  html,body{margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     color:#000; background:#fff;
     display:flex; min-height:100vh;
   }
 
-  /* ===== Sidebar ===== */
+  /* Sidebar */
   nav.sidebar{
-    width:300px; flex:0 0 300px;
-    padding:2rem 1.25rem;
+    width:260px; flex:0 0 260px;
+    padding:2rem 1rem;
     position:sticky; top:0; align-self:flex-start;
-    background:#fff; z-index:5;
+    background:#fff; z-index:10;
   }
   nav.sidebar h1{
-    margin:0 0 1.25rem 0;
-    font-size:1.6rem; font-weight:900; letter-spacing:-0.02em;
+    margin:0 0 1rem 0;
+    font-size:1.2rem; font-weight:700; letter-spacing:-0.01em;
   }
-  .group-label{
-    font-weight:800; margin:1.1rem 0 .4rem 0;
-  }
-  nav.sidebar ul{ list-style:none; padding:0; margin:0; }
-  nav.sidebar li{ margin:.48rem 0; }
+  .group-label{font-weight:700; margin:1.1rem 0 .45rem 0}
+  nav.sidebar ul{list-style:none; padding:0; margin:0}
+  nav.sidebar li{margin:.45rem 0}
   .nav-btn{
     all:unset; cursor:pointer; display:block; width:100%;
-    font-size:1rem; line-height:1.15;
+    font-size:.95rem; line-height:1.25;
   }
-  .nav-btn.active, .nav-btn:hover, .nav-btn:focus{ color:#c00; outline:none; }
+  .nav-btn:hover,.nav-btn:focus,.nav-btn.active{color:#c00; outline:none}
+  /* About entry is bold but still a button */
+  .nav-btn.about-link{font-weight:700}
 
-  /* ===== Content ===== */
-  main.content{
-    flex:1; padding:2rem 2rem 4rem 0; /* right content; gap controlled here */
-  }
-  .content-inner{ max-width:980px; margin-left:20px; } /* << gap from sidebar ~20px */
-  .section{ display:none; }
-  .section.active{ display:block; }
+  /* Content */
+  main.content{flex:1; padding:2rem 1rem 4rem 0}
+  .content-inner{max-width:1200px; margin-left:var(--gut)}
+  .section{display:none}
+  .section.active{display:block}
   .section h2{
-    margin:0 0 .75rem 0; font-size:2rem; font-weight:900; letter-spacing:-0.02em;
-    line-height:1.1;
+    margin:0 0 .55rem 0;
+    font-size:1.5rem; font-weight:700; line-height:1.2;
   }
-  .meta{ font-style:italic; margin:.25rem 0 1rem 0; }
-  .images{ display:flex; flex-direction:column; gap:1rem; }
-  .images img{ width:100%; height:auto; display:block; }
+  .meta{font-style:italic; margin:.25rem 0 1rem 0}
 
-  /* ===== About layout (image left, text wraps on right/under) ===== */
+  /* Image rails */
+  .images{display:flex; flex-direction:column; gap:1rem; align-items:flex-start}
+  .images img{width:100%; height:auto; display:block}
+
+  /* Width caps */
+  .section.wide .images img,
+  .section.wide .images picture{max-width:var(--wide-cap)}
+  .section.tall .images img,
+  .section.tall .images picture{max-width:var(--tall-cap)}
+
+  /* About layout (portrait left, text wraps) */
   #about .about-figure{
-    float:left; width:360px; max-width:45%;
-    margin:0 1.5rem 1rem 0;
+    float:left; width:340px; max-width:45%;
+    margin:0 1.25rem 1rem 0;
   }
-  #about .about-figure img{ width:100%; height:auto; display:block; }
-  #about .about-text{ font-size:1rem; line-height:1.6; }
-  #about h3{ margin:2rem 0 .75rem; }
+  #about .about-figure img{width:100%; height:auto; display:block}
+  #about .about-text{font-size:.95rem; line-height:1.6}
 
-  /* ===== Menu toggle (mobile) ===== */
+  /* Mobile Menu */
   .menu-toggle{
-    display:none; /* shown on mobile */
-    position:fixed; right:1rem; top:1rem; z-index:1100;
-    background:none; border:none; cursor:pointer;
-    font-weight:600; color:#000; /* black */
+    display:none; position:fixed; right:1rem; top:1rem; z-index:1100;
+    background:none; border:none; cursor:pointer; color:#000; font-weight:600;
   }
-  .menu-toggle .menu-label{ color:#000; }
-  .menu-toggle .hamburger{ display:inline-flex; flex-direction:column; gap:4px; margin-right:.5rem; vertical-align:middle; }
-  .menu-toggle .bar{ width:20px; height:2px; background:#000; display:block; }
-  .menu-toggle.open .hamburger{ display:none; }
-  .menu-toggle.open .menu-label::before{ content:"✕ "; }
+  .menu-toggle .hamburger{display:inline-flex; flex-direction:column; gap:4px; margin-right:.5rem; vertical-align:middle}
+  .menu-toggle .bar{width:20px; height:2px; background:#000; display:block}
+  .menu-toggle .menu-label{color:#000}
+  .menu-toggle.open .hamburger{display:none}
+  .menu-toggle.open .menu-label::before{content:"✕ ";}
 
-  /* ===== Responsive ===== */
-  @media (max-width: 1024px){
-    .content-inner{ margin-left:16px; }
-    #about .about-figure{ width:320px; }
-  }
-
-  @media (max-width: 768px){
-    body{ flex-direction:column; }
-    /* Mobile drawer */
+  /* Mobile sidebar overlay */
+  @media (max-width:768px){
+    body{flex-direction:column}
     nav.sidebar{
       position:fixed; top:0; left:0; height:100%; width:260px;
-      padding:2rem 1.2rem; overflow-y:auto; transform:translateX(-100%);
-      transition:transform .3s ease; z-index:1000; border-right:1px solid #eee;
+      padding:2rem 1rem; overflow-y:auto;
+      transform:translateX(-100%); transition:transform .3s ease;
+      border-right:1px solid #eee; z-index:1000;
     }
-    nav.sidebar.open{ transform:translateX(0); }
-    .menu-toggle{ display:flex; align-items:center; }
-    main.content{ padding:1rem; }
-    .content-inner{ margin-left:0; }
-    /* About flows vertical on mobile */
-    #about .about-figure{ float:none; width:100%; max-width:420px; margin:0 auto 1rem auto; }
+    nav.sidebar.open{transform:translateX(0)}
+    .menu-toggle{display:flex; align-items:center}
+    main.content{padding:1rem}
+    .content-inner{margin-left:0}
+    #about .about-figure{float:none; width:100%; max-width:420px; margin:0 auto 1rem auto}
   }
 </style>
 </head>
 <body>
 
-<!-- Mobile menu toggle -->
-<button class="menu-toggle" aria-label="Toggle menu" id="menuToggle">
-  <span class="hamburger" aria-hidden="true">
-    <span class="bar"></span>
-    <span class="bar"></span>
-    <span class="bar"></span>
-  </span>
+<!-- Mobile toggle -->
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle navigation">
+  <span class="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></span>
   <span class="menu-label">Menu</span>
 </button>
 
 <!-- Sidebar -->
-<nav class="sidebar" id="sidebar" role="navigation" aria-label="Primary">
+<nav id="sidebar" class="sidebar" role="navigation" aria-label="Primary">
   <h1>SUNDRY SULLEN</h1>
 
   <div class="group-label">Recent (2022–Present)</div>
   <ul>
-    <li><button class="nav-btn" data-target="vintage-collage-book">Vintage Collage Book</button></li>
+    <li><button class="nav-btn" data-target="vintage-book">Vintage Collage Book</button></li>
     <li><button class="nav-btn" data-target="chaos-series">Chaos Series</button></li>
     <li><button class="nav-btn" data-target="faceless-series">Faceless Series</button></li>
     <li><button class="nav-btn" data-target="poster-series">Poster Series</button></li>
@@ -128,69 +127,62 @@
     <li><button class="nav-btn" data-target="photography">Photography</button></li>
   </ul>
 
-  <div class="group-label" style="margin-top:1.25rem;">About the Artist</div>
+  <!-- Single bold clickable About link -->
+  <div class="group-label">About the Artist</div>
   <ul>
-    <li><button class="nav-btn" data-target="about">About the Artist</button></li>
+    <li><button class="nav-btn about-link active" data-target="about">About the Artist</button></li>
   </ul>
 </nav>
 
-<!-- Main -->
+<!-- Content -->
 <main class="content" tabindex="0">
   <div class="content-inner">
 
-    <!-- ABOUT first/active -->
-    <section id="about" class="section active" aria-labelledby="about-title">
+    <!-- ABOUT (default visible) -->
+    <section id="about" class="section active wide" aria-labelledby="about-title">
       <h2 id="about-title">About the Artist</h2>
-
       <figure class="about-figure">
-        <img src="images/about/studio-selfie-2.jpg" alt="Portrait of John Finnell in studio" loading="lazy">
+        <img src="images/about/studio-selfie-2.jpg" alt="Portrait of John Finnell in his studio" loading="lazy">
       </figure>
-
       <div class="about-text">
-        <p>
-          My name is John Finnell, and I create art under the name Sundry Sullen. I’ve been making collage on and off for over 20 years, weaving together timeworn and contemporary imagery to explore emotion, transformation, and transcendence. A lot of my work ends up as a mix of order and fracture, fragments that come together into something otherworldly, sparking reflection and mystery and touching on the shifting boundaries of self and no-self.
-        </p>
-        <p>
-          Beyond art, I practice acupuncture and holistic medicine in Oceanside, CA, surf whenever I can, and am building toward Nervous System Reset retreats in Central America that bring together art, healing, and community. If you’re curious about new art or the retreats I’m putting together, you can drop your email below. I email very infrequently and only for big updates, so you won’t get spammed.
-        </p>
+        <p>My name is John Finnell, and I create art under the name Sundry Sullen. I’ve been making collage on and off for over 20 years, weaving together timeworn and contemporary imagery to explore emotion, transformation, and transcendence. A lot of my work ends up as a mix of order and fracture, fragments that come together into something otherworldly, sparking reflection and mystery and touching on the shifting boundaries of self and no-self.</p>
+        <p>Beyond art, I practice acupuncture and holistic medicine in Oceanside, CA, surf whenever I can, and am building toward Nervous System Reset retreats in Central America that bring together art, healing, and community. If you’re curious about new art or the retreats I’m putting together, you can drop your email below. I email very infrequently and only for big updates, so you won’t get spammed.</p>
       </div>
-
-      <h3>History</h3>
-      <p>More long-form biography and studio notes can go here. You can interleave additional images later as the story expands.</p>
+      <div style="clear:both"></div>
     </section>
 
-    <!-- Vintage Collage Book -->
-    <section id="vintage-collage-book" class="section" aria-labelledby="vintage-title">
+    <!-- VINTAGE COLLAGE BOOK (wide) -->
+    <section id="vintage-book" class="section wide" aria-labelledby="vintage-title">
       <h2 id="vintage-title">Vintage Collage Book</h2>
       <div class="images">
-        <img src="images/collage-book/collage-book-01.jpg" alt="Vintage collage book spread 1" loading="lazy">
-        <img src="images/collage-book/collage-book-02.jpg" alt="Vintage collage book spread 2" loading="lazy">
-        <img src="images/collage-book/collage-book-03.jpg" alt="Vintage collage book spread 3" loading="lazy">
+        <img src="images/collage-book/collage-book-01.jpg" alt="Vintage Collage Book page 1" loading="lazy">
+        <img src="images/collage-book/collage-book-02.jpg" alt="Vintage Collage Book page 2" loading="lazy">
+        <img src="images/collage-book/collage-book-03.jpg" alt="Vintage Collage Book page 3" loading="lazy">
       </div>
     </section>
 
-    <!-- Chaos Series -->
-    <section id="chaos-series" class="section" aria-labelledby="chaos-title">
+    <!-- CHAOS (tall) -->
+    <section id="chaos-series" class="section tall" aria-labelledby="chaos-title">
       <h2 id="chaos-title">Chaos Series</h2>
       <div class="images">
-        <img src="images/chaos-series/first.JPG" alt="Chaos Series piece 1" loading="lazy">
-        <img src="images/chaos-series/chaos.jpeg" alt="Chaos Series piece 2" loading="lazy">
-        <img src="images/chaos-series/AI.JPG" alt="Chaos Series piece 3" loading="lazy">
+        <img src="images/chaos-series/AI.JPG" alt="Chaos Series piece AI" loading="lazy">
+        <img src="images/chaos-series/cat.JPG" alt="Chaos Series piece Cat" loading="lazy">
+        <img src="images/chaos-series/chaos.jpeg" alt="Chaos Series piece Chaos" loading="lazy">
       </div>
     </section>
 
-    <!-- Faceless Series -->
-    <section id="faceless-series" class="section" aria-labelledby="faceless-title">
+    <!-- FACELESS (tall) -->
+    <section id="faceless-series" class="section tall" aria-labelledby="faceless-title">
       <h2 id="faceless-title">Faceless Series</h2>
       <div class="images">
-        <img src="images/faceless-series/blackwhite.jpg" alt="Faceless Series piece 1" loading="lazy">
-        <img src="images/faceless-series/cowboy.jpg" alt="Faceless Series piece 2" loading="lazy">
-        <img src="images/faceless-series/dance.jpg" alt="Faceless Series piece 3" loading="lazy">
+        <img src="images/faceless-series/blackwhite.jpg" alt="Faceless Series piece Blackwhite" loading="lazy">
+        <img src="images/faceless-series/cowboy.jpg" alt="Faceless Series piece Cowboy" loading="lazy">
+        <img src="images/faceless-series/dance.jpg" alt="Faceless Series piece Dance" loading="lazy">
       </div>
     </section>
 
-    <!-- Poster Series -->
-    <section id="poster-series" class="section" aria-labelledby="poster-title">
+    <!-- POSTER (tall) -->
+    <section id="poster-series" class="section tall" aria-labelledby="poster-title">
       <h2 id="poster-title">Poster Series</h2>
       <div class="meta">2022 — 18x24 in., found images and glue on 100lb Bristol.</div>
       <div class="images">
@@ -200,8 +192,8 @@
       </div>
     </section>
 
-    <!-- One Hundred Pages -->
-    <section id="one-hundred-pages" class="section" aria-labelledby="pages-title">
+    <!-- 100 PAGES (wide) -->
+    <section id="one-hundred-pages" class="section wide" aria-labelledby="pages-title">
       <h2 id="pages-title">One Hundred Pages</h2>
       <div class="meta">2021 — 11x14 in., found images and glue on sketch book.</div>
       <div class="images">
@@ -211,18 +203,18 @@
       </div>
     </section>
 
-    <!-- Past: Works -->
-    <section id="works" class="section" aria-labelledby="works-title">
+    <!-- PAST: Works (wide) -->
+    <section id="works" class="section wide" aria-labelledby="works-title">
       <h2 id="works-title">Works</h2>
       <div class="images">
-        <img src="images/selected-works/01-works.webp" alt="Work 1" loading="lazy">
-        <img src="images/selected-works/02-works.webp" alt="Work 2" loading="lazy">
-        <img src="images/selected-works/03-works.webp" alt="Work 3" loading="lazy">
+        <img src="images/selected-works/01-works.webp" alt="Earlier work 1" loading="lazy">
+        <img src="images/selected-works/02-works.webp" alt="Earlier work 2" loading="lazy">
+        <img src="images/selected-works/03-works.webp" alt="Earlier work 3" loading="lazy">
       </div>
     </section>
 
-    <!-- Past: Collaborations -->
-    <section id="collaborations" class="section" aria-labelledby="collab-title">
+    <!-- PAST: Collaborations (wide) -->
+    <section id="collaborations" class="section wide" aria-labelledby="collab-title">
       <h2 id="collab-title">Collaborations</h2>
       <div class="images">
         <img src="images/selected-collaborations/01-collab.jpeg" alt="Collaboration 1" loading="lazy">
@@ -231,8 +223,8 @@
       </div>
     </section>
 
-    <!-- Past: Photography -->
-    <section id="photography" class="section" aria-labelledby="photo-title">
+    <!-- PAST: Photography (wide) -->
+    <section id="photography" class="section wide" aria-labelledby="photo-title">
       <h2 id="photo-title">Photography</h2>
       <div class="images">
         <img src="images/selected-photography/01-photo.jpeg" alt="Photo 1" loading="lazy">
@@ -245,45 +237,29 @@
 </main>
 
 <script>
-  // Grab elements
-  const navButtons = document.querySelectorAll(".nav-btn");
-  const sections = document.querySelectorAll(".section");
-  const sidebar  = document.getElementById("sidebar");
-  const toggle   = document.getElementById("menuToggle");
-  const menuLabel = document.querySelector(".menu-label");
-
-  // Make ABOUT active by default (already in markup) — ensure only it is active
-  sections.forEach(s => s.id === "about" ? s.classList.add("active") : s.classList.remove("active"));
-  navButtons.forEach(b => {
-    if (b.dataset.target === "about") b.classList.add("active");
-    else b.classList.remove("active");
+  // Mobile menu
+  const toggle = document.getElementById('menuToggle');
+  const sidebar = document.getElementById('sidebar');
+  toggle.addEventListener('click', () => {
+    const open = sidebar.classList.toggle('open');
+    toggle.classList.toggle('open', open);
+    toggle.querySelector('.menu-label').textContent = open ? 'Close' : 'Menu';
   });
 
   // Section switching
-  navButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      navButtons.forEach(b => b.classList.remove("active"));
-      sections.forEach(s => s.classList.remove("active"));
-      btn.classList.add("active");
-      document.getElementById(btn.dataset.target).classList.add("active");
-      // close drawer on mobile
-      if (window.matchMedia("(max-width: 768px)").matches && sidebar.classList.contains("open")) {
-        sidebar.classList.remove("open");
-        toggle.classList.remove("open");
-        if (menuLabel) menuLabel.textContent = "Menu";
-      }
-      // scroll content to top
-      document.querySelector("main.content").scrollTo({ top: 0, behavior: "smooth" });
-    });
-  });
+  const buttons = document.querySelectorAll('.nav-btn');
+  const sections = document.querySelectorAll('.section');
+  function show(id){
+    sections.forEach(s => s.classList.toggle('active', s.id === id));
+    buttons.forEach(b => b.classList.toggle('active', b.dataset.target === id));
+    document.querySelector('main.content').focus();
+    // close menu on mobile after selecting
+    if (sidebar.classList.contains('open')) toggle.click();
+  }
+  buttons.forEach(b => b.addEventListener('click', () => show(b.dataset.target)));
 
-  // Mobile menu toggle
-  toggle.addEventListener("click", () => {
-    const isOpen = sidebar.classList.toggle("open");
-    toggle.classList.toggle("open", isOpen);
-    if (menuLabel) menuLabel.textContent = isOpen ? "Close" : "Menu";
-  });
+  // Start on About
+  show('about');
 </script>
-
 </body>
 </html>
