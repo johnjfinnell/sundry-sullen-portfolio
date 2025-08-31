@@ -32,8 +32,8 @@
   /* ===== Main ===== */
   main.content{
     flex:1;
-    /* tightened top so page title aligns with brand name */
-    padding:0.25rem 2rem 2rem 1.5rem;
+    /* TOP padding aligns section H2 with brand name in sidebar */
+    padding:1rem 2rem 2rem 1.5rem;
     margin-left:0;
   }
   .section{ display:none; max-width:var(--content-max); margin:0 auto 0 0; }
@@ -43,7 +43,8 @@
   .images{ display:flex; flex-direction:column; gap:1.2rem; }
   .images img{ max-width:100%; height:auto; display:block; object-fit:contain; border:0; }
 
-  /* Tall-series: left align under heading */
+  /* Tall-series: left align under heading with a reasonable cap */
+  .tall-series .images{ gap:1rem; }
   .tall-series .images img{ max-width:700px; margin:0; }
 
   /* ===== About: image left, text wraps under ===== */
@@ -116,37 +117,87 @@
 
 <main class="content" tabindex="0">
 
-  <!-- Sample sections kept minimal -->
+  <!-- ===== Vintage Collage Book ===== -->
   <section id="vintage-collage-book" class="section" aria-labelledby="vcb-title">
     <h2 id="vcb-title">Vintage Collage Book</h2>
-    <div class="images"><img src="images/collage-book/collage-book-13.jpg" alt="Vintage Collage Book page" loading="lazy"></div>
+    <div class="images">
+      <img src="images/collage-book/collage-book-01.jpg" alt="Vintage Collage Book, spread 1" loading="lazy">
+      <img src="images/collage-book/collage-book-02.jpg" alt="Vintage Collage Book, spread 2" loading="lazy">
+      <img src="images/collage-book/collage-book-03.jpg" alt="Vintage Collage Book, spread 3" loading="lazy">
+    </div>
   </section>
 
+  <!-- ===== Chaos Series (tall) ===== -->
   <section id="chaos-series" class="section tall-series" aria-labelledby="chaos-title">
     <h2 id="chaos-title">Chaos Series</h2>
-    <div class="images"><img src="images/chaos-series/chaos.jpeg" alt="Chaos Series sample" loading="lazy"></div>
+    <div class="images">
+      <img src="images/chaos-series/chaos.jpeg" alt="Chaos Series collage — Chaos" loading="lazy">
+      <img src="images/chaos-series/freedom.jpeg" alt="Chaos Series collage — Freedom" loading="lazy">
+      <img src="images/chaos-series/vision.jpeg" alt="Chaos Series collage — Vision" loading="lazy">
+    </div>
   </section>
 
+  <!-- ===== Faceless Series (tall) ===== -->
   <section id="faceless-series" class="section tall-series" aria-labelledby="faceless-title">
     <h2 id="faceless-title">Faceless Series</h2>
-    <div class="images"><img src="images/faceless-series/blackwhite.jpg" alt="Faceless Series sample" loading="lazy"></div>
+    <div class="images">
+      <img src="images/faceless-series/blackwhite.jpg" alt="Faceless Series — Black & White" loading="lazy">
+      <img src="images/faceless-series/cowboy.jpg" alt="Faceless Series — Cowboy" loading="lazy">
+      <img src="images/faceless-series/dance.jpg" alt="Faceless Series — Dance" loading="lazy">
+    </div>
   </section>
 
+  <!-- ===== Poster Series (tall) ===== -->
   <section id="poster-series" class="section tall-series" aria-labelledby="poster-series-title">
     <h2 id="poster-series-title">Poster Series</h2>
     <div class="description">2022 — 18x24 in., found images and glue on 100lb Bristol.</div>
-    <div class="images"><img src="images/poster-series/IMG_5509.jpeg" alt="Poster Series collage" loading="lazy"></div>
+    <div class="images">
+      <img src="images/poster-series/IMG_5509.jpeg" alt="Poster Series collage 1" loading="lazy">
+      <img src="images/poster-series/IMG_5532.jpeg" alt="Poster Series collage 2" loading="lazy">
+      <img src="images/poster-series/IMG_5595.jpeg" alt="Poster Series collage 3" loading="lazy">
+    </div>
   </section>
 
+  <!-- ===== One Hundred Pages ===== -->
   <section id="one-hundred-pages" class="section" aria-labelledby="ohp-title">
     <h2 id="ohp-title">One Hundred Pages</h2>
     <div class="description">2021 — 11x14 in. found images and glue on sketch book.</div>
-    <div class="images"><img src="images/100-Pages/IMG_5429.jpeg" alt="One Hundred Pages collage (sample)" loading="lazy"></div>
+    <div class="images">
+      <img src="images/100-Pages/IMG_5313.jpeg" alt="One Hundred Pages — page 1" loading="lazy">
+      <img src="images/100-Pages/IMG_5314.jpeg" alt="One Hundred Pages — page 2" loading="lazy">
+      <img src="images/100-Pages/IMG_5315.jpeg" alt="One Hundred Pages — page 3" loading="lazy">
+    </div>
   </section>
 
-  <section id="works" class="section" aria-labelledby="works-title"><h2 id="works-title">Works</h2><p>Content coming soon…</p></section>
-  <section id="collaborations" class="section" aria-labelledby="collab-title"><h2 id="collab-title">Collaborations</h2><p>Content coming soon…</p></section>
-  <section id="photography" class="section" aria-labelledby="photo-title"><h2 id="photo-title">Photography</h2><p>Content coming soon…</p></section>
+  <!-- ===== Past: Works ===== -->
+  <section id="works" class="section" aria-labelledby="works-title">
+    <h2 id="works-title">Works</h2>
+    <div class="images">
+      <img src="images/selected-works/01-works.webp" alt="Selected Work 1" loading="lazy">
+      <img src="images/selected-works/02-works.webp" alt="Selected Work 2" loading="lazy">
+      <img src="images/selected-works/03-works.webp" alt="Selected Work 3" loading="lazy">
+    </div>
+  </section>
+
+  <!-- ===== Past: Collaborations ===== -->
+  <section id="collaborations" class="section" aria-labelledby="collab-title">
+    <h2 id="collab-title">Collaborations</h2>
+    <div class="images">
+      <img src="images/selected-collaborations/01-collab.jpeg" alt="Collaboration 1" loading="lazy">
+      <img src="images/selected-collaborations/02-collab.jpeg" alt="Collaboration 2" loading="lazy">
+      <img src="images/selected-collaborations/03-collab.png" alt="Collaboration 3" loading="lazy">
+    </div>
+  </section>
+
+  <!-- ===== Past: Photography ===== -->
+  <section id="photography" class="section" aria-labelledby="photo-title">
+    <h2 id="photo-title">Photography</h2>
+    <div class="images">
+      <img src="images/selected-photography/01-photo.jpeg" alt="Photography 1" loading="lazy">
+      <img src="images/selected-photography/02-photo.jpeg" alt="Photography 2" loading="lazy">
+      <img src="images/selected-photography/03-photo.jpeg" alt="Photography 3" loading="lazy">
+    </div>
+  </section>
 
   <!-- ===== About (DEFAULT ACTIVE) ===== -->
   <section id="about" class="section active" aria-labelledby="about-title">
@@ -166,7 +217,7 @@
 
       <h3>History</h3>
       <p>
-        (Add your history text here.) This copy starts beside the portrait and naturally continues underneath once the image ends. You can drop additional images between paragraphs later—text will keep wrapping cleanly.
+        (Add your history text here.) This copy sits beside the portrait, then continues below once the image ends. Later you can insert additional images between paragraphs—text will wrap cleanly.
       </p>
 
       <h3 style="margin:1rem 0 .25rem 0; font-size:1.1rem;">Subscribe for updates</h3>
