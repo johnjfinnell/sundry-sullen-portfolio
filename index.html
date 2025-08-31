@@ -5,192 +5,128 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Sundry Sullen</title>
 <style>
-  :root {
-    --content-max: 850px; /* content width cap */
+  :root{
+    --content-max: 850px;  /* content width cap */
+    --header-h: 56px;
   }
 
-  /* Reset */
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
+  *{ box-sizing: border-box; }
+  body{
+    margin:0;
     font-family: Arial, Helvetica, sans-serif;
-    background: #fff;
-    color: #000;
-    display: flex;
-    min-height: 100vh;
+    color:#000; background:#fff;
+    display:flex; min-height:100vh;
   }
 
-  /* Sidebar */
-  nav.sidebar {
-    width: 300px;
-    background: #fff;
-    display: flex;
-    flex-direction: column;
-    padding: 2rem 1.5rem;
-    position: sticky;
-    top: 0;
-    height: fit-content;
-    user-select: none;
+  /* ===== Sidebar (desktop) ===== */
+  nav.sidebar{
+    width:300px; flex-shrink:0;
+    background:#fff;
+    display:flex; flex-direction:column;
+    padding:2rem 1.5rem;
+    position:sticky; top:0; height:fit-content;
+    z-index:20;
   }
-  nav.sidebar h1 {
-    margin: 0 0 2rem 0;
-    font-weight: 900;
-    font-size: 1.4rem;
-    letter-spacing: -0.02em;
-    white-space: nowrap;
+  nav.sidebar h1{
+    margin:0 0 2rem 0;
+    font-weight:900; font-size:1.4rem; letter-spacing:-0.02em;
+    white-space:nowrap;
   }
-  nav.sidebar ul { list-style: none; padding: 0; margin: 0; }
-  nav.sidebar ul li { margin-bottom: 1rem; }
-  nav.sidebar ul li button {
-    all: unset;
-    cursor: pointer;
-    color: #000;
-    font-weight: 400;
-    font-size: 1rem;
-    line-height: 1.3;
-    transition: color 0.3s ease;
-    display: block;
-    width: 100%;
-    text-align: left;
-  }
-  nav.sidebar ul li button.active,
-  nav.sidebar ul li button:hover,
-  nav.sidebar ul li button:focus {
-    color: #c00;
-    outline: none;
+  nav.sidebar ul{ list-style:none; padding:0; margin:0; }
+  nav.sidebar li{ margin-bottom:1rem; }
+
+  .group-label{
+    font-weight:700; margin:1.2rem 0 .5rem 0; letter-spacing:-0.01em;
   }
 
-  /* Group label (Recent, Past, About) */
-  .group-label {
-    font-weight: 700;
-    margin: 1.8rem 0 0.6rem 0;
-    font-size: 1rem;
+  .nav-btn{
+    all:unset; cursor:pointer; color:#000; font-size:1rem; line-height:1.3;
+    display:block; width:100%; text-align:left; transition:color .25s ease;
+  }
+  .nav-btn:hover, .nav-btn:focus, .nav-btn.active{ color:#c00; outline:none; }
+
+  /* ===== Mobile drawer toggle ===== */
+  .menu-toggle{ display:none; }
+
+  /* ===== Main content ===== */
+  main.content{
+    flex:1; padding:2rem 2.5rem; margin-left:120px;   /* a hair more space from sidebar */
+  }
+  .section{ display:none; max-width:var(--content-max); margin:0 auto; }
+  .section.active{ display:block; }
+  .section h2{ font-weight:900; font-size:1.6rem; margin:0 0 .6rem 0; letter-spacing:-0.02em; }
+  .description{ font-style:italic; font-size:.95rem; margin:.25rem 0 1.2rem; line-height:1.45; }
+
+  .images{ display:flex; flex-direction:column; gap:1.2rem; }
+  .images img{ max-width:100%; height:auto; display:block; object-fit:contain; border:0; }
+
+  /* Tall-image sections (Poster, Chaos, Faceless): left align under heading */
+  .tall-series .images img{
+    max-width:700px;
+    margin:0;           /* left aligned (no auto-centering) */
   }
 
-  /* Main content */
-  main.content {
-    margin-left: 120px; /* more breathing room */
-    padding: 2rem 2.5rem 2rem 2.5rem;
-    flex-grow: 1;
+  /* About photo larger */
+  #about .images img.profile{
+    max-width:480px; width:100%; height:auto;
+    display:block; margin:0 0 1.5rem 0; border:0;
   }
+  #about p{ margin-top:0; max-width:600px; font-size:1rem; line-height:1.5; }
 
-  /* Sections */
-  section.section {
-    display: none;
-    max-width: var(--content-max);
-    margin: 0 auto; /* center content */
+  /* Subscribe form */
+  #subscribeForm{
+    display:flex; flex-wrap:wrap; gap:.6rem; max-width:var(--content-max); margin-top:1rem;
   }
-  section.section.active { display: block; }
+  #subscribeForm input[type="email"]{
+    flex:1; padding:.65rem .75rem; border:1px solid #000; background:#fff; font:inherit;
+  }
+  #subscribeForm button{
+    padding:.7rem 1rem; border:1px solid #000; background:#000; color:#fff; font-weight:700; cursor:pointer;
+  }
+  #subscribeForm button:hover{ background:#c00; border-color:#c00; }
+  #subscribeStatus{ flex-basis:100%; margin-top:.5rem; font-size:.9rem; }
+  #subscribeStatus.success{ color:#0a7f2e; }
+  #subscribeStatus.error{ color:#b00020; }
 
-  section.section h2 {
-    font-weight: 900;
-    font-size: 1.6rem;
-    margin: 0 0 0.6rem 0;
-    letter-spacing: -0.02em;
-  }
-  section.section .description {
-    font-style: italic;
-    font-size: 0.9rem;
-    margin-bottom: 1.5rem;
-    line-height: 1.4;
-    white-space: pre-line;
-  }
+  /* ===== Mobile ===== */
+  @media (max-width: 768px){
+    body{ flex-direction:column; }
 
-  /* Images */
-  .images {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-  }
-  .images img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    user-select: none;
-    border: 0;
-  }
-
-  /* Tall series narrower for readability */
-  .tall-series img {
-    max-width: 700px;
-    margin: 0 auto;
-  }
-
-  /* About section photo smaller */
-  #about .images img.profile {
-    max-width: 250px;
-    width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 0 1.5rem 0;
-    border: 0;
-  }
-  #about p {
-    margin-top: 0;
-    max-width: 600px;
-    font-size: 1rem;
-    line-height: 1.5;
-  }
-
-  /* Responsive */
-  .menu-toggle { display: none; }
-  @media (max-width: 768px) {
-    body { flex-direction: column; }
-    nav.sidebar {
-      position: fixed;
-      left: 0; top: 0;
-      height: 100%;
-      width: 260px;
-      padding: 2rem 1.5rem;
-      transform: translateX(-100%);
-      transition: transform 0.3s ease;
-      z-index: 1000;
-      overflow-y: auto;
+    /* slide-in drawer */
+    nav.sidebar{
+      position:fixed; top:0; left:0; height:100%; width:260px;
+      padding:2rem 1.2rem; overflow-y:auto; transform:translateX(-100%);
+      transition:transform .3s ease; z-index:1000;
     }
-    nav.sidebar.open { transform: translateX(0); }
-    .menu-toggle {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      position: fixed;
-      right: 1rem;
-      top: 1rem;
-      background: none;
-      border: none;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      z-index: 1100;
+    nav.sidebar.open{ transform:translateX(0); }
+
+    .menu-toggle{
+      display:flex; align-items:center; gap:.5rem;
+      position:fixed; right:1rem; top:1rem; z-index:1100;
+      background:none; border:none; font-weight:600; cursor:pointer;
     }
-    .menu-toggle .bar {
-      width: 20px; height: 2px;
-      background: #000;
-      display: block;
-      margin: 4px 0;
-    }
-    main.content {
-      margin-left: 0;
-      padding: 1rem;
-    }
+    .menu-toggle .bar{ width:20px; height:2px; background:#000; display:block; margin:4px 0; }
+
+    main.content{ margin-left:0; padding:1rem; }
+
+    /* About photo slightly smaller on mobile */
+    #about .images img.profile{ max-width:320px; }
   }
 </style>
 </head>
 <body>
 
 <!-- Mobile toggle -->
-<button class="menu-toggle" aria-label="Toggle menu">
-  <span class="bar"></span>
-  <span class="bar"></span>
-  <span class="bar"></span>
-  Menu
+<button class="menu-toggle" aria-label="Toggle menu" id="menuToggle">
+  <span class="bar"></span><span class="bar"></span><span class="bar"></span> Menu
 </button>
 
 <!-- Sidebar -->
-<nav class="sidebar" role="navigation" aria-label="Primary">
+<nav class="sidebar" role="navigation" aria-label="Primary" id="sidebar">
   <h1>SUNDRY SULLEN</h1>
   <ul>
     <li class="group-label">Recent (2022–Present)</li>
-    <li><button class="nav-btn" data-target="vintage-collage-book">Vintage Collage Book</button></li>
+    <li><button class="nav-btn active" data-target="vintage-collage-book">Vintage Collage Book</button></li>
     <li><button class="nav-btn" data-target="chaos-series">Chaos Series</button></li>
     <li><button class="nav-btn" data-target="faceless-series">Faceless Series</button></li>
     <li><button class="nav-btn" data-target="poster-series">Poster Series</button></li>
@@ -207,94 +143,155 @@
 
 <main class="content" tabindex="0">
 
-  <!-- Example Sections with 1 image placeholder each -->
-
+  <!-- Vintage Collage Book (sample image; add more as needed) -->
   <section id="vintage-collage-book" class="section active" tabindex="0" aria-labelledby="vcb-title">
     <h2 id="vcb-title">Vintage Collage Book</h2>
     <div class="images">
-      <img src="images/collage-book/collage-book-01.jpg" alt="Vintage collage sample" loading="lazy">
+      <!-- Add your full reversed set here; kept one for brevity -->
+      <img src="images/collage-book/collage-book-13.jpg" alt="Vintage Collage Book page" loading="lazy">
     </div>
   </section>
 
+  <!-- Chaos Series (tall; left-aligned) -->
   <section id="chaos-series" class="section tall-series" tabindex="0" aria-labelledby="chaos-title">
     <h2 id="chaos-title">Chaos Series</h2>
     <div class="images">
-      <img src="images/chaos-series/chaos.jpeg" alt="Chaos series sample" loading="lazy">
+      <img src="images/chaos-series/chaos.jpeg" alt="Chaos Series sample" loading="lazy">
     </div>
   </section>
 
+  <!-- Faceless Series (tall; left-aligned) -->
   <section id="faceless-series" class="section tall-series" tabindex="0" aria-labelledby="faceless-title">
     <h2 id="faceless-title">Faceless Series</h2>
     <div class="images">
-      <img src="images/faceless-series/blackwhite.jpg" alt="Faceless series sample" loading="lazy">
+      <img src="images/faceless-series/blackwhite.jpg" alt="Faceless Series sample" loading="lazy">
     </div>
   </section>
 
-  <section id="poster-series" class="section tall-series" tabindex="0" aria-labelledby="poster-title">
-    <h2 id="poster-title">Poster Series</h2>
+  <!-- Poster Series (tall; left-aligned) -->
+  <section id="poster-series" class="section tall-series" tabindex="0" aria-labelledby="poster-series-title">
+    <h2 id="poster-series-title">Poster Series</h2>
+    <div class="description">2022 — 18x24 in., found images and glue on 100lb Bristol.</div>
     <div class="images">
-      <img src="images/poster-series/IMG_5509.jpeg" alt="Poster series sample" loading="lazy">
+      <img src="images/poster-series/IMG_5509.jpeg" alt="Poster Series collage" loading="lazy">
     </div>
   </section>
 
-  <section id="one-hundred-pages" class="section" tabindex="0" aria-labelledby="pages-title">
-    <h2 id="pages-title">One Hundred Pages</h2>
+  <!-- One Hundred Pages -->
+  <section id="one-hundred-pages" class="section" tabindex="0" aria-labelledby="ohp-title">
+    <h2 id="ohp-title">One Hundred Pages</h2>
+    <div class="description">2021 — 11x14 in. found images and glue on sketch book.</div>
     <div class="images">
-      <img src="images/100-Pages/IMG_5313.jpeg" alt="Collage page sample" loading="lazy">
+      <img src="images/100-Pages/IMG_5429.jpeg" alt="One Hundred Pages collage (sample)" loading="lazy">
     </div>
   </section>
 
+  <!-- Past: Works -->
   <section id="works" class="section" tabindex="0" aria-labelledby="works-title">
     <h2 id="works-title">Works</h2>
     <div class="images"><p>Content coming soon…</p></div>
   </section>
 
+  <!-- Past: Collaborations -->
   <section id="collaborations" class="section" tabindex="0" aria-labelledby="collab-title">
     <h2 id="collab-title">Collaborations</h2>
     <div class="images"><p>Content coming soon…</p></div>
   </section>
 
+  <!-- Past: Photography -->
   <section id="photography" class="section" tabindex="0" aria-labelledby="photo-title">
     <h2 id="photo-title">Photography</h2>
     <div class="images"><p>Content coming soon…</p></div>
   </section>
 
+  <!-- About + Subscribe -->
   <section id="about" class="section" tabindex="0" aria-labelledby="about-title">
     <h2 id="about-title">About the Artist</h2>
-    <div class="images">
-      <img class="profile" src="images/about/studio-selfie-1.jpg" alt="Portrait of John Finnell" loading="lazy">
+    <div class="images" style="margin-bottom:.6rem;">
+      <img class="profile" src="images/about/studio-selfie-1.jpg" alt="Portrait of John Finnell in studio" loading="lazy">
     </div>
-    <p>
-      Sundry Sullen is the artist name of John Finnell, a collage artist exploring themes of Americana, freedom, beauty, and the complexities within the human experience. 
-      This portfolio showcases a curated selection of series expressing his vision through found images and layered textures.
-    </p>
+    <p class="description">Short bio and statement will go here.</p>
+
+    <h3 style="margin:1.25rem 0 .25rem 0; font-size:1.1rem;">Subscribe for updates</h3>
+    <p class="description">Get news on new series, events, and print releases.</p>
+
+    <form id="subscribeForm">
+      <input type="email" name="email" id="email" placeholder="you@example.com" required />
+      <button type="submit">Subscribe</button>
+      <div id="subscribeStatus"></div>
+    </form>
   </section>
 
 </main>
 
 <script>
+  // Section switching
   const navButtons = document.querySelectorAll(".nav-btn");
   const sections = document.querySelectorAll(".section");
-  const sidebar = document.querySelector(".sidebar");
-  const toggle = document.querySelector(".menu-toggle");
+  const sidebar  = document.getElementById("sidebar");
+  const toggle   = document.getElementById("menuToggle");
 
   navButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
-      navButtons.forEach((b) => b.classList.remove("active"));
-      sections.forEach((sec) => sec.classList.remove("active"));
+      navButtons.forEach(b => b.classList.remove("active"));
+      sections.forEach(s => s.classList.remove("active"));
+
       btn.classList.add("active");
       document.getElementById(btn.dataset.target).classList.add("active");
-      document.querySelector("main.content").focus();
-      sidebar.classList.remove("open");
+
+      document.querySelector("main.content").scrollTo({ top: 0, behavior: "smooth" });
+
+      // close mobile drawer if open
+      if (window.matchMedia("(max-width: 768px)").matches && sidebar.classList.contains("open")) {
+        sidebar.classList.remove("open");
+        toggle.innerHTML = '<span class="bar"></span><span class="bar"></span><span class="bar"></span> Menu';
+      }
     });
   });
 
+  // Mobile drawer toggle
   toggle.addEventListener("click", () => {
-    sidebar.classList.toggle("open");
-    toggle.innerHTML = sidebar.classList.contains("open")
-      ? "&#10005; Close"
-      : '<span class="bar"></span><span class="bar"></span><span class="bar"></span> Menu';
+    const isOpen = sidebar.classList.toggle("open");
+    toggle.innerHTML = isOpen ? '&#10005; Close' :
+      '<span class="bar"></span><span class="bar"></span><span class="bar"></span> Menu';
   });
+
+  // ===== Google Sheets newsletter form =====
+  const subscribeForm = document.getElementById('subscribeForm');
+  if (subscribeForm) {
+    const status = document.getElementById('subscribeStatus');
+    subscribeForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      status.textContent = 'Submitting...';
+      status.className = '';
+
+      const email = subscribeForm.email.value.trim();
+      if (!email) {
+        status.textContent = 'Please enter your email.';
+        status.className = 'error';
+        return;
+      }
+
+      try {
+        const res = await fetch("YOUR_GOOGLE_SCRIPT_URL_HERE", {
+          method: "POST",
+          body: JSON.stringify({ email, source: "sundry-sullen-site" }),
+          headers: { "Content-Type": "application/json" }
+        });
+        if (res.ok) {
+          subscribeForm.reset();
+          status.textContent = 'Thanks! You’re subscribed.';
+          status.className = 'success';
+        } else {
+          status.textContent = 'Something went wrong. Try again.';
+          status.className = 'error';
+        }
+      } catch (err) {
+        status.textContent = 'Network error. Please try again.';
+        status.className = 'error';
+      }
+    });
+  }
 </script>
 
 </body>
