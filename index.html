@@ -46,9 +46,9 @@
 
   /* Content */
   /* remove the blue focus ring on the content container */
-main.content:focus { outline: none !important; }
-/* suppress iOS tap highlight around non-links */
-body, .section, .about-figure img, .nav-btn { -webkit-tap-highlight-color: transparent; }
+  main.content:focus { outline: none !important; }
+  /* suppress iOS tap highlight around non-links */
+  body, .section, .about-figure img, .nav-btn { -webkit-tap-highlight-color: transparent; }
 
   main.content{flex:1; padding:2rem 1rem 4rem 0}
   .content-inner{max-width:1200px; margin-left:var(--gut)}
@@ -132,13 +132,10 @@ section p {
   }
 
   /* ==== Instagram icon (minimal, isolated) ==== */
-  .social {
-    display:inline-flex; gap:10px; align-items:center; margin-top:10px;
-  }
-  .social a { display:inline-flex; width:26px; height:26px }
-  .social img { width:100%; height:100%; display:block }
-  .social a:hover { opacity:.75 }
-  .sidebar .social { margin-top:.5rem; }
+  .social { display:inline-flex; gap:10px; align-items:center; margin-top:10px; }
+  .social a { display:inline-flex; width:13px; height:13px; color:#000; }  /* half-size, black */
+  .social svg { width:100%; height:100%; display:block; }
+  .social a:hover { color:#c00; } /* turn red on hover */
   /* =========================================== */
 </style>
 </head>
@@ -153,13 +150,6 @@ section p {
 <!-- Sidebar -->
 <nav id="sidebar" class="sidebar" role="navigation" aria-label="Primary">
   <h1>SUNDRY SULLEN</h1>
-
-  <!-- IG: sidebar icon -->
-  <div class="social" aria-label="Social links">
-    <a href="https://www.instagram.com/sundrysullen" target="_blank" rel="noopener noreferrer" title="Instagram — @sundrysullen" aria-label="Instagram">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
-    </a>
-  </div>
 
   <div class="group-label">Recent (2021–Present)</div>
   <ul>
@@ -180,6 +170,16 @@ section p {
   <!-- ONE bold, clickable About link (no duplicate label) -->
   <div class="about-block">
     <ul><li><button class="nav-btn about-link active" data-target="about">About the Artist</button></li></ul>
+  </div>
+
+  <!-- IG: UNDER the About nav item, aligned left -->
+  <div class="social" aria-label="Social links">
+    <a href="https://www.instagram.com/sundrysullen" target="_blank" rel="noopener noreferrer" title="Instagram — @sundrysullen" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" role="img" aria-label="Instagram">
+        <title>Instagram</title>
+        <path fill="currentColor" d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm0 2a3 3 0 00-3 3v10a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H7zm5 3.5A5.5 5.5 0 1112 18.5 5.5 5.5 0 0112 7.5zm0 2A3.5 3.5 0 1015.5 13 3.5 3.5 0 0012 9.5zM18 5.5a1.5 1.5 0 11-1.5 1.5A1.5 1.5 0 0118 5.5z"/>
+      </svg>
+    </a>
   </div>
 </nav>
 
@@ -216,13 +216,6 @@ section p {
      style="display:inline-block; padding:8px 16px; background:#f0f0f0; color:#000; text-decoration:none; border-radius:4px; font-size:14px;">
      Contact Me
   </a>
-
-  <!-- IG: about section icon -->
-  <div class="social" aria-label="Social links" style="justify-content:center;">
-    <a href="https://www.instagram.com/sundrysullen" target="_blank" rel="noopener noreferrer" title="Instagram — @sundrysullen" aria-label="Instagram">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
-    </a>
-  </div>
 
 </div>
 
@@ -443,7 +436,7 @@ section p {
         <img src="images/selected-collaborations/19-collab.png" alt="Collaboration 19" loading="lazy">
         <img src="images/selected-collaborations/20-collab.png" alt="Collaboration 20" loading="lazy">
         <img src="images/selected-collaborations/21-collab.png" alt="Collaboration 21" loading="lazy">
-        <img src="images/selected-collaborations/22-collab.png" alt="Collaboration 22" loading="lazy>
+        <img src="images/selected-collaborations/22-collab.png" alt="Collaboration 22" loading="lazy">
         <img src="images/selected-collaborations/23-collab.png" alt="Collaboration 23" loading="lazy">
         <img src="images/selected-collaborations/24-collab.png" alt="Collaboration 24" loading="lazy">
         <img src="images/selected-collaborations/25-collab.png" alt="Collaboration 25" loading="lazy">
