@@ -126,6 +126,9 @@ section p {
     padding:.65rem 1rem; font-size:.95rem; border:1px solid #000; background:#000; color:#fff; cursor:pointer;
   }
 
+  /* Mobile header */
+  .mobile-header{display:none}
+
   /* Mobile Menu */
   .menu-toggle{
     display:none; position:fixed; right:1rem; top:1rem; z-index:1100;
@@ -140,6 +143,15 @@ section p {
   /* Mobile overlay */
   @media (max-width:768px){
     body{flex-direction:column}
+    .mobile-header{
+      display:flex; align-items:center;
+      position:fixed; top:0; left:0; right:0; height:56px;
+      padding:0 1rem; background:#fff; z-index:900;
+    }
+    .mobile-header a{
+      color:#000; text-decoration:none;
+      font-size:1.2rem; font-weight:700; letter-spacing:-0.01em;
+    }
     nav.sidebar{
       position:fixed; top:0; left:0; height:100%; width:260px;
       padding:2rem 1rem; overflow-y:auto;
@@ -148,7 +160,7 @@ section p {
     }
     nav.sidebar.open{transform:translateX(0)}
     .menu-toggle{display:flex; align-items:center}
-    main.content{padding:1rem}
+    main.content{padding:4.5rem 1rem 1rem}
     .content-inner{margin-left:0}
     #about .about-figure{float:none; width:100%; max-width:420px; margin:0 auto 1rem auto}
     #about .about-text{max-width:690px}
@@ -163,6 +175,11 @@ section p {
 </style>
 </head>
 <body>
+
+<!-- Mobile header -->
+<header class="mobile-header">
+  <a href="#home" onclick="show('home'); return false;">SUNDRY SULLEN</a>
+</header>
 
 <!-- Mobile toggle -->
 <button id="menuToggle" class="menu-toggle" aria-label="Toggle navigation">
