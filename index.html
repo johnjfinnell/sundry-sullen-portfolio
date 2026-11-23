@@ -210,6 +210,14 @@ section p {
   </ul>
 
   <div class="about-block">
+  <ul>
+    <li>
+      <a class="nav-btn about-link" href="/shop/">Shop</a>
+    </li>
+  </ul>
+</div>
+
+  <div class="about-block">
     <ul><li><button class="nav-btn about-link" data-target="about">About the Artist</button></li></ul>
   </div>
 
@@ -618,7 +626,7 @@ section p {
     toggle.querySelector('.menu-label').textContent = open ? 'Close' : 'Menu';
   });
 
-  const buttons = document.querySelectorAll('.nav-btn');
+  const buttons = document.querySelectorAll('.nav-btn[data-target]');
   const sections = document.querySelectorAll('.section');
   function show(id){
     sections.forEach(s => s.classList.toggle('active', s.id === id));
@@ -628,7 +636,13 @@ section p {
   }
   buttons.forEach(b => b.addEventListener('click', () => show(b.dataset.target)));
 
-  show('home');
+  function showFromHash() {
+  const id = location.hash.slice(1);
+  show([...sections].some(s => s.id === id) ? id : 'home');
+}
+
+window.addEventListener('hashchange', showFromHash);
+showFromHash();
 </script>
 </body>
 </html>
