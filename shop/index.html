@@ -17,7 +17,7 @@ main{flex:1;min-width:0;padding:2rem 2.5rem 5rem 20px;max-width:1250px}.intro{di
 /* Desktop: cap the grid using available viewport height as well as width.
    Keeping all columns proportional preserves the two-row featured alignment. */
 @media(min-width:921px){
-  main{--shop-grid-width:clamp(400px,calc((100vh - 320px) * 1.5),820px)}
+  main{--shop-grid-width:clamp(460px,calc((100vh - 260px) * 1.5),920px)}
   .product-grid,.intro{max-width:var(--shop-grid-width)}
   .product-grid{row-gap:1.2rem}
   .product .placeholder,.product-photo{margin-bottom:.5rem}
@@ -28,7 +28,7 @@ main{flex:1;min-width:0;padding:2rem 2.5rem 5rem 20px;max-width:1250px}.intro{di
   .add{padding:.48rem .65rem}
 }
 @media(min-width:769px) and (max-width:920px){
-  main{--shop-grid-width:clamp(320px,calc(100vh - 180px),740px)}
+  main{--shop-grid-width:clamp(360px,calc(100vh - 140px),800px)}
   .product-grid,.intro{max-width:var(--shop-grid-width)}
 }
 /* Mobile: show one full-width product per row, in catalog order. */
