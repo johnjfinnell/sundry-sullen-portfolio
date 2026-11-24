@@ -38,6 +38,10 @@ main{flex:1;min-width:0;padding:2rem 2.5rem 5rem 20px;max-width:1250px}.intro{di
   .product.large > .placeholder,.product.large > .product-photo{flex:none}
   .product .add{font-size:.95rem;padding:.75rem .9rem}
 }
+/* Product photographs use the existing image area without changing grid sizing. */
+.product .placeholder{position:relative;overflow:hidden}
+.product .placeholder img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#f2f2f2;display:block}
+.product .placeholder img[hidden]{display:none}
 </style>
 </head>
 <body>
@@ -68,9 +72,20 @@ const byId=Object.fromEntries(products.map(p=>[p.id,p]));let cart={};try{const s
 const money=n=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(n);
 function card(p){
   const el=document.createElement('article');el.className=p.large?'product large':'product';
-  const figure=document.createElement(p.image?'img':'div');
-  if(p.image){figure.className='product-photo';figure.src=p.image;figure.alt=p.name;figure.loading='lazy';}
-  else{figure.className='placeholder';figure.textContent=p.kind==='book'?'BOOK COVER PHOTO COMING SOON':'ARTWORK PHOTO COMING SOON';}
+  const figure=document.createElement('div');
+  figure.className='placeholder';
+  const label=document.createElement('span');
+  label.textContent=p.kind==='book'?'BOOK COVER PHOTO COMING SOON':'ARTWORK PHOTO COMING SOON';
+  figure.append(label);
+  const photo=document.createElement('img');
+  photo.alt=p.name;photo.loading='lazy';photo.decoding='async';
+  // Keep the placeholder until the image loads; hidden images can fail to lazy-load,
+  // so use opacity instead of display:none for the initial loading state.
+  photo.style.opacity='0';photo.setAttribute('aria-hidden','true');
+  photo.addEventListener('load',()=>{photo.style.opacity='1';photo.removeAttribute('aria-hidden');label.hidden=true;},{once:true});
+  photo.addEventListener('error',()=>{photo.remove();},{once:true});
+  figure.append(photo);
+  photo.src=p.image||`/images/shop/${p.id}.jpg`;
   const details=document.createElement('div');
   const kind=document.createElement('p');kind.className='product-kind';kind.textContent=({book:'Book only',mini:'Book + Mini Original',medium:'Book + Original Collage'})[p.kind];
   const h=document.createElement('h4');h.textContent=p.name;
