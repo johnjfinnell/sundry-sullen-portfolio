@@ -42,6 +42,12 @@ main{flex:1;min-width:0;padding:2rem 2.5rem 5rem 20px;max-width:1250px}.intro{di
 .product .placeholder{position:relative;overflow:hidden}
 .product .placeholder img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#f2f2f2;display:block}
 .product .placeholder img[hidden]{display:none}
+
+/* Instagram link — matches portfolio navigation */
+.social { display:inline-flex; gap:10px; align-items:center; margin-top:10px; }
+.social a { display:inline-flex; width:18px; height:18px; color:#000; }
+.social svg { width:100%; height:100%; display:block; }
+.social a:hover, .social a:focus-visible { color:#c00; }
 </style>
 </head>
 <body>
@@ -51,7 +57,16 @@ main{flex:1;min-width:0;padding:2rem 2.5rem 5rem 20px;max-width:1250px}.intro{di
 <div class="group-label">Recent (2021–Present)</div><ul>
 <li><a class="sidebar-link" href="/#collage-book-2">Collage Book 2</a></li><li><a class="sidebar-link" href="/#vintage-book">Collage Book 1</a></li><li><a class="sidebar-link" href="/#chaos-series">Chaos Series</a></li><li><a class="sidebar-link" href="/#faceless-series">Faceless Series</a></li><li><a class="sidebar-link" href="/#poster-series">Poster Series</a></li><li><a class="sidebar-link" href="/#one-hundred-pages">One Hundred Pages</a></li></ul>
 <div class="group-label">Past (2005–2017)</div><ul><li><a class="sidebar-link" href="/#works">Works</a></li><li><a class="sidebar-link" href="/#collaborations">Collaborations</a></li><li><a class="sidebar-link" href="/#photography">Photography</a></li></ul>
-<div class="group-label"><a href="/shop/" aria-current="page">Shop</a></div><div class="group-label"><a href="/#about">About the Artist</a></div></nav>
+<div class="group-label"><a href="/shop/" aria-current="page">Shop</a></div><div class="group-label"><a href="/#about">About the Artist</a></div>
+<div class="social" aria-label="Social links">
+  <a href="https://www.instagram.com/sundrysullen" target="_blank" rel="noopener noreferrer" title="Instagram — @sundrysullen" aria-label="Instagram">
+    <svg viewBox="0 0 24 24" role="img" aria-label="Instagram">
+      <title>Instagram</title>
+      <path fill="currentColor" d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm0 2a3 3 0 00-3 3v10a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H7zm5 3.5A5.5 5.5 0 1112 18.5 5.5 5.5 0 0112 7.5zm0 2A3.5 3.5 0 1015.5 13 3.5 3.5 0 0012 9.5zM18 5.5a1.5 1.5 0 11-1.5 1.5A1.5 1.5 0 0118 5.5z"/>
+    </svg>
+  </a>
+</div>
+</nav>
 <main>
 <div class="intro"><div><h2>Shop</h2><p>Printed matter and original works on paper.</p><p class="preview">Storefront preview · Checkout not yet connected</p></div><button class="cart-trigger" id="cartButton" aria-haspopup="dialog">Cart (<span id="cartCount">0</span>)</button></div>
 <p class="subheading">The book is available on its own or paired with an original collage. For this release, select 3-inch mini originals are included at no additional cost. Each original is one of a kind.</p>
@@ -61,31 +76,31 @@ main{flex:1;min-width:0;padding:2rem 2.5rem 5rem 20px;max-width:1250px}.intro{di
 </main>
 <div class="cart-overlay" id="cartOverlay"></div><aside class="cart" id="cartPanel" role="dialog" aria-modal="true" aria-label="Shopping cart" aria-hidden="true"><div class="cart-top"><h2>Your Cart</h2><button class="close" id="cartClose" aria-label="Close cart">×</button></div><div class="cart-lines" id="cartLines"></div><div class="cart-footer"><div class="total"><span>Subtotal</span><span id="subtotal">$0.00</span></div><button class="checkout" disabled>Checkout coming soon</button><p class="note">Preview only. No payments are accepted yet. Inventory is not reserved and purchases are not possible until the secure Stripe integration is completed.</p></div></aside>
 <script>
-// Preview catalog: replace temporary images, actual pricing, and product IDs before launch.
+// Preview catalog: only products with a successfully loaded photo appear.
+// Increase these counts if you add more numbered photographs.
+const miniCount=12, originalCount=15;
 // Set large: true for a feature-size card, and image: '/images/shop/filename.jpg' for a photo.
 // The order below controls the shop's reading order. Prices and sizes are placeholders.
 const book={id:'book',name:'Collage & Poetry Book',price:20,kind:'book',detail:'Book only · Available for reprints'};
-const minis=Array.from({length:12},(_,i)=>({id:`mini-${String(i+1).padStart(2,'0')}`,name:`Mini Original ${String(i+1).padStart(2,'0')}`,price:20,kind:'mini',detail:'3-inch original · Includes one book'}));
-const originals=Array.from({length:15},(_,i)=>({id:`medium-${String(i+1).padStart(2,'0')}`,name:`Original Collage ${String(i+1).padStart(2,'0')}`,price:60,kind:'medium',detail:'Original collage · Includes one book',large:i===0||i===6}));
-const products=[book,...minis.slice(0,5),originals[0],...minis.slice(5),...originals.slice(1,6),originals[6],...originals.slice(7)];
+const minis=Array.from({length:miniCount},(_,i)=>({id:`mini-${String(i+1).padStart(2,'0')}`,name:`Mini Original ${String(i+1).padStart(2,'0')}`,price:20,kind:'mini',detail:'3-inch original · Includes one book'}));
+const originals=Array.from({length:originalCount},(_,i)=>({id:`medium-${String(i+1).padStart(2,'0')}`,name:`Original Collage ${String(i+1).padStart(2,'0')}`,price:60,kind:'medium',detail:'Original collage · Includes one book',large:i===0||i===6}));
+const products=[book,...minis.slice(0,5),originals[0],...minis.slice(5),...originals.slice(1,6),originals[6],...originals.slice(7)].filter(Boolean);
 const byId=Object.fromEntries(products.map(p=>[p.id,p]));let cart={};try{const saved=JSON.parse(localStorage.getItem('ss-shop-cart-preview')||'{}');for(const [id,qty] of Object.entries(saved)){if(byId[id]&&Number.isInteger(qty)&&qty>0)cart[id]=Math.min(qty,byId[id].kind==='book'?99:1)}}catch{}
 const money=n=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(n);
-function card(p){
+function loadPhoto(p){
+  return new Promise(resolve=>{
+    const photo=new Image();
+    photo.alt=p.name;photo.decoding='async';
+    photo.addEventListener('load',()=>resolve(photo),{once:true});
+    photo.addEventListener('error',()=>resolve(null),{once:true});
+    // Eagerly check existence; lazy loading would not work for detached images.
+    photo.src=p.image||`/images/shop/${p.id}.jpg`;
+  });
+}
+function card(p,photo){
   const el=document.createElement('article');el.className=p.large?'product large':'product';
   const figure=document.createElement('div');
-  figure.className='placeholder';
-  const label=document.createElement('span');
-  label.textContent=p.kind==='book'?'BOOK COVER PHOTO COMING SOON':'ARTWORK PHOTO COMING SOON';
-  figure.append(label);
-  const photo=document.createElement('img');
-  photo.alt=p.name;photo.loading='lazy';photo.decoding='async';
-  // Keep the placeholder until the image loads; hidden images can fail to lazy-load,
-  // so use opacity instead of display:none for the initial loading state.
-  photo.style.opacity='0';photo.setAttribute('aria-hidden','true');
-  photo.addEventListener('load',()=>{photo.style.opacity='1';photo.removeAttribute('aria-hidden');label.hidden=true;},{once:true});
-  photo.addEventListener('error',()=>{photo.remove();},{once:true});
-  figure.append(photo);
-  photo.src=p.image||`/images/shop/${p.id}.jpg`;
+  figure.className='placeholder';figure.append(photo);
   const details=document.createElement('div');
   const kind=document.createElement('p');kind.className='product-kind';kind.textContent=({book:'Book only',mini:'Book + Mini Original',medium:'Book + Original Collage'})[p.kind];
   const h=document.createElement('h4');h.textContent=p.name;
@@ -94,8 +109,24 @@ function card(p){
   const add=document.createElement('button');add.className='add';add.textContent='Add to Cart';add.dataset.add=p.id;
   details.append(kind,h,subtitle,price,add);el.append(figure,details);return el;
 }
-function renderCatalog(){const grid=document.getElementById('catalog');for(const p of products)grid.append(card(p));}
-function save(){localStorage.setItem('ss-shop-cart-preview',JSON.stringify(cart))}
+async function renderCatalog(){
+  const grid=document.getElementById('catalog');
+  const loaded=await Promise.all(products.map(async(p,index)=>{
+    const photo=await loadPhoto(p);
+    if(!photo)return null;
+    const el=card(p,photo);el.dataset.order=index;
+    // Insert in catalog order even if photographs arrive out of order.
+    const next=Array.from(grid.children).find(child=>Number(child.dataset.order)>index);
+    grid.insertBefore(el,next||null);
+    updateCart();
+    return p.id;
+  }));
+  // Remove stale preview cart items whose product photos are no longer available.
+  const visible=new Set(loaded.filter(Boolean));
+  for(const id of Object.keys(cart))if(!visible.has(id))delete cart[id];
+  save();updateCart();
+}
+function save(){try{localStorage.setItem('ss-shop-cart-preview',JSON.stringify(cart))}catch{}}
 const panel=document.getElementById('cartPanel'),overlay=document.getElementById('cartOverlay');function openCart(open){panel.classList.toggle('open',open);overlay.classList.toggle('open',open);panel.setAttribute('aria-hidden',String(!open));if(open)document.getElementById('cartClose').focus();else document.getElementById('cartButton').focus()}
 function updateCart(){const rows=document.getElementById('cartLines');rows.replaceChildren();let total=0,count=0;for(const [id,qty] of Object.entries(cart)){const p=byId[id];if(!p)continue;total+=p.price*qty;count+=qty;const row=document.createElement('div');row.className='cart-item';const info=document.createElement('div');const title=document.createElement('strong');title.textContent=p.name;const subtitle=document.createElement('p');subtitle.textContent=p.detail;const actions=document.createElement('div');actions.className='cart-actions';if(p.kind==='book'){const minus=document.createElement('button');minus.className='small-btn';minus.textContent='−';minus.setAttribute('aria-label','Remove one '+p.name);minus.addEventListener('click',()=>change(id,-1));const n=document.createElement('span');n.textContent=qty;const plus=document.createElement('button');plus.className='small-btn';plus.textContent='+';plus.setAttribute('aria-label','Add one '+p.name);plus.addEventListener('click',()=>change(id,1));actions.append(minus,n,plus)}else{const n=document.createElement('span');n.textContent='Quantity: 1';actions.append(n)}const rm=document.createElement('button');rm.className='remove';rm.textContent='Remove';rm.addEventListener('click',()=>{delete cart[id];save();updateCart()});actions.append(rm);info.append(title,subtitle,actions);const cost=document.createElement('strong');cost.textContent=money(p.price*qty);row.append(info,cost);rows.append(row)}if(!count){const empty=document.createElement('p');empty.className='empty';empty.textContent='Your cart is empty.';rows.append(empty)}document.getElementById('subtotal').textContent=money(total);document.getElementById('cartCount').textContent=count;for(const btn of document.querySelectorAll('[data-add]')){const p=byId[btn.dataset.add];const inCart=!!cart[p.id]&&p.kind!=='book';btn.disabled=inCart;btn.textContent=inCart?'Added to Cart':'Add to Cart'}}
 function change(id,delta){const p=byId[id];if(!p)return;const current=cart[id]||0;const next=Math.max(0,Math.min(p.kind==='book'?99:1,current+delta));if(next)cart[id]=next;else delete cart[id];save();updateCart()}
